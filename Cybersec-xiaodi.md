@@ -55,7 +55,19 @@
     - [找回机制](#找回机制)
     - [接口调用](#接口调用)
     - [验证安全](#验证安全)
-  - [目录遍历漏洞](#目录遍历漏洞)
+  - [反序列化](#反序列化)
+    - [PHP反序列化](#php反序列化)
+    - [Java反序列化](#java反序列化)
+  - [XML&XXE](#xmlxxe)
+- [Java安全](#java安全)
+  - [JWT安全](#jwt安全)
+  - [预编译CASE注入](#预编译case注入)
+- [漏洞发现](#漏洞发现)
+  - [操作系统](#操作系统)
+  - [WEB应用](#web应用)
+  - [APP应用](#app应用)
+  - [服务协议](#服务协议)
+- [WAF绕过](#waf绕过-1)
 
 <!-- /code_chunk_output -->
 
@@ -568,5 +580,198 @@ Response状态值，验证码爆破，找回流程绕过
 爆破，识别，复用，回显，绕过
 识别插件：captcha-killer,Pkav_Http_Fuzz
 
-### 目录遍历漏洞
+
+### 反序列化
+序列化其实就是将数据转化成一种可逆的数据结构，自然，逆向的过程就叫做反序列化。
+
+#### PHP反序列化
+**原理**
+PHP 反序列化漏洞又叫做 PHP 对象注入漏洞，是因为程序对输入数据处理不当导致的.
+反序列化漏洞的成因在于代码中的 unserialize() 接收的参数可控，从上面的例子看，这个函数的参数是一个序列化的对象，而序列化的对象只含有对象的属性，那我们就要利用对对象属性的篡改实现最终的攻击。
+**前提**：
+- 必须有 unserailize() 函数
+- unserailize() 函数的参数必须可控（为了成功达到控制你输入的参数所实现的功能，可能需要绕过一些魔法函数
+**技术**
+- 有类:_construct,_destruct,_wakeup,_toString
+- 无类
+
+**利用**
+真实应用下
+CTF
+
+**危害**
+SQL注入，代码执行，目录遍历
+
+https://www.cnblogs.com/fish-pompom/p/11126473.html
+
+
+#### Java反序列化
+在Java反序列化中，会调用被反序列化的readObject方法，当readObject方法被重写不当时产生漏洞
+**标志**
+以rO0AB开头：Java序列化base64加密
+以aced开头：Java序列化的16进制
+**利用**
+Payload生成器：ysoserial
+自定义检测工具或脚本
+
+**检测**
+- 黑盒：
+  - 数据格式点：
+    - HTTP请求中的参数
+    - 自定义协议
+    - RMI协议
+    - 子主题5
+
+  特定扫描
+
+- 白盒：
+  - 函数点：
+    - ObjectinputStream.readObject
+    - ObjectinputStream.readUnshared
+    - XmlDecoder.readObject
+    - XStream.fromXML
+    - JSON.parseObject
+  - 组件点：参考ysoserial库
+  - 代码点：
+    - RCE执行
+    - 数据认证
+
+### XML&XXE
+
+**危害**：
+文件读取，RCE执行，内网攻击，DOS攻击
+**检测**：
+- 白盒
+  - 函数及可控变量查找
+  - 传输和存储数据格式类型
+- 黑盒
+  - 人工
+    - 数据格式类型判断
+    - Content-type值判断：text/xml，application/xml
+    - 更改Content-Type值看返回
+  - 工具
+**利用**：
+- 输出形式
+  - 有回显
+    - 协议玩法：http，file，有脚本支持协议
+    - 外部引用
+  - 无回显
+    - 外部引用-反向链接配合
+- 过滤绕过
+  - 协议玩法
+  - 外部引用
+  - 编码UTF
+
+## Java安全
+- 综合常规
+  - SQL注入
+  - 路径遍历
+  - XSS
+  - 反序列化
+  - XML&XXE
+  - CSRF&SSRF
+- 访问控制
+  - 对象引用
+  - 缺少功能
+- 身份验证
+  - 身份验证绕过
+  - JWT令牌
+  - 重设密码
+  - 安全密码
+- 客户端安全
+  - 前端限制
+  - 客户端过滤
+  - HTML篡改
+- 组件安全
+### JWT安全
+**解释**：
+JWT的全称是Json Web Token。是一种跨域验证身份的方案，JWT不加密数据，但能通过数字签名判断是否被篡改
+**组成**：
+头部（Header），声明（Claims），签名（Signature）
+**攻击**：
+- 伪造：
+  - 无密钥-修改alg，删除签名
+  - 有密钥-对应修改数据后重新加密
+- 爆破：正对签名密钥爆破
+- 配合：JWT数据中存在参数传递接受处理过程
+
+**检测**
+Javaweb，Authorization，数据包数据格式
+### 预编译CASE注入
+
+## 漏洞发现
+
+### 操作系统
+**探针**：Goby，Nmap，Nessus，OpenVAS，Nexpose
+**类型**：远程执行，权限提升，缓冲区溢出
+**利用**
+- 工具框架：Metasploil，Searchsploit，企业单位内部产品
+- 单点EXP：cnvd，seebug，1337day，exploit-db，Packetstorm Security
+- 复现文章：各种资讯来源
+**修复**：打补丁，关上入口，防护应用
+
+### WEB应用
+**已知CMS**
+- 漏洞平台：cnvd，seebug，1337day,exploit-db,Packetstorm Security
+- 工具框架：cmsscan,wpscan,joomscan,drupalscan
+- 代码审计：函数点挖掘，功能点挖掘，框架挖掘
+**开发框架**
+- PHP：Yii，Laravel，thinkphp
+- Java：Shire，Struts，Spring，Maven
+- Python：Flask，Django，Tomado
+**未知CMS**
+- 工具框架：xray，awvs，appscan，企业公司内部产品
+- 人工探针：应用功能，URL参数，盲猜测试
+### APP应用
+**抓包**
+- http/https：Burpsuite，Charies，Fiddler，抓包精灵，其他
+- 其他协议： wireshark
+**协议**
+- WEB协议类
+- 其他协议类
+**逆向**
+- 一键提取APK涉及URL
+- 反编译重写代码段编译测试
+
+### 服务协议
+端口服务
+API接口：wsdl，awvs
+
+
+## WAF绕过
+**信息收集**
+- 测试环境：aliyun-os，safedog
+- 绕过分析：抓包技术，AF说明，FUZZ测试
+- 绕过手法
+  - 数据包特征
+    - 请求方式
+      - Head：请求速度快，易被拦截
+    - 模拟用户
+    - 爬虫引擎
+    - 白名单机制
+  - 请求速度
+    - 延时
+    - 代理池
+    - 爬虫引擎
+    - 白名单机制
+
+**漏洞发现**
+- 工具
+  - 综合：awvs，xray，appscan
+  - 单点：tpscan，wpscan，st2scan
+- 触发
+  - 扫描速度
+    - 延时
+    - 代理池
+    - 白名单
+  - 工具指纹
+    - 特征修改
+    - 模拟用户
+  - 漏洞Payload
+    - 数据变异
+    - 冷门扫描
+    
+**漏洞利用**
+
+**权限控制**
 
