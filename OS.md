@@ -1,26 +1,60 @@
-
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
 <!-- code_chunk_output -->
 
 - [Centos](#centos)
-  - [包管理器：](#包管理器)
+  - [包管理器](#包管理器)
   - [vim](#vim)
-  - [删除编译软件：](#删除编译软件)
+  - [删除编译软件](#删除编译软件)
     - [nginx](#nginx)
       - [Web服务器](#web服务器)
         - [location](#location)
         - [反向代理](#反向代理)
         - [负载均衡](#负载均衡)
+    - [docker](#docker)
+      - [vulhub靶场](#vulhub靶场)
+      - [create mysql container](#create-mysql-container)
+      - [create redis](#create-redis)
 
 <!-- /code_chunk_output -->
 
 
+
 [How to install software in linux](https://linuxize.com/)
+
+# Andriod
+shizuku
+scene
+
+
+
+# Windows
+
+
+## environment
+
+### python
+#### 管理器
+**virtualenv**
+create
+virtualenv --python route env_name
+run
+.\env_name\Scripts\activate
+stop
+deactivate
+
+#### 打包器
+
+py2exe
+Nuitka
+pyinstall
+
+# Linux
+
 
 ## Centos
 
-### 包管理器：
+### 包管理器
 - rpm
     ```
     RPM包默认安装路径
@@ -39,7 +73,7 @@
     - gg		# 跳至文件首行
     - dG		# 删除光标所在行到末尾行内容，d删除，G跳转到文件末尾行
 
-### 删除编译软件：
+### 删除编译软件
 1. make uninstall 执行作者编写的卸载文件
 2. build目录下，执行：```xargs rm < install_manifest.txt```
 make install之后，build目录下会有一个install_mainfest.txt的文件, 记录了安装的所有内容及路径，

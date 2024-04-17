@@ -1,5 +1,20 @@
-
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [Software](#software)
+- [Website](#website)
+  - [CTF](#ctf)
+  - [SRC平台](#src平台)
+  - [DNS,DOMIN](#dnsdomin)
+  - [proxy software](#proxy-software)
+  - [download software](#download-software)
+  - [code](#code)
+
+<!-- /code_chunk_output -->
+
+
+
 
 
 ## Software
@@ -21,7 +36,7 @@ Markdown 写作：Marktext
 屏幕按键显示：Keyviz
 文件，软件管理: utools,everything,maye lite
 文件跨设备互传: localsend
-图吧工具箱  IDE mpv AIMP irfanView 7-zip
+图吧工具箱  IDE mpv 7-zip
 
 0.去广告搜索『intitle:（关键词）』
 1.限定文件类型

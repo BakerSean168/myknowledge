@@ -67,9 +67,9 @@
 - [WAF绕过](#waf绕过-1)
 - [代码审计](#代码审计)
   - [漏洞关键字](#漏洞关键字)
+- [权限提升](#权限提升)
 
 <!-- /code_chunk_output -->
-
 
 
 
@@ -794,3 +794,117 @@ eval,assert,preg_replace,call_user_func,call_user_func_array
  **工具**
  Windows：Wes，WindowsVulnScan，
  Linux：Vulmap
+
+
+## 免杀
+Tools：shellcode，msf
+
+
+### 源代码：
+加密：xor，aes，Hex，Rc4 Base64+aes，反序列化
+PowerShell-文件模式-混淆过某绒
+PowerShell-文件模式-分离过某 60
+PowerShell-文件模式-特征修改过 DF
+PowerShell-EXE 模式-Ladon&Win-PS2
+PowerShell-命令模式-加载&替换&填充等
+
+### 成品EXE：
+Tools：
+VirTest（定位特征码）
+
+#### 反特征码
+**通用跳转法**
+特征码区域汇编移动到全 0 区域后用 jmp 调用
+**花指令改入口**
+添加花指令重定向修改入口地址从而打乱特征码位置
+#### 反 VT 沙盒
+加壳：Py-Pyinstall-UPX 等
+加资源：Py-Pyinstall-Restorator
+加保护：C-Project2-VMProject Shielden 等
+
+
+
+
+
+ ## 内网安全
+- 基本认知
+  - 名词
+    - 局域网，工作组，域环境，活动目录AD，域控制器DC
+  - 域
+    - 单域，父域和子域，域数和域森林
+  - 认知
+    - linux域渗透问题
+    - 局域网技术适用问题
+    - 大概内网安全流程问题
+- 信息收集 
+  - 基本信息
+    - 版本，补丁：systeminfo 详细信息
+    - 服务：net start 启动服务
+    - 任务：schtasks 计划任务
+    - 防护
+  - 网络信息
+    - 开放端口
+      netstat -ano 当前网络端口开放
+    - 网络环境
+    - 出口代理
+  - 用户信息
+    **组别：**
+    Domain Admins      域管理员
+    Domain Computers   域内机器
+    Domain Guest
+    Domain Users
+    Enterprise Admins  企业系统管理员用户
+    Domain Controllers 域控制器
+    **指令：**
+    whoami /all
+    net config workstation 登录信息
+    net user 本地用户
+    net localgroup 本地用户组
+    net user /domain 获取域用户信息
+    net group /domain 获取域用户组信息
+    wmic useraccount get /all 涉及域用户详细信息
+    net group "Domain Admins" /domain 查询域管理员账户
+    - 域用户：
+      ipconfig/all     判断存在域-dns
+      net view /domain 判断存在域
+      net time /domain 判断主域
+      nslookup 域名    追踪来源地址
+    - 本地用户
+    - 用户权限
+    - 对应组信息
+  - 凭据信息
+    - 明文
+    - hash
+      破解：hashcat
+    - 各种口令
+- 后续探针
+  - 存活主机
+  - 域控制器
+  - 网络架构
+  - 服务接口
+- 权限提升
+- 横向渗透
+  - 局域网
+  - 域环境
+    - 传递
+      - at&schtasks
+      - psexec&smbexec
+      - wmic&wmiexec
+      - PTH&PTT&PTK
+      - winrs&winrm&rdp
+    - 漏洞
+      - CVE-2014-6324
+- 权限维持
+
+Tools：
+计算机用户HASH，明文获取:
+mimikatz（win），mimipenguin（linux）
+计算机各种协议服务口令获取:
+lazagne（all），XenArmor（win）
+探针域内存货主机及地址信息：
+for /L %I in (1,1,254) DO @ping -w 1 -n 1 192.168.3.%I | findstr "TTL="(Windows自带命令行)
+模块nishang，empire
+横向渗透明文hash传递：
+atexec-impacket
+
+procdump+minikatz
