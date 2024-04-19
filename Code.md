@@ -333,3 +333,39 @@ Controller  控制器
 - excludePathPatterns定义排除某些地址不被拦截
 - 添加的一个拦截器没有addPathPattern任何一个url则默认拦截所有请求
 - 没有excludePathPattern任何一个url则默认不放过一个请求
+
+**RESRful**
+- 每一个URI代表一种资源
+- GET获取资源，POST新建资源，PUT更新资源，DELETE删除资源
+- 通过操作资源的表现形式来实现服务端请求操作
+- 资源的表现形式是JSON或者HTML
+
+**使用Swagger生成WebAPI文档**
+
+
+#### 注解
+@restcontroller
+@requestmapping
+@PathVaraible
+@RequestBody
+
+## HTML
+### vue
+
+**MVVM模式**
+- Model-View-ViewModel,核心是提供对View和VIewModel的双向数据绑定
+- Vue提供了MVVM风格的双向数据绑定，核心是MVVM中的VM，ViewModel负责连接View和Model，保证视图和数据的一致性
+
+**Vue框架**
+
+**Vue组件化**
+
+**生命周期函数**
+created
+mounted
+
+
+**Axios网络请求**
+- Axios是一个基于promise网络请求库
+- Axios只用XMLHttpRequests发送网络请求，并能自动完成JSON数据的转换
+
