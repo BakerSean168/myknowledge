@@ -9,10 +9,13 @@
       - [管理器](#管理器)
       - [打包器](#打包器)
 - [Linux](#linux)
-  - [Centos](#centos)
-    - [包管理器](#包管理器)
+    - [shell](#shell)
+      - [usage](#usage)
     - [vim](#vim)
     - [删除编译软件](#删除编译软件)
+      - [mysql](#mysql)
+        - [start](#start)
+        - [Mysql user management](#mysql-user-management)
       - [nginx](#nginx)
         - [Web服务器](#web服务器)
           - [location](#location)
@@ -22,6 +25,11 @@
         - [vulhub靶场](#vulhub靶场)
         - [create mysql container](#create-mysql-container)
         - [create redis](#create-redis)
+      - [mybatis](#mybatis)
+  - [Centos](#centos)
+    - [包管理器](#包管理器)
+- [Ubuntu](#ubuntu)
+    - [包管理器](#包管理器-1)
 
 <!-- /code_chunk_output -->
 
@@ -59,19 +67,17 @@ pyinstall
 # Linux
 
 
-## Centos
 
-### 包管理器
-- rpm
-    ```
-    RPM包默认安装路径
-    /etc/配置文件安装目录
-    /usr/bin/可执行的命令安装目录
-    /usr/lib/程序所使用的函数库保存位置
-    /usr/share/doc/基本的软件使用手册保存位置
-    /usr/share/man/帮助文件保存位置
-    ```
-- yum
+### shell
+cat /etc/shells  查看系统内的shell
+可以使用路径切换到相应的shell版本
+echo $SHELL      查看当前系统变量中显示的shell版本   
+echo $0          当前正在执行的脚本名称
+
+#### usage
+vi hello.sh //create a sh script file
+chmod a+x hello.sh
+./hello.sh
 
 ### vim
 - 显示行号 :set number!
@@ -87,6 +93,77 @@ make install之后，build目录下会有一个install_mainfest.txt的文件, �
 执行 xargs rm < install_manifest.txt 就可以了。
 如果没有这个文件，可以自己重新make install，从log中过滤出install的安装路径信息，保存到unistall.txt中，再执行xargs rm < unistall.txt即可。
 
+
+#### mysql
+
+##### start
+1. use apt update the package
+2. use `apt-cache serach mysql-server` to fing the package
+3. use `sudo apt install mysql-server-8.0` install mysql
+    **setting the root password：**
+    ```
+    sudo mysql;
+    ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'My7Pass@Word_9_8A_zE';
+    ```
+    **MySQL 8.xx 的关键配置文件和端口:**
+    - mysql.service，这是服务的名称。您可以使用以下 systemctl 命令来管理它
+    sudo systemctl start mysql.service
+    sudo systemctl stop mysql.service
+    sudo systemctl restart mysql.service
+    sudo systemctl status mysql.service
+    - /etc/mysql/ - MySQL 服务器的主要配置目录。
+    - /etc/mysql/my.cnf - MySQL 数据库服务器的配置文件。编辑 .my.cnf ($HOME/.my.cnf) 文件来设置用户特定的选项。以下两个目录中的设置可以覆盖它： /etc/mysql/conf.d//etc/mysql/mysql.conf.d/
+    - TCP/3306 端口 - TCP/3306 是 MySQL 服务器的默认网络端口，出于安全考虑，它绑定在 127.0.0.1 上，可以更改这个设置，之后就可以通过在 /run/mysqld/ 目录下设置的 localhost 套接字来访问 MySQL 服务器。
+4. enhacing the security of mysql
+`sudo mysql_secure_installation`
+5. controlling the status of mysql
+```
+systemctl enable mysql.service
+systemctl start mysql.service
+systemctl status mysql.service
+systemctl stop mysql.service
+systemctl restart mysql.service
+```
+6. Configuring the MySQL 8 Server
+Edit the /etc/mysql/mysql.conf.d/mysqld.cnf file with a text editor
+` vim /etc/mysql/mysql.conf.d/mysqld.cnf`
+##### Mysql user management
+- add user
+`create user username identified by 'password';`
+create user zhangsan identified by 'zhangsan';
+- grant (`show grants;//查询用法`)
+`grant privilegesCode on dbName.tableName to username@host;`
+grant all privileges on zhangsanDb.* to zhangsan@'%';
+flush privileges;
+`show grants for user;`
+show grants for 'zhangsan';
+privilegesCode表示授予的权限类型，常用的有以下几种类型：
+all privileges：所有权限。
+select：读取权限。
+delete：删除权限。
+update：更新权限。
+create：创建权限。
+drop：删除数据库、数据表权限。
+dbName.tableName表示授予权限的具体库或表，常用的有以下几种选项：
+.：授予该数据库服务器所有数据库的权限。
+dbName.*：授予dbName数据库所有表的权限。
+dbName.dbTable：授予数据库dbName中dbTable表的权限。
+username@host表示授予的用户以及允许该用户登录的IP地址。其中Host有以下几种类型：
+localhost：只允许该用户在本地登录，不能远程登录。
+%：允许在除本机之外的任何一台机器远程登录。
+192.168.52.32：具体的IP表示只允许该用户从特定IP登录。
+password指定该用户登录时的面。
+flush privileges表示刷新权限变更。
+- change passwoed
+`update mysql.user set password = password('zhangsannew') where user = 'zhangsan' and host = '%';`
+- delete user
+`drop user zhangsan@'%';`
+- 常用命令组
+`create user zhangsan identified by 'zhangsan';`
+`grant all privileges on zhangsanDb.* to zhangsan@'%' identified by 'zhangsan';`
+`flush  privileges;`
+创建了用户zhangsan，并将数据库zhangsanDB的所有权限授予zhangsan。如果要使zhangsan可以从本机登录，那么可以多赋予localhost权限：
+`grant all privileges on zhangsanDb.* to zhangsan@'localhost' identified by 'zhangsan';`
 #### nginx
 /etc/nginx
 
@@ -246,3 +323,31 @@ docker run -p 6379:6379 --name redis -v /mydata/redis/data:/data \
   	
 docker exec -it redis redis-cli //redis镜像执行redis-cli命令连接
 ```
+
+#### mybatis
+
+
+
+## Centos
+
+### 包管理器
+- rpm
+    ```
+    RPM包默认安装路径
+    /etc/配置文件安装目录
+    /usr/bin/可执行的命令安装目录
+    /usr/lib/程序所使用的函数库保存位置
+    /usr/share/doc/基本的软件使用手册保存位置
+    /usr/share/man/帮助文件保存位置
+    ```
+- yum
+
+# Ubuntu
+
+### 包管理器
+- apt
+    ```
+    sudo apt update
+    sudo apt list --upgradable
+    sudo apt upgrade
+    ```

@@ -38,6 +38,8 @@ Markdown 写作：Marktext
 文件跨设备互传: localsend
 图吧工具箱  IDE mpv 7-zip
 
+videodownloader: VidJuice UniTube
+
 0.去广告搜索『intitle:（关键词）』
 1.限定文件类型
 『（关键词）filetype:（文件类型）』
