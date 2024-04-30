@@ -1,6 +1,6 @@
 
-# Web
-## 技术栈
+
+### 技术栈
 **开发框架**
 - Vue3 
 - SpringBoot SpringMVC

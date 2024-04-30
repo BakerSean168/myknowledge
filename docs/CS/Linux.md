@@ -2,26 +2,19 @@
 
 <!-- code_chunk_output -->
 
-- [Andriod](#andriod)
-- [Windows](#windows)
-  - [environment](#environment)
-    - [python](#python)
-      - [管理器](#管理器)
-      - [打包器](#打包器)
-- [Linux](#linux)
     - [shell](#shell)
       - [usage](#usage)
     - [vim](#vim)
     - [删除编译软件](#删除编译软件)
-      - [mysql](#mysql)
+    - [mysql](#mysql)
         - [start](#start)
         - [Mysql user management](#mysql-user-management)
-      - [nginx](#nginx)
+    - [nginx](#nginx)
         - [Web服务器](#web服务器)
           - [location](#location)
           - [反向代理](#反向代理)
           - [负载均衡](#负载均衡)
-      - [docker](#docker)
+    - [docker](#docker)
         - [vulhub靶场](#vulhub靶场)
         - [create mysql container](#create-mysql-container)
         - [create redis](#create-redis)
@@ -37,13 +30,6 @@
 
 [How to install software in linux](https://linuxize.com/)
 
-
-
-
-
-
-
-# Linux
 
 
 
@@ -73,7 +59,7 @@ make install之后，build目录下会有一个install_mainfest.txt的文件, �
 如果没有这个文件，可以自己重新make install，从log中过滤出install的安装路径信息，保存到unistall.txt中，再执行xargs rm < unistall.txt即可。
 
 
-#### mysql
+### mysql
 
 ##### start
 1. use apt update the package
@@ -143,7 +129,9 @@ flush privileges表示刷新权限变更。
 `flush  privileges;`
 创建了用户zhangsan，并将数据库zhangsanDB的所有权限授予zhangsan。如果要使zhangsan可以从本机登录，那么可以多赋予localhost权限：
 `grant all privileges on zhangsanDb.* to zhangsan@'localhost' identified by 'zhangsan';`
-#### nginx
+
+
+### nginx
 /etc/nginx
 
 nginx -t 检测文件配置是否有问题
@@ -265,7 +253,7 @@ server {
 }
 ```
 
-#### docker
+### docker
 
 
 ##### vulhub靶场
