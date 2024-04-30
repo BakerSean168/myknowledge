@@ -309,7 +309,7 @@ docker exec -it redis redis-cli //redis镜像执行redis-cli命令连接
     ```
 - yum
 
-# Ubuntu
+## Ubuntu
 
 ### 包管理器
 - apt

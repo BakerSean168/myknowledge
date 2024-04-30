@@ -6,5 +6,5 @@
 * [Andriod](CS/Andriod)
 * [Linux](CS/Linux)
 * [Windows](CS/Windows)
-* [SoftSide](SoftSide)
+* [SoftSite](SoftSite)
 * [Tools](Tools)
