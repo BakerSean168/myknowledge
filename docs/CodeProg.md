@@ -16,9 +16,40 @@
 <!-- /code_chunk_output -->
 
 
+# Prog
+
+## Web
+
+### 技术栈
+
+
+#### 开发框架
+- Vue3 
+
+- SpringBoot SpringMVC
+#### 组件库
+- Vant UI 基于Vue的移动端组件库 React版Zent
+
+#### 序列化库
+- gson
+- fastjson
+
+#### 打包工具
+- Vite 快
+#### 数据库
+- Mysql
+- Mariadb
+
+
+#### Other
+- Nginx
+- Redis
+- MyBatis MyBatis Plus
 
 
 
+
+# code
 
 ## assembly
 
