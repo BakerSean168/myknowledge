@@ -277,3 +277,5 @@ out： CPU从端口写入数据
 
 ## Java
 
+### break
+break只能跳出与之最近的for，while循环，跟if没有关系。

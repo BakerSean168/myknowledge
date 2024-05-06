@@ -193,3 +193,12 @@ clouDNS:https://www.cloudns.net/main/
 
 ### code
 [uni—app官网](https://uniapp.dcloud.net.cn/resource.html)
+
+### CSS+HTML练习
+1. https://github.com/vccyb/Vue-Official-Examples 我模仿vue官方网站例子做的demo合集，使用了tailwindcss、shadcn-vue、vite
+2. https://javascript30.com/ 非常有名的30days 原生js挑战
+3. https://50projects50days.com/ 油管网红大神的 50个小项目，超级有名
+4. https://github.com/florinpop17 icodethis的创始人，他的几个仓库都是非常经典的练习
+    -  app-ideas
+    -  10-projects-10-hours
+    - 100days100projects
