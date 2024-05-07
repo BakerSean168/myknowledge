@@ -11,6 +11,9 @@
   - [中断](#中断)
   - [与外设交互](#与外设交互)
 - [Java](#java)
+  - [break](#break)
+- [algorithm](#algorithm)
+  - [归并分治](#归并分治)
 
 <!-- /code_chunk_output -->
 
@@ -279,3 +282,54 @@ out： CPU从端口写入数据
 
 ### break
 break只能跳出与之最近的for，while循环，跟if没有关系。
+
+
+## algorithm
+### 归并分治
+原理：
+1. 思考一个问题在大范围上的答案是否等于，左部分的答案 + 右部分的答案 + 跨越左右的答案吧。
+2. 计算“跨越左右产生的答案”时，如果加上左，右各自有序这个设定，会不会获得计算的便利性
+
+例题：
+1. 小和问题
+    ```
+    int[] arr = new int[];
+    int[] help = new int[];
+    smallSum(0, n-1);
+
+    public static long smallSum(int l, int r) {
+        if (l == r) {
+            return 0;
+        }
+        int m = (l + r) / 2;
+        return smallSum(l, m) + smallSum(m+1, r) + merge(l, m, r);
+    }
+    //返回跨左右产生的小和累加和，左侧有序，右侧有序，让左右两侧整体有序
+    public static long merge(int l, int m, int r) {
+        //统计部分
+        long ans = 0;
+        for (int j = m + 1, i = l, sum = 0; j <= r; j++) {
+            while (i <= m && arr[i] <= arr[j]) {
+                sum += arr[i++];
+            }
+            ans += sum;
+        }
+        //正常merge
+        int i = l;
+        int a = l;
+        int b = m + 1 ;
+        while (a <= m && b <= r) {
+            help[i++] = arr[a] <= arr[b] ? arr[a++] : arr[b++];
+        }
+        while (a <= m) {
+            help[i++] = arr[a++];
+        }
+        while (b <= m) {
+            help[i++] = arr[b++];
+        }
+        for (i = l; i <= r; i++) {
+            arr[i] = help[i];
+        }
+        return ans;
+    }
+    ```
