@@ -14,6 +14,8 @@
   - [break](#break)
 - [algorithm](#algorithm)
   - [归并分治](#归并分治)
+  - [随机快排](#随机快排)
+  - [随机选择算法](#随机选择算法)
 
 <!-- /code_chunk_output -->
 
@@ -333,3 +335,99 @@ break只能跳出与之最近的for，while循环，跟if没有关系。
         return ans;
     }
     ```
+
+### 随机快排
+核心点： 怎么选数字？
+当数字是当前范围上的固定位置，则为普通快排
+当数字是当前范围上的随机位置，则为随机快排
+
+普通快排，时间复杂度为O(n^2),空间复杂度为O(n)
+随机快排，时间复杂度为O(nlogn)，空间复杂度为o(logn)
+**Code**：
+
+1. 随机快拍改进版（推荐）
+    ```
+    public static void quickSort2(int l, int r) {
+        if (l >= r) {
+            return;
+        }
+        // 随机这一下，常数时间比较大
+        int x = arr[l + (int) (Math.random() * (r - l + 1))];
+        patition2(l, r, x);
+        // 为了防止底层的递归过程覆盖全局变量
+        // 这里使用临时变量记录first，last
+        int left = first;
+        int right = last;
+        quickSort2(l, left - 1);
+        quickSort2(right + 1, r);
+    }
+
+    // 荷兰国旗问题
+    public static int first, last;
+
+    public static boid partition2(int l, int r, int x) {
+        first = 1;
+        last = r;
+        int i = l;
+        while (i <= last) {
+            if (arr[i] == x) {
+                i++;
+            } else if (arr[i] < x) {
+                swap(first++, i++);
+            } else {
+                swap(i , last--);
+            }
+        }
+    }
+    ```
+
+### 随机选择算法
+无序数组中寻找第k大的数(O(n)复杂度)
+**code**：
+```
+class Solution {
+    private static int first, last;
+
+    public static int findKthLargest(int[] nums, int k) {
+        return randomizedSelect(nums, nums.length - k);
+    }
+
+    public static int randomizedSelect(int[] arr, int i) {
+        int ans = 0;
+        for (int l = 0, r = arr.length - 1; l <= r;) {
+            partition2(arr, l, r, arr[l + (int) (Math.random() * (r - l + 1))]);
+            if (i < first) {
+                r = first - 1;
+            } else if (i > last) {
+                l = last + 1;
+            } else {
+                ans = arr[i];
+                break;
+            }
+        }
+        return ans;
+    }
+
+    public static void partition2(int[] arr, int l, int r, int x) {
+        first = l;
+        last = r;
+        int i = l;
+        while (i <= last) {
+            if (arr[i] == x) {
+                i++;
+            } else if (arr[i] < x) {
+                swap(arr, first++, i++);
+            } else {
+                swap(arr, i , last--);
+            }
+        }
+    }
+
+    public static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+}
+
+```
