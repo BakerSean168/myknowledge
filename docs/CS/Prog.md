@@ -93,6 +93,124 @@ Controller  控制器
 @RequestBody
 
 ## HTML
+
+### color
+nav
+- background-color: #24252A;
+- color: #edf0f1;
+- box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+- link
+    - hover: color: #0088a9;
+
+sidebar
+- li
+    - a
+        - color: #0088a9;
+        - border: 1px solid #2f2f32;
+
+todolist
+- background-color: #333239;
+- border: 1px solid #333239;
+- box-shadow: #8e6363 1px 1px 10px;
+    - ul li
+        - background-color: #3e3c45;
+        - border: 1px solid #3e3c45;
+        - box-shadow: #767676 1px 1px 10px;
+
+button
+- background-color: #124477;
+- color: #edf0f1;
+- &:hover {
+        background-color: #156cc6;
+      }
+- background-color: #801d1d;
+- color: #edf0f1;
+- &:hover {
+        background-color: #aa1111;
+      }
+
+#26263e
+
+```
+form {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 500px;
+  background-color: #37383a;
+  color: #edf0f1;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  .form-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    label {
+      font-size: 20px;
+    }
+    input {
+      font-size: 20px;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      padding: 10px;
+      outline: none;
+      background-color: #37383a;
+      color: #b4bec1;
+    }
+  }
+  .form-item-check {
+    display: flex;
+    justify-content: center;
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .form-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 50px;
+    .form-button-submit {
+      width: 100px;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      background-color: #124477;
+      color: #edf0f1;
+      font-size: 20px;
+      cursor: pointer;
+      &:hover {
+        background-color: #156cc6;
+      }
+
+
+  }
+    .form-button-cancel {
+      width: 100px;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      background-color: #801d1d;
+      color: #edf0f1;
+      font-size: 20px;
+      cursor: pointer;
+      &:hover {
+        background-color: #aa1111;
+      }
+    }
+  }
+}
+```
+
+
+
 ### vue
 
 **MVVM模式**

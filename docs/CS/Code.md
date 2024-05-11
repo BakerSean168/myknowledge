@@ -282,6 +282,15 @@ out： CPU从端口写入数据
 
 ## Java
 
+### ==
+8大类型（String,Integer,Long,Byte,Boolean等）
+==比较的是内存地址,equal比较的是值
+String str1 = new String("Hello");
+String str2 = new String("Hello");
+str1 == str2 // false
+str1.equals(str2) // true
+
+
 ### break
 break只能跳出与之最近的for，while循环，跟if没有关系。
 
@@ -429,5 +438,97 @@ class Solution {
         arr[j] = temp;
     }
 }
-
 ```
+
+### 堆结构与堆排序
+**堆结构**
+完全二叉树和数组前缀范围来对应，大小，单独的变量size来控制。
+i的父节点：(i - 1)/2, i'left child: i * 2 + 1, i'right child: i* 2 + 2
+堆的定义（小根堆，大根堆）
+堆的调整：heapInsert（向上调整），heapify（向下调整）
+heapInsert，heapify方法的单次调用，时间复杂度O（log n），完全二叉树的结构决定
+
+**堆排序**
+从顶到底建堆，时间复杂度O（n * log n）
+从底到顶建堆，时间复杂度O（n）
+建好堆之后的调整截断，从最大值到最小值依次归位，时间复杂度O（n * log n）
+额外空间复杂度O（1）
+
+**code**：
+```
+// i 位置的数，向上调整大根堆
+public static void heapInset(int[] arr, int i) {
+    while (arr[i] > arr[(i - 1) / 2]) {
+        swap(arr, i, (i - 1) / 2);
+        i = (i - 1) / 2;
+    }
+}
+
+// i位置的数变小，向下调整大根堆
+publick static void heapify(int[] arr, int i, int size) {
+    int l = i * 2 + 1;
+    while (l < size) {
+        int best = l + 1 < size && arr[i + 1] > arr[i] ? l + 1 : l;
+        best = arr[best] > arr[i] ? best : i;
+        if (best == i) {
+            break;
+        }
+        swap(arr, best, i);
+        i = best;
+        best = i * 2 + 1;
+    }
+}
+
+public static void swap(int[] arr, int i, int j) {
+    int tmp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = tmp;
+}
+
+// 从顶到底建立大根堆,O（n * log n）
+// 依次弹出
+public static void heapSort1(int[] arr) {
+    int n = arr.length;
+    for (int i = 0; i < n; i++) {
+        heapInsert(arr, i);
+    }
+    int size = n;
+    while (size > 1) {
+        swap(arr, 0, --size);
+        heapify(arr, 0, size);
+    }
+}
+
+// 从底到顶建堆，时间复杂度O（n）
+public static void heapSort(int[] arr) {
+    int n = arr.length;
+    for (int i = n - 1; i >= 0; i--) {
+        heapify(arr, i, n);
+    }
+    int size = n;
+    while (size > 1) {
+        swap(arr, 0, --size);
+        heapify(arr, 0, size);
+    }
+}
+```
+
+### 哈希表，有序表和比较器的用法
+哈希表的用法（认为是集合，根据值来做key 或者 根据内存地址做key）
+- HashSet和HashMap原理一样，有无伴随数据的区别
+- 增，删，改，查时间为O（1），但是大常数
+- 所以当key的范围是固定的，可控的情况下，可以用数组结构替代哈希表结构
+- 对于8大类型（String。。。）
+    哈希表中存入的是 值
+- 对于其他类型（Object。。）
+    哈希表中存入的是地址
+
+有序表的用法（认为是集合，但是有序组织）
+- TreeSet和TreeMap原理一样，有无伴随数据的区别
+- 增，删，改，查和很多有序相关操作时间为O（log n）
+- 有序表比较相同东西会去重，如果不想去重要定制比较器，堆不会去重
+- 有序表在java里就是红黑树实现的
+
+比较器：
+- 定制比较策略
+- 定义类，直接Lamda表达式
