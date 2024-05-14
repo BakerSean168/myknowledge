@@ -70,6 +70,7 @@
     - [成品EXE：](#成品exe)
       - [反特征码](#反特征码)
       - [反 VT 沙盒](#反-vt-沙盒)
+  - [SRC挖掘](#src挖掘)
 - [myctf](#myctf)
   - [PHP](#php)
     - [碰撞](#碰撞)
@@ -911,7 +912,8 @@ atexec-impacket
 
 procdump+minikatz
 
-
+## SRC挖掘
+特定资产
 
 
 # myctf
@@ -937,3 +939,4 @@ preg_match('$')：
 不比较多行，%0a换行符绕过
 参数名中有下划线：
 可用 “空格” “+” 绕过
+

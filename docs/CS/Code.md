@@ -11,11 +11,21 @@
   - [中断](#中断)
   - [与外设交互](#与外设交互)
 - [Java](#java)
+  - [==](#)
   - [break](#break)
 - [algorithm](#algorithm)
   - [归并分治](#归并分治)
   - [随机快排](#随机快排)
   - [随机选择算法](#随机选择算法)
+  - [堆结构与堆排序](#堆结构与堆排序)
+  - [哈希表，有序表和比较器的用法](#哈希表有序表和比较器的用法)
+  - [堆结构常见问题](#堆结构常见问题)
+    - [合并K个有序链表](#合并k个有序链表)
+    - [线段最多重合问题](#线段最多重合问题)
+    - [让数组整体累加和减半的最少操作次数](#让数组整体累加和减半的最少操作次数)
+    - [基数排序](#基数排序)
+  - [重要排序算法的总结](#重要排序算法的总结)
+  - [异或运算的骚操作](#异或运算的骚操作)
 
 <!-- /code_chunk_output -->
 
@@ -465,17 +475,17 @@ public static void heapInset(int[] arr, int i) {
 }
 
 // i位置的数变小，向下调整大根堆
-publick static void heapify(int[] arr, int i, int size) {
+public static void heapify(int[] arr, int i, int size) {
     int l = i * 2 + 1;
     while (l < size) {
-        int best = l + 1 < size && arr[i + 1] > arr[i] ? l + 1 : l;
+        int best = l + 1 < size && arr[l + 1] > arr[l] ? l + 1 : l;
         best = arr[best] > arr[i] ? best : i;
         if (best == i) {
             break;
         }
         swap(arr, best, i);
         i = best;
-        best = i * 2 + 1;
+        l = i * 2 + 1;
     }
 }
 
@@ -532,3 +542,328 @@ public static void heapSort(int[] arr) {
 比较器：
 - 定制比较策略
 - 定义类，直接Lamda表达式
+
+### 堆结构常见问题
+#### 合并K个有序链表
+```
+public static ListNode mergeKLists(ArrayList<ListNode> arr) {
+    // 小根堆
+    PriorityQueue<ListNode> heap = new PriorityQueue<>((a,b) -> a.val - b.val);
+    for (ListNode h : arr) {
+        if (h != null) {
+            heap.add(h);
+        }
+    }
+    if (heap.isEmpty()) {
+        return null;
+    }
+    // 弹出第一个结点做头结点
+    ListNode h = heap.poll();
+    ListNode pre = h;
+    is (pre.next ! null) {
+        heap.add(pre.next);
+    }
+    while (!heap.isEmpty()) {
+        ListNode cur = heap.po;;();
+        pre.next = cur;
+        pre = cur;
+        if (cur.next != null) {
+            heap.add(cur.next);
+        }
+    }
+    return h;
+}
+```
+#### 线段最多重合问题
+```
+public class MaxCover {
+    public static in MAXN = 10001;
+    public static int[][] line = new int [MAXN][2];
+    public static int n;
+    public static int n;
+    public static static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer in = new StreamTokenizer(br);
+        PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
+        while (in.nextToken() != StreamTokenizer.TT_EOF) {
+            n = (int) in.nval;
+            for (int i = 0; i < n; i++) {
+                in.nextToken();
+                line[i][0] = (int) in.nval;
+                in.nextToken();
+                line[i][1] = (int) in.nval;
+            }
+            out.println(compute());
+        }
+        out.flush();
+        out.close();
+        br.close();
+    }
+    public static int compute() {
+        // 堆的清空
+        size = 0;
+        Arrays.sort(line, 0, n, (a, b) -> a[0] - b[0]);
+        int max = 0;
+        for (int i = 0; i < n; i++) {
+            while (size > 0 && heap[0] <= line[i][0]) {
+                pop();
+            }
+            add(line[i][1]);
+            max = Math.max(max, size);
+        }
+        return max;
+    }
+
+    public static int[] heap = new int[MAXN];
+    public static int size;
+    public static void add(int x) {
+        heap[size] = x;
+        int i = size++;
+        while (heap[i] < heap[(i - 1) / 2]) {
+            swap(i, (i - 1) / 2);
+            i = (i - 1) / 2;
+        }
+    }
+    public static void pop() {
+        swap(0, --size);
+        int i = 0,l = 1;
+        while (l < size) {
+            int best = l + 1< size && heap[l + 1] < heap[l] ? l+ 1: l;
+            best = heap[best] < heap[i] ? best : i;
+            if (best == i) {
+                break;
+            }
+            swap(i, best);
+            i = best;
+            l = i * 2 + 1;
+        }
+    }
+    public static void swap(int i, int j) {
+        int tmp = heap[i];
+        heap[i] = heap[j];
+        heap[j] = tmp;
+    }
+
+}
+// 时间复杂度O(n * log n)
+// 空间复杂度O(n)
+```
+#### 让数组整体累加和减半的最少操作次数
+```
+class Solution {
+    public static int MAXN = 100001;
+    public static long[] heap = new long[MAXN];
+    public static int size;
+
+    public static int halveArray(int[] nums) {
+        size = nums.length;
+        long sum = 0;
+        for (int i = size - 1; i >= 0; i--) {
+            heap[i] = (long) nums[i] << 20;
+            sum += heap[i];
+            heapify(i);
+        }
+        sum /= 2;
+        int ans = 0;
+        for (long minus = 0; minus < sum; ans++) {
+            heap[0] /= 2;
+            minus += heap[0];
+            heapify(0);
+        }
+        return ans;
+    }
+
+    public static void heapify(int i) {
+        int l = i * 2 + 1;
+        while (l < size) {
+            int best = l + 1 < size && heap[l + 1] > heap[l] ? l + 1 : l;
+            best = heap[best] > heap[i] ? best : i;
+            if (best == i) {
+                break;
+            }
+            swap(best, i);
+            i = best;
+            l = i * 2 + 1;
+        }
+    }
+
+    public static void swap(int i, int j) {
+        long temp = heap[i];
+        heap[i] = heap[j];
+        heap[j] = temp;
+    }
+
+}
+```
+
+#### 基数排序
+**基于比较的排序**
+只需要定义好两个对象之间怎么比较即可，对象的数据特征并不关心
+**不基于比较的排序**
+和比较无关的排序，对于对象的数据特征有要求
+
+计数排序，简单，但数值范围大了就不行，样本是整数，范围窄
+
+基数排序的实现细节
+关键点：前缀数量分区的技巧，数字提取某一位的技巧
+时间复杂度O(n)，额外空间复杂度复杂度O(m)
+样本是10进制的非负整数
+
+```
+// 证没有负数 所有数减去最小值
+public static int[] sortArray(int[] arr) {
+    if (arr.length > 1) {
+        int n = arr.length;
+        int min = arr[0];
+        for (int i = 1; i < n; i ++) {
+            min = Math.min(min, arr[i]);
+        }
+        int max = 0;
+        for (int i = 0; i < n: i++) {
+            arr[i] -= min;
+            max = Math.max(max, arr[i]);
+        }
+        radixSort(arr, n, bits(max));
+        for (int i = 0; i < n; i++) {
+            arr[i] += min;
+        }
+    }
+}
+// 基数排序核心代码
+// arr内要保证没有负数 所有数减去最小值
+// n是arr长度
+// bits是arr中最大值在BASE进制下有几位
+public static void radixSort(int[] arr, int n, int bits) {
+    for (int offset = 1; bits > 0; offset *= BASE, bits--) {
+        Arrays.fill(cnts, 0);
+        for (int i = 0; i< n; i++) {
+            // 数字提取某一位的技巧
+            cnts[(arr[i] / offset) % BASE]++;
+        }
+        // 前缀次数累加形式
+        for (int i = 1; i< BASE; i++) {
+            cnts[i] = cnts[i] + cnts[i - 1];
+        }
+        for (int i = n - 1; i >= 0; i--) {
+            // 前缀数量分区技巧
+            help[--cnts[(arr[i] / offset) % BASE]] = arr[i];
+        }
+        
+        for (int i = 0; i < n; i++) {
+            arr[i] = help[i];
+        }
+    }
+}
+
+```
+
+### 重要排序算法的总结
+**稳定性：**同样大小的样本再排序之后不会改变原始的相对次序
+
+|  排序           | 时间        | 空间      | 稳定性 |
+|:-------------:|:---------:|:-------:|:---:|
+| SelectionSort | O(N^2)    | O(1)    | 无   |
+| BubbleSort    | O(N^2)    | O(1)    | 有   |
+| InsertionSort | O(N^2)    | O(1)    | 有   |
+| MergeSort     | O(N*logN) | O(N)    | 有   |
+| QuickSort     | O(N*logN) | O(logN) | 无   |
+| HeapSort      | O(N*logN) | O(1)    | 无   |
+| CountSort     | O(N)      | O(M)    | 有   |
+| RadixSort     | O(N)      | O(M)    | 有   |
+
+数据量非常小时非常迅速：插入排序
+性能优异，实现简单且利于改进，不在乎稳定性：随机快排
+性能优异，不在乎额外空间占用，具有稳定性：归并排序
+性能优异，额外空间占用要求O(1)，不在乎稳定性：堆排序
+
+### 异或运算的骚操作
+**性质**
+1. 无进位相加
+2. 满足交换律，结合律，同一批数字，不管异或顺序是什么，最后的结果相同
+3. 0^n=n,n^n=0
+4. 整体异或和如果是x，整体中某部分异或和为y，则剩余部分异或和为x^y
+
+**题目**
+1. 交换两个数
+    ```
+    a = a ^ b;
+    b = a ^ b;
+    a = a ^ b;
+    ```
+2. 不用任何判断语句和比较操作，返回两个数的最大值
+    ```
+    public static int flip(int n) {
+        return n ^ 1;
+    }
+
+    // 非负数返回1，负数返回0
+    public static int sign(int n) {
+        return flip(n >>> 31);
+    }
+
+    public static int getMax2(int a, int b) {
+        // c可能溢出
+        int c = a - b;
+        // a的符号
+        int sa = sign(a);
+        // b的符号
+        int sb = sign(b);
+        // c的符号
+        int sc = sign(c);
+        // 判断ab符号是不是不一样，如果不一样diffAB=1，如果一样diffAB=0
+        int diffAB = sa ^ sb;
+        // 判断ab符号是不是一样，如果一样sameAB=1，如果不一样sameAB=0
+        int sameAB = flip(diffAB);
+        int returnA = diffAB * sa + sameAB * sc;
+        int returnB = flip(returnA);
+        return a * returnA + b * returnB;
+    }
+    ```
+3. 找到缺失的数字
+    ```
+    public static int missingNumber(int[] nums) {
+        int eorAll = 0, eorHas = 0;
+        for (iint i = 0; i< nums.length; i++) {
+            eorAll ^= i;
+            eorHas ^= nums[i];
+        }
+        eorAll ^= nums.length;
+        return eorAll ^ eorHas;
+    }
+    ```
+4. 数组中1种数出现了奇数次，其他都出现了偶数次，返回奇数次的数
+    ```
+    int eor = 0;
+    eor ^ 所有数；
+    ```
+5. 取最右侧的1
+n的反：n所有位取反再加1
+`n&((~n)+1)`
+`n&(-n)`
+6. 数组中2种数出现了奇数次，其他都出现了偶数次，返回这2种奇数次的数
+    ```
+    eor1 ^ 所有的数
+    结果必定有一位为1
+    找到该1所在位置
+    则出现奇数次的数必定一个该位含1，一个不含
+    将所有数按此分为两种，再分别异或
+    ```
+7. 数组中1种数出现次数小于m，其他都出现了m次，返回次数小于m的数
+    ```
+    假设1种数出现k（k<m）次
+    二进制所有位数累加和%m=k
+    就可以得到该数的二进制数
+    int[] cnts = new int[32];
+    for (int num : arr) {
+        for (int i = 0; i < 32; i++) {
+            cnts[i] += (num >> i) & 1;
+        }
+    }
+    int ans = 0;
+    for (int i = 0; i < 32; i++) {
+        if (cnts[i] % m !=0) {
+            ans != 1 << i;
+        }
+    }
+    return ans;
+    ```
