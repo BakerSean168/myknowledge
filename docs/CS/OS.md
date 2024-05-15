@@ -3,11 +3,13 @@
 <!-- code_chunk_output -->
 
 - [Linus](#linus)
-  - [Tools](#tools)
     - [shell](#shell)
       - [usage](#usage)
     - [vim](#vim)
     - [删除编译软件](#删除编译软件)
+    - [包管理器](#包管理器)
+    - [服务管理](#服务管理)
+    - [ssh](#ssh)
     - [mysql](#mysql)
         - [start](#start)
         - [Mysql user management](#mysql-user-management)
@@ -21,10 +23,7 @@
         - [create mysql container](#create-mysql-container)
         - [create redis](#create-redis)
       - [mybatis](#mybatis)
-  - [Centos](#centos)
-    - [包管理器](#包管理器)
-  - [Ubuntu](#ubuntu)
-    - [包管理器](#包管理器-1)
+    - [other](#other)
 - [Windows](#windows)
   - [environment](#environment)
     - [node.js](#nodejs)
@@ -44,10 +43,10 @@
 
 
 # Linus
-
-
-## Tools
-
+Debian系列：Debian，Ubuntu
+Redhat系列：RHEL，CentOS，Fedora
+国产麒麟：飞腾，龙芯，鲲鹏
+Slackware Linux：SUSE
 
 ### shell
 `cat /etc/shells`  查看系统内的shell
@@ -75,6 +74,88 @@ make install之后，build目录下会有一个install_mainfest.txt的文件, �
 执行 xargs rm < install_manifest.txt 就可以了。
 如果没有这个文件，可以自己重新make install，从log中过滤出install的安装路径信息，保存到unistall.txt中，再执行xargs rm < unistall.txt即可。
 
+### 包管理器
+**Redhat系列**
+- rpm
+    ```
+    RPM包默认安装路径
+    /etc/配置文件安装目录
+    /usr/bin/可执行的命令安装目录
+    /usr/lib/程序所使用的函数库保存位置
+    /usr/share/doc/基本的软件使用手册保存位置
+    /usr/share/man/帮助文件保存位置
+    ```
+- yum
+
+**Debian系列**
+- apt
+    ```
+    sudo apt update
+    sudo apt list --upgradable
+    sudo apt upgrade
+    ```
+
+### 服务管理
+**System V**
+一种最早的 Linux 服务管理方式,使用/etc/init.d 下的脚本来管理服务。
+
+service 命令就是管理 System V 类型服务的命令。它主要用于操作/etc/init.d下的脚本。
+
+特点:
+- 初始化脚本存放在`/etc/init.d`目录下
+- 利用`/etc/init.d` 下的脚本来管理服务,例如 `/etc/init.d/httpd` 启动httpd服务
+- service 命令用于管理这些服务,例如 `service httpd restart` 重启httpd服务
+- 针对单个服务管理
+- 启动速度较慢，顺序启动
+常用命令：
+service service start：启动指定的服务。
+service service stop：停止指定的服务。
+service service restart：重启指定的服务。
+service service reload：重新加载指定的服务配置。
+service service status：查看指定服务的状态和详细信息。
+service --status-all：列出所有正在运行的服务。
+chkconfig --list：列出所有已经注册的服务和它们的运行级别。
+
+**systemd**
+一种新的服务管理方式,使用 systemctl 命令来管理 systemd类型的服务。
+
+特点:
+- 初始化脚本存放在 `/etc/systemd/system`目录下
+- systemd unit 文件描述服务的各种属性
+- systemctl 命令管理这些服务,例如 `systemctl restart httpd.service` 重启httpd服务
+- 统一管理所有服务
+- 较快，并行启动
+
+常用命令：
+systemctl start service：启动指定的服务。
+systemctl stop service：停止指定的服务。
+systemctl restart service：重启指定的服务。
+systemctl reload service：重新加载指定的服务配置。
+systemctl enable service：设置指定的服务为开机自启动。
+systemctl disable service：禁止指定的服务开机自启动。
+systemctl status service：查看指定服务的状态和详细信息。
+systemctl list-units --type=service：列出所有正在运行的服务。
+systemctl list-unit-files --type=service：列出所有已经注册的服务。
+
+
+
+
+### ssh
+配置文件路径 `/etc/ssh/sshd_config`
+```
+service ssh start   启动ssh
+service ssh status  查看ssh服务是否正常运行
+
+开机自动启动ssh服务
+方法一：
+sysv-rc-conf
+sysv-rc-conf --list | grep ssh
+sysv-rc-conf ssh on  //系统自动启动SSH服务
+sysv-rc-conf ssh off  // 关闭系统自动启动SSH服务
+方法二：
+update-rc.d ssh enable  //系统自动启动SSH服务
+update-rc.d ssh disabled // 关闭系统自动启动SSH服务
+```
 
 ### mysql
 
@@ -310,32 +391,8 @@ docker exec -it redis redis-cli //redis镜像执行redis-cli命令连接
 
 #### mybatis
 
-
-
-## Centos
-
-### 包管理器
-- rpm
-    ```
-    RPM包默认安装路径
-    /etc/配置文件安装目录
-    /usr/bin/可执行的命令安装目录
-    /usr/lib/程序所使用的函数库保存位置
-    /usr/share/doc/基本的软件使用手册保存位置
-    /usr/share/man/帮助文件保存位置
-    ```
-- yum
-
-## Ubuntu
-
-### 包管理器
-- apt
-    ```
-    sudo apt update
-    sudo apt list --upgradable
-    sudo apt upgrade
-    ```
-
+### other
+update-rc.d和sysv-rc-conf 更新系统启动项的脚本
 
 # Windows
 

@@ -10,6 +10,7 @@
   - [proxy software](#proxy-software)
   - [download software](#download-software)
   - [code](#code)
+  - [CSS+HTML练习](#csshtml练习)
 
 <!-- /code_chunk_output -->
 
@@ -92,6 +93,25 @@ videodownloader: VidJuice UniTube
 [春秋云境.com](https://yunjing.ichunqiu.com/) CEV
 
 [BUUCTF](https://buuoj.cn/) / [QsnCTF](https://www.qsnctf.com/) 几大经典靶场 —— Upload-Labs sqli-labs PikaChu Web-DVWA XSS-Lab……
+
+航线查询网站
+- https://www.flightradar24.com/
+- https://flightadsb.variflight.com/
+
+数据库漏洞利用网站
+- [Exploit Database](https://www.exploit-db.com/)
+  - Exploit-DB 使用小结
+
+pcap修复
+- [pcapfix](https://f00l.de/hacking/pcapfix.php)
+
+网络空间搜索引擎
+- [Shodan](https://www.shodan.io/)
+- [FOFA](https://fofa.so/)
+- [Quake](https://quake.360.cn/quake/#/index)
+- [ZoomEye](https://www.zoomeye.org/)
+
+
 
 ---
 ### SRC平台

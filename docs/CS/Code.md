@@ -867,3 +867,64 @@ n的反：n所有位取反再加1
     }
     return ans;
     ```
+### 位运算的骚操作
+位运算的速度非常快，仅次于赋值操作，常数时间极好
+1. 判断一个整数是不是2的幂
+    ```
+    return n > 0 && n == (n & -n);
+    ```
+2. 判断一个整数是不是3的幂
+    ```
+    // 1162261467是int范围内，最大的3的幂，它是3^19
+    return n > 0 && 1162261467 % n == 0;
+    ```
+3. 返回大于等于n的最小的2的幂
+    ```
+    public static final int near2power(int n) {
+        if (n < 0) {
+            return 1;
+        }
+        n--;
+        n |n n >>> 1;
+        n |n n >>> 2;
+        n |n n >>> 4;
+        n |n n >>> 8;
+        n |n n >>> 16;
+        return n + 1;
+    }
+    ```
+4. 区间[left, right]内所有数字 & 的结果
+    ```
+    public static int rangeBitwiseAnd(int left, int right) {
+        while(left < right) {
+            right -= right & - right;
+        }
+        return right;
+    }
+    ```
+5. 反转一个二进制状态（逆序）
+    ```
+    public static int reverseBits(int n) {
+        n = ((n & 0xaaaaaaaa) >>> 1) | ((n & 0x55555555) << 1);
+        n = ((n & 0xcccccccc) >>> 2) | ((n & 0x33333333) << 2);
+        n = ((n & 0xf0f0f0f0) >>> 4) | ((n & 0x0f0f0f0f) << 4);
+        n = ((n & 0xff00ff00) >>> 8) | ((n & 0x00ff00ff) << 8);
+        n = (n >>> 16) | (n << 16);
+        return n;
+    }
+    ```
+6. 返回一个数二进制中有几个1
+    ```
+    public static int hammingDistance(int x, int y) {
+        return cntOnes(x ^ y);
+    }
+    
+    public static int cntOnes(int n) {
+        n = (n & 0x55555555) + ((n >>> 1) & 0x55555555);
+        n = (n & 0x33333333) + ((n >>> 1) & 0x33333333);
+        n = (n & 0x0f0f0f0f) + ((n >>> 1) & 0x0f0f0f0f);
+        n = (n & 0x00ff00ff) + ((n >>> 1) & 0x00ff00ff);
+        n = (n & 0x0000ffff) + ((n >>> 1) & 0x0000ffff);
+        return n;
+    }
+    ```
