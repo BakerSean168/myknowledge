@@ -928,3 +928,30 @@ n的反：n所有位取反再加1
         return n;
     }
     ```
+### 位图（集合）
+**原理**
+用bit组成的数组来存放值，用bit状态1，0表示存在，不存在，取值和存值操作都用位运算
+限制是必须为连续范围且不能过大。好处是极大的节省空间，因为1个数字只占用1个bit空间。
+
+**实现**
+```
+public static class Bitset {
+    public int[] set;
+
+    public Bitset(int n) {
+        set = new int[(n + 31) / 32];
+    }
+    public void add(int num) {
+        set[num / 32] |= 1 << (num % 32);
+    }
+    public void remove(int num) {
+        set[num / 32] &= ~(1 << (num % 32));
+    }
+    public void reverse(int num) {
+        set[num / 32] ^= 1 <<(num % 32);
+    }
+    public boolean contains(int num) {
+        return ((set[num / 32] >> (num % 32)) & 1) == 1;
+    }
+}
+```
