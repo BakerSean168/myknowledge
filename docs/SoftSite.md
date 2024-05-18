@@ -105,16 +105,32 @@ videodownloader: VidJuice UniTube
 pcap修复
 - [pcapfix](https://f00l.de/hacking/pcapfix.php)
 
-网络空间搜索引擎
-- [Shodan](https://www.shodan.io/)
-- [FOFA](https://fofa.so/)
-- [Quake](https://quake.360.cn/quake/#/index)
-- [ZoomEye](https://www.zoomeye.org/)
+信息收集
+  - 网络空间搜索引擎
+    - [Hunter](https://hunter.qianxin.com/)
+    - [Shodan](https://www.shodan.io/)
+    - [FOFA](https://fofa.so/)
+    - [Quake](https://quake.360.cn/quake/#/index)
+    - [ZoomEye](https://www.zoomeye.org/)
+  - 企业信息
+    - [小蓝本](https://sou.xiaolanben.com/)
+    - [爱站](https://data.chinaz.com/)
 
+  - 手机号码
+    - [美国手机号](https://www.truepeoplesearch.com) 20240517 bilibi评论
 
+工具
+  - 水泽
+  - goby
+  - URLfinder
+
+插件
+  - open Multiple URLs
+  - xia SQL
 
 ---
 ### SRC平台
+雷神众测
 漏洞盒子 https://www.vulbox.com/
 火绒 https://huoxian.secnium.cn/
 字节跳动SRC https://security.bytedance.com/

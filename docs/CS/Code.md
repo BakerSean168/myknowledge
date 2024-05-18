@@ -955,3 +955,59 @@ public static class Bitset {
     }
 }
 ```
+
+### 位运算实现加减乘除
+```
+public static int add(int a, int b) {
+    int ans =a;
+    while (b != 0 ) {
+        ans = a ^ b;
+        b = (a & b) << 1;
+        a = ans;
+    }
+    return ans;
+}
+
+public static int minus(int a, int b) {
+    return add(a, neg(b));
+}
+
+public static int neg(int n) {
+    return add(~n, 1);
+}
+
+public static int multiply(int a,int b) {
+    int ans = 0;
+    while(b != 0) {
+        if ((b & 1) != 0) {
+            ans = add(ans, a);
+        }
+        a <<= 1;
+        b >>>= 1;
+    }
+    return ans;
+}
+
+// a,b都不是整数最小值，返回a除以b的结果
+public static int div(int a, int b) {
+    int x = a < 0 ? neg(a) : a;
+    int y = a < 0 ? neg(b) : b;
+    int ans = 0;
+    for (int i = 30; i >= 0; i = minus(i, 1)) {
+        if ((x >> i) >= y) {
+            ans |= (1 << i);
+            x = minus(x, y << i);
+        }
+    }
+    return a < 0 ^ b < 0 ? neg(ans) : ans;
+}
+```
+### 链表高频题和必备技巧
+#### 返回两个无环链表相交的第一个结点
+```
+长链表先走多出的结点个数的步数，然后两个链表一起走
+```
+
+#### 每k个结点一组翻转链表
+
+#### 复制带随机指针的链表
