@@ -1011,3 +1011,208 @@ public static int div(int a, int b) {
 #### 每k个结点一组翻转链表
 
 #### 复制带随机指针的链表
+
+#### 判断链表是不是回文结构
+容器 用一个栈，先压后弹
+
+```
+public static boolean isPalindrome(ListNode head) {
+    if (head == null || head.next == null) {
+        return true;
+    }
+    ListNode slow = head, fast = head;
+    while (fast.next != null && fast.next.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    // 现在中点就是slow，从中点开始往后的结点逆序
+    ListNode pre = slow;
+    ListNode cur = pre.next;
+    ListNode next = null;
+    pre.next = null;
+    while (cur != null) {
+        next = cur.next;
+        cur.next = pre;
+        pre = cur;
+        cur = next;
+    }
+    boolean ans = true;
+    ListNode left = head;
+    ListNode right = pre;
+    while (left != null && right != null) {
+        if (left.val != right.val) {
+            ans = false;
+            break;
+        }
+        left = left.next;
+        right = right.next;
+    }
+    // 把链表调整回原来的样子，再返回结果
+    cur = pre.next;
+    pre.next = null;
+    next = null;
+    while (cur != null) {
+        next = cur.next;
+        cur.next = pre;
+        pre = cur;
+        cur = next;
+    }
+    return ans;
+}
+```
+#### 链表第一个入环结点
+容器 hashset 
+无容器 快慢指针
+```
+原理：当快慢指针第一次相遇后，快指针回到原点。变为一次跳一步，下一次相遇就在入环结点
+```
+
+#### 在链表上排序。时间复杂度O(n * log n)，空间复杂度O(1)，有稳定性
+
+### 数据结构设计高频题
+#### setAll功能哈希表
+```
+public class SetAllHashMap {
+    public static HashMap<Integer, int[]> map = new HashMap<>();
+    public static int setAllValue;
+    public static int setAllTime;
+    public static int cnt;
+
+    public static void put(int k, int v) {
+        if(map.containsKey(k)) {
+            int[] value = map.get(k);
+            value[0] = v;
+            value[1] = cnt++;
+        } else {
+            map.put(k, new int[] { v, cnt++ });
+        }
+    }
+
+    public static void setAll(int v) {
+        setAllValue = v;
+        setAllTime = cnt++;
+    }
+
+    public static int get(int k) {
+        if (!map.containsKey(k)) {
+            return -1;
+        }
+        int[] value = map.get(k);
+        if (value[1] > setAllTime) {
+            return value[0];
+        } else {
+            return setAllValue;
+        }
+    }
+}
+```
+
+#### 实现LRU结构
+```
+class LRUCache {
+    class DoubleNode {
+        public int key;
+        public int val;
+        puulic DoubleNode last;
+        public DoubleNode next;
+
+        public DoubleNode(int k, int v) {
+            key = k;
+            val = v;
+        }
+    }
+
+    class DoubleList {
+        private DoubleNode head;
+        private DoubleNode tail;
+
+        public DoubleList() {
+            head = null;
+            tail = null;
+        }
+
+        public void addNode(DoubleNode newNode) {
+            if (newNode == null) {
+                return;
+            }
+            if (head == null) {
+                head = newNode;
+                tail = newNode;
+            } else {
+                tail.next = newNode;
+                newNode.last = tail;
+                tail = newNode;
+            }
+        }
+
+        public void moveNodeToTail(DoubleNode node) {
+            if (tail == node) {
+                return;
+            }
+            if (head == node) {
+                head = node.next;
+                head.last = null;
+            } else {
+                node.last.next = node.next;
+                node.next.last = node.last;
+            }
+            node.last = tail;
+            node.next = null;
+            tail.next = node;
+            tail = node;
+        }
+
+        public DoubleNOde removeHead() {
+            if (head == null) {
+                return null;
+            }
+            DoubleNode ans = head;
+            if (head == tail) {
+                head = null;
+                tail = null;
+            } else {
+                head = ans.next;
+                ans.next = null;
+                head.last = null;
+            }
+            return ans;
+        }
+
+        private HashMap<Integer, DoubleNode> keyNodeMap;
+
+        private DoubleList nodeList;
+
+        Private final int capacity;
+
+        public LRUCache(int cap) {
+            keyNodeMap = new HashMap<>();
+            nodeList = new DoubleList();
+            capacity = cap;
+        }
+
+        public int get(int key) {
+            if (keyNodeMap.containsKey(key)) {
+                DoubleNode ans = keyNodeMap.get(key);
+                nodeList.moveNodeToTail(ans);
+                return ans.val;
+            }
+            return -1;
+        }
+        
+        public void put(int key, int value) {
+            if (keyNodeMap.containsKey(key)) {
+                DoubleNode node = keyNodeMap.get(key);
+                node.val = value;
+                nodeLIst.moveNodeToTail(node);
+            } else {
+                if (keyNodeMap.size() == capacity) {
+                    keyNodeMap.remove(nodeList.removeHead().key);
+                }
+                DoubleNode newNOde = new Double(key, value);
+                keyNodeMap.put(key, newNOde);
+                nodeList.addNOde(newNode);
+            }
+        }
+    }
+}
+```

@@ -47,6 +47,31 @@ Debian系列：Debian，Ubuntu
 Redhat系列：RHEL，CentOS，Fedora
 国产麒麟：飞腾，龙芯，鲲鹏
 Slackware Linux：SUSE
+### 命令
+#### 进程
+`ps -ef` 查看进程信息
+`ps -ef | grep 关键字`
+`kill [-9] 进程号` 关闭指定进程 -9表示强制关闭
+#### 主机状态监控
+`top` 
+`df -h` 查看磁盘使用率
+`iostat` 产看磁盘速率
+`sar -n DEV` 查看网络情况
+
+列名	含义
+PID	进程id
+USER	进程所有者的用户名
+PR	优先级
+NI	nice值。负值表示高优先级，正值表示低优先级
+VIRT	进程使用的虚拟内存总量，单位kb。VIRT=SWAP+RES
+RES	进程使用的、未被换出的物理内存大小，单位kb。RES=CODE+DATA
+SHR	共享内存大小，单位kb
+S	进程状态。D=不可中断的睡眠状态 R=运行 S=睡眠 T=跟踪/停止 Z=僵尸进程
+%CPU	上次更新到现在的CPU时间占用百分比
+%MEM	进程使用的物理内存百分比
+TIME+	进程使用的CPU时间总计，单位1/100秒
+COMMAND	命令名/命令行
+
 ### 文件系统
 文件系统是操作系统中用于组织和管理文件数据的一种机制。它提供了一种逻辑结构，用于在存储设备上存储、访问和管理文件。文件系统的出现是为了更好地组织和管理数据，使得用户可以方便地存储和访问文件。
 
@@ -413,6 +438,13 @@ docker exec -it redis redis-cli //redis镜像执行redis-cli命令连接
 ### other
 update-rc.d和sysv-rc-conf 更新系统启动项的脚本
 
+### problem
+#### Processing triggers for man-db
+解决方法：
+The Processing triggers for man-db step is only executed if the file /var/lib/man-db/auto-update exists. This is an empty file with the sole purpose of controlling this behavior, so it can be safely removed to disable this time-consuming and arguably unnecessary process.
+
+I personally disable this trigger on all of my systems. While the man-db cache is supposed to enhance the manual page system's speed and functionality, I have not experienced any noticeable performance degradation or functional problem after disabling the trigger.
+
 # Windows
 
 
@@ -460,3 +492,33 @@ pyinstall
 ## 玩机软件
 shizuku
 scene
+
+
+# hardware
+x86
+早期，1980s年代，x86一般指当时的处理器8088和80286，不过这两个处理器都是16位的。如今，x86通常指32位指令集架构的处理器，比如80386。80386处理器是intel在1985年实现的第一款32位指令集架构的处理器，又叫i386，Intel Architecture, 32-bit，缩写为IA-32，现在，IA-32一般又能引喻成所有的支持32位计算的x86架构。
+
+按照发展历史看，x86应该是指令集概念，一般用于个人PC系统如8086,286,386。IA-32是intel首推的32位架构。
+
+x86-64/x64/amd64/Intel64
+在1999年，AMD公司首先在IA-32基础上，增加了64位寄存器，兼容早期的16位和32位软件系统，推出了x86-64的64位微处理器，后来命名为AMD64，实现了超车。然后intel公司也接受了该方案，叫做Intel64。x86-64应该只算是x86指令集的64位扩展，并不是一种全新的64位架构。
+
+由于amd64和intel64本质上是一样的，叫法也是很多。AMD通常叫它x86-64、x86_64，微软和sun等软件公司叫它x64，操作系统厂商则通常用AMD64或者amd64来指代AMD64和Intel64。
+
+IA-64
+IA-64是Intel推出的用于Itanium处理器（安腾处理器）的自己的Intel Architecture 64位指令集，一般用于服务器。尽管Intel64也是64位处理器，但这两者完全不是一回事。IA-64软件不能直接运行于Intel64处理器上。x86-64是IA-32指令集的扩展，而IA-64则是完完全全没有一点IA-32影子的独立处理器架构。IA-64需要通过模拟器才能运行IA-32，但是性能大大受影响。
+
+市面上处理器如何区分AMD64和IA-64呢？
+
+市面上买的Intel 64-bit的cpu其实都属于amd64分类，intel64和amd64其实都应该叫做x86_64。
+IA64则指Itaniums系统cpu，并不是x86架构的，一般都是用于服务器，不是个人桌面产品，价格昂贵。
+ARM64/AArch64
+ARM是精简指令集RISC下的处理器架构。ARMv3至ARMv7支持32位寻址空间。ARMv8-A开始支持64位寻址空间。AArch64和ARM64都是指64位的ARM架构。
+
+drawin 苹果开源系统
+
+# software
+
+## git
+1. Always try `git pull --rebase` first
+2. if you get a merge conflict,you can undo everything with`git rebase --abort`

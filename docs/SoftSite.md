@@ -120,14 +120,27 @@ pcap修复
     - [美国手机号](https://www.truepeoplesearch.com) 20240517 bilibi评论
 
 工具
-  - 水泽
-  - goby
+  - [水泽](https://github.com/0x727/ShuiZe_0x727?tab=readme-ov-file)
+    - 语法	功能
+      python3 ShuiZe.py -d domain.com	收集单一的根域名资产
+      python3 ShuiZe.py --domainFile domain.txt	批量跑根域名列表
+      python3 ShuiZe.py -c 192.168.1.0,192.168.2.0,192.168.3.0	收集C段资产
+      python3 ShuiZe.py -f url.txt	对url里的网站漏洞检测
+      python3 ShuiZe.py --fofaTitle XXX大学	从fofa里收集标题为XXX大学的资产，然后漏洞检测
+      python3 ShuiZe.py -d domain.com --justInfoGather 1	仅信息收集，不检测漏洞
+      python3 ShuiZe.py -d domain.com --ksubdomain 0	不调用ksubdomain爆破子域名
   - URLfinder
 
 插件
   - open Multiple URLs
   - xia SQL
 
+平台
+  - bugcrowd
+  - hackerone
+  - webpack
+
+智联招聘打卡积分
 ---
 ### SRC平台
 雷神众测
