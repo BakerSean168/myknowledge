@@ -34,8 +34,7 @@
 *进阶*
 #### 病理
 - [ ] 骨科检查评估
-- [ ]
-- [ ]
+
 ### 学习软件和网站
 - Complete Anatomy
 - Muscle Premium
