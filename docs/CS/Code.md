@@ -206,6 +206,24 @@ DF=0,地址增方向 debug显示UP
 **test**
 Test命令将两个操作数进行逻辑与运算，并根据运算结果设置相关的标志位。但是，Test命令的两个操作数不会被改变。运算结果在设置过相关标记位后会被丢弃。
 
+**DAA(Decimal Adjust After Addition)**
+组合(压缩)BCD码的加法调整指令。
+格式：DAA
+功能：将AL的内容调整为两位组合型的二进制数。调整方法与AAA指令类似，不同的是DAA指令要分别考虑AL的高4位和低4位。
+如果AL的低4位大于9或AF=1，则AL的内容加06H，并将AF置1；
+
+如果AL的高4位大于9或CF=1，则AL的内容加60H，且将CF置1。
+
+
+
+**DAS（Decimal Adjust for Subtraction）**
+组合(压缩)BCD码的加法调整指令。
+格式：DAS
+功能：
+如果AL低四位>9或AF=1 ，则AL的值减06h，并置AF=1
+如果AL高四位>9或CF=1 ，则AL的值减60h ,且置CF=1
+
+
 ### 转移
 ![alt text](img/assimg-18.png)
 
