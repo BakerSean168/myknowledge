@@ -95,11 +95,14 @@ COMMAND	命令名/命令行
 /tmp：用于存放临时文件，系统重启时会自动清空该目录下的文件。
 /usr：包含用户安装的应用程序、库文件和文档等，通常较大。
 /var：存放经常变化的文件，如日志文件、缓存文件和邮件队列。
+### softmare mirror
 ### shell
 `cat /etc/shells`  查看系统内的shell
 可以使用路径切换到相应的shell版本
 `echo $SHELL`      查看当前系统变量中显示的shell版本   
 `echo $0`          当前正在执行的脚本名称
+`chsh -s $(which zsh)` 切换为zsh
+
 #### usage
 ```
 vi hello.sh //create a sh script file
