@@ -20,8 +20,50 @@ user.email=youremail@yourdomain.com
 1. Always try `git pull --rebase` first
 2. if you get a merge conflict,you can undo everything with`git rebase --abort`
 
+# docker
+[docker镜像查找](https://hub.docker.com/)
+
+| 命令 | 说明 |
+| --- | --- |
+| `docker pull [image]` | 从 Docker 仓库中拉取镜像 |
+| `docker images` | 列出本地的所有镜像 |
+| `docker run [options] [image]` | 运行一个容器 |
+| `docker stop [container]` | 停止一个运行中的容器 |
+| `docker restart [container]` | 重启一个容器 |
+| `docker ps` | 列出当前运行的容器 |
+| `docker rm [container]` | 删除一个停止的容器 |
+| `docker rmi [image]` | 删除一个镜像 |
+| `docker exec -it [container] /bin/bash` | 进入一个运行中的容器 |
+| `docker-compose up -d` | 启动 Docker Compose 服务 |
+| `docker-compose down` | 停止 Docker Compose 服务 |
+
+
+## create mysql container
+```
+docker run -p 3306:3306 --name mysql --privileged=true \
+  	-v /mydata/mysql/log:/var/log/mysql \
+  	-v /mydata/mysql/data:/var/lib/mysql \
+  	-v /mydata/mysql/conf:/etc/mysql/conf.d \
+  	-e MYSQL_ROOT_PASSWORD=root \
+  	-d mysql
+```
+查看mysql日志：docker logs -f mysql
+
+## create redis
+```
+mkdir -p /mydata/redis/conf
+touch /mydata/redis/conf/redis.conf
+  
+docker run -p 6379:6379 --name redis -v /mydata/redis/data:/data \
+-v /mydata/redis/conf/redis.conf:/etc/redis/redis.conf \
+-d redis redis-server /etc/redis/redis.conf
+  	
+docker exec -it redis redis-cli //redis镜像执行redis-cli命令连接
+```
 
 # hadoop
+
+
 
 # nvm
 *windows下的node.js版本管理器*
@@ -52,3 +94,17 @@ run
 .\env_name\Scripts\activate
 stop
 deactivate
+
+
+# 传输文件
+```
+有ssh服务时，可以直接用scp命令传输文件:
+
+```powershell
+scp -i ~/.ssh/code.pem -r root@47.108.204.117:/output1 D:/
+```
+解释：
+- -i ~/.ssh/code.pem：指定私钥文件路径。
+- -r：递归复制整个目录（可以传输文件夹）。
+- root@47.108.204.117:/output1：云服务器上的目录路径。
+- D:/：Windows 本地目录路径。

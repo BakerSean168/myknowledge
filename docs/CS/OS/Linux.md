@@ -367,45 +367,6 @@ server {
 }
 ```
 
-### docker
-
-
-##### vulhub靶场
-启动环境
-root@ubuntu:/# cd /
-root@ubuntu:/# cd vulhub/
-root@ubuntu:/vulhub# cd httpd/
-root@ubuntu:/vulhub/httpd# cd CVE-2017-15715/
-root@ubuntu:/vulhub/httpd/CVE-2017-15715# docker-compose up -d
-root@ubuntu:/vulhub/httpd/CVE-2017-15715# docker-compose up -d
-结束环境
-root@ubuntu:/vulhub/httpd/CVE-2017-15715# docker-compose down
-原文链接：https://blog.csdn.net/m0_48907714/article/details/123745656
-
-##### create mysql container
-```
-docker run -p 3306:3306 --name mysql --privileged=true \
-  	-v /mydata/mysql/log:/var/log/mysql \
-  	-v /mydata/mysql/data:/var/lib/mysql \
-  	-v /mydata/mysql/conf:/etc/mysql/conf.d \
-  	-e MYSQL_ROOT_PASSWORD=root \
-  	-d mysql
-```
-查看mysql日志：docker logs -f mysql
-
-##### create redis
-```
-mkdir -p /mydata/redis/conf
-touch /mydata/redis/conf/redis.conf
-  
-docker run -p 6379:6379 --name redis -v /mydata/redis/data:/data \
--v /mydata/redis/conf/redis.conf:/etc/redis/redis.conf \
--d redis redis-server /etc/redis/redis.conf
-  	
-docker exec -it redis redis-cli //redis镜像执行redis-cli命令连接
-```
-
-#### mybatis
 
 ### other
 update-rc.d和sysv-rc-conf 更新系统启动项的脚本
