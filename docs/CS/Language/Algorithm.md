@@ -1,54 +1,55 @@
-## algorithm
-### 归并分治
-原理：
+https://github.com/algorithmzuo/algorithm-journey
+
+# 归并分治
+## 原理
 1. 思考一个问题在大范围上的答案是否等于，左部分的答案 + 右部分的答案 + 跨越左右的答案吧。
 2. 计算“跨越左右产生的答案”时，如果加上左，右各自有序这个设定，会不会获得计算的便利性
 
-例题：
-1. 小和问题
-    ```
-    int[] arr = new int[];
-    int[] help = new int[];
-    smallSum(0, n-1);
+## 例题
+### 小和问题
+```java
+int[] arr = new int[];
+int[] help = new int[];
+smallSum(0, n-1);
 
-    public static long smallSum(int l, int r) {
-        if (l == r) {
-            return 0;
-        }
-        int m = (l + r) / 2;
-        return smallSum(l, m) + smallSum(m+1, r) + merge(l, m, r);
+public static long smallSum(int l, int r) {
+    if (l == r) {
+        return 0;
     }
-    //返回跨左右产生的小和累加和，左侧有序，右侧有序，让左右两侧整体有序
-    public static long merge(int l, int m, int r) {
-        //统计部分
-        long ans = 0;
-        for (int j = m + 1, i = l, sum = 0; j <= r; j++) {
-            while (i <= m && arr[i] <= arr[j]) {
-                sum += arr[i++];
-            }
-            ans += sum;
+    int m = (l + r) / 2;
+    return smallSum(l, m) + smallSum(m+1, r) + merge(l, m, r);
+}
+//返回跨左右产生的小和累加和，左侧有序，右侧有序，让左右两侧整体有序
+public static long merge(int l, int m, int r) {
+    //统计部分
+    long ans = 0;
+    for (int j = m + 1, i = l, sum = 0; j <= r; j++) {
+        while (i <= m && arr[i] <= arr[j]) {
+            sum += arr[i++];
         }
-        //正常merge
-        int i = l;
-        int a = l;
-        int b = m + 1 ;
-        while (a <= m && b <= r) {
-            help[i++] = arr[a] <= arr[b] ? arr[a++] : arr[b++];
-        }
-        while (a <= m) {
-            help[i++] = arr[a++];
-        }
-        while (b <= m) {
-            help[i++] = arr[b++];
-        }
-        for (i = l; i <= r; i++) {
-            arr[i] = help[i];
-        }
-        return ans;
+        ans += sum;
     }
-    ```
+    //正常merge
+    int i = l;
+    int a = l;
+    int b = m + 1 ;
+    while (a <= m && b <= r) {
+        help[i++] = arr[a] <= arr[b] ? arr[a++] : arr[b++];
+    }
+    while (a <= m) {
+        help[i++] = arr[a++];
+    }
+    while (b <= m) {
+        help[i++] = arr[b++];
+    }
+    for (i = l; i <= r; i++) {
+        arr[i] = help[i];
+    }
+    return ans;
+}
+```
 
-### 随机快排
+# 随机快排
 核心点： 怎么选数字？
 当数字是当前范围上的固定位置，则为普通快排
 当数字是当前范围上的随机位置，则为随机快排
@@ -57,46 +58,46 @@
 随机快排，时间复杂度为O(nlogn)，空间复杂度为o(logn)
 **Code**：
 
-1. 随机快拍改进版（推荐）
-    ```
-    public static void quickSort2(int l, int r) {
-        if (l >= r) {
-            return;
-        }
-        // 随机这一下，常数时间比较大
-        int x = arr[l + (int) (Math.random() * (r - l + 1))];
-        patition2(l, r, x);
-        // 为了防止底层的递归过程覆盖全局变量
-        // 这里使用临时变量记录first，last
-        int left = first;
-        int right = last;
-        quickSort2(l, left - 1);
-        quickSort2(right + 1, r);
+随机快拍改进版（推荐）
+```java
+public static void quickSort2(int l, int r) {
+    if (l >= r) {
+        return;
     }
+    // 随机这一下，常数时间比较大
+    int x = arr[l + (int) (Math.random() * (r - l + 1))];
+    patition2(l, r, x);
+    // 为了防止底层的递归过程覆盖全局变量
+    // 这里使用临时变量记录first，last
+    int left = first;
+    int right = last;
+    quickSort2(l, left - 1);
+    quickSort2(right + 1, r);
+}
 
-    // 荷兰国旗问题
-    public static int first, last;
+// 荷兰国旗问题
+public static int first, last;
 
-    public static boid partition2(int l, int r, int x) {
-        first = 1;
-        last = r;
-        int i = l;
-        while (i <= last) {
-            if (arr[i] == x) {
-                i++;
-            } else if (arr[i] < x) {
-                swap(first++, i++);
-            } else {
-                swap(i , last--);
-            }
+public static boid partition2(int l, int r, int x) {
+    first = 1;
+    last = r;
+    int i = l;
+    while (i <= last) {
+        if (arr[i] == x) {
+            i++;
+        } else if (arr[i] < x) {
+            swap(first++, i++);
+        } else {
+            swap(i , last--);
         }
     }
-    ```
+}
+```
 
-### 随机选择算法
+# 随机选择算法
 无序数组中寻找第k大的数(O(n)复杂度)
 **code**：
-```
+```java
 class Solution {
     private static int first, last;
 
@@ -143,7 +144,7 @@ class Solution {
 }
 ```
 
-### 堆结构与堆排序
+# 堆结构与堆排序
 **堆结构**
 完全二叉树和数组前缀范围来对应，大小，单独的变量size来控制。
 i的父节点：(i - 1)/2, i'left child: i * 2 + 1, i'right child: i* 2 + 2
@@ -158,7 +159,7 @@ heapInsert，heapify方法的单次调用，时间复杂度O（log n），完全
 额外空间复杂度O（1）
 
 **code**：
-```
+```java
 // i 位置的数，向上调整大根堆
 public static void heapInset(int[] arr, int i) {
     while (arr[i] > arr[(i - 1) / 2]) {
@@ -216,7 +217,7 @@ public static void heapSort(int[] arr) {
 }
 ```
 
-### 哈希表，有序表和比较器的用法
+# 哈希表，有序表和比较器的用法
 哈希表的用法（认为是集合，根据值来做key 或者 根据内存地址做key）
 - HashSet和HashMap原理一样，有无伴随数据的区别
 - 增，删，改，查时间为O（1），但是大常数
@@ -236,9 +237,9 @@ public static void heapSort(int[] arr) {
 - 定制比较策略
 - 定义类，直接Lamda表达式
 
-### 堆结构常见问题
-#### 合并K个有序链表
-```
+# 堆结构常见问题
+合并K个有序链表
+```java
 public static ListNode mergeKLists(ArrayList<ListNode> arr) {
     // 小根堆
     PriorityQueue<ListNode> heap = new PriorityQueue<>((a,b) -> a.val - b.val);
@@ -389,7 +390,7 @@ class Solution {
 }
 ```
 
-#### 基数排序
+# 基数排序
 **基于比较的排序**
 只需要定义好两个对象之间怎么比较即可，对象的数据特征并不关心
 **不基于比较的排序**
@@ -450,7 +451,7 @@ public static void radixSort(int[] arr, int n, int bits) {
 
 ```
 
-### 重要排序算法的总结
+# 重要排序算法的总结
 **稳定性：**同样大小的样本再排序之后不会改变原始的相对次序
 
 |  排序           | 时间        | 空间      | 稳定性 |
@@ -469,7 +470,7 @@ public static void radixSort(int[] arr, int n, int bits) {
 性能优异，不在乎额外空间占用，具有稳定性：归并排序
 性能优异，额外空间占用要求O(1)，不在乎稳定性：堆排序
 
-### 异或运算的骚操作
+# 异或运算的骚操作
 **性质**
 1. 无进位相加
 2. 满足交换律，结合律，同一批数字，不管异或顺序是什么，最后的结果相同
@@ -477,13 +478,13 @@ public static void radixSort(int[] arr, int n, int bits) {
 4. 整体异或和如果是x，整体中某部分异或和为y，则剩余部分异或和为x^y
 
 **题目**
-1. 交换两个数
+交换两个数
     ```
     a = a ^ b;
     b = a ^ b;
     a = a ^ b;
     ```
-2. 不用任何判断语句和比较操作，返回两个数的最大值
+不用任何判断语句和比较操作，返回两个数的最大值
     ```
     public static int flip(int n) {
         return n ^ 1;
@@ -512,7 +513,7 @@ public static void radixSort(int[] arr, int n, int bits) {
         return a * returnA + b * returnB;
     }
     ```
-3. 找到缺失的数字
+找到缺失的数字
     ```
     public static int missingNumber(int[] nums) {
         int eorAll = 0, eorHas = 0;
@@ -524,16 +525,16 @@ public static void radixSort(int[] arr, int n, int bits) {
         return eorAll ^ eorHas;
     }
     ```
-4. 数组中1种数出现了奇数次，其他都出现了偶数次，返回奇数次的数
+数组中1种数出现了奇数次，其他都出现了偶数次，返回奇数次的数
     ```
     int eor = 0;
     eor ^ 所有数；
     ```
-5. 取最右侧的1
+取最右侧的1
 n的反：n所有位取反再加1
 `n&((~n)+1)`
 `n&(-n)`
-6. 数组中2种数出现了奇数次，其他都出现了偶数次，返回这2种奇数次的数
+数组中2种数出现了奇数次，其他都出现了偶数次，返回这2种奇数次的数
     ```
     eor1 ^ 所有的数
     结果必定有一位为1
@@ -541,7 +542,7 @@ n的反：n所有位取反再加1
     则出现奇数次的数必定一个该位含1，一个不含
     将所有数按此分为两种，再分别异或
     ```
-7. 数组中1种数出现次数小于m，其他都出现了m次，返回次数小于m的数
+数组中1种数出现次数小于m，其他都出现了m次，返回次数小于m的数
     ```
     假设1种数出现k（k<m）次
     二进制所有位数累加和%m=k
@@ -560,18 +561,18 @@ n的反：n所有位取反再加1
     }
     return ans;
     ```
-### 位运算的骚操作
+# 位运算的骚操作
 位运算的速度非常快，仅次于赋值操作，常数时间极好
-1. 判断一个整数是不是2的幂
+判断一个整数是不是2的幂
     ```
     return n > 0 && n == (n & -n);
     ```
-2. 判断一个整数是不是3的幂
+判断一个整数是不是3的幂
     ```
     // 1162261467是int范围内，最大的3的幂，它是3^19
     return n > 0 && 1162261467 % n == 0;
     ```
-3. 返回大于等于n的最小的2的幂
+返回大于等于n的最小的2的幂
     ```
     public static final int near2power(int n) {
         if (n < 0) {
@@ -586,7 +587,7 @@ n的反：n所有位取反再加1
         return n + 1;
     }
     ```
-4. 区间[left, right]内所有数字 & 的结果
+区间[left, right]内所有数字 & 的结果
     ```
     public static int rangeBitwiseAnd(int left, int right) {
         while(left < right) {
@@ -595,7 +596,7 @@ n的反：n所有位取反再加1
         return right;
     }
     ```
-5. 反转一个二进制状态（逆序）
+反转一个二进制状态（逆序）
     ```
     public static int reverseBits(int n) {
         n = ((n & 0xaaaaaaaa) >>> 1) | ((n & 0x55555555) << 1);
@@ -606,7 +607,7 @@ n的反：n所有位取反再加1
         return n;
     }
     ```
-6. 返回一个数二进制中有几个1
+返回一个数二进制中有几个1
     ```
     public static int hammingDistance(int x, int y) {
         return cntOnes(x ^ y);
@@ -621,7 +622,7 @@ n的反：n所有位取反再加1
         return n;
     }
     ```
-### 位图（集合）
+# 位图（集合）
 **原理**
 用bit组成的数组来存放值，用bit状态1，0表示存在，不存在，取值和存值操作都用位运算
 限制是必须为连续范围且不能过大。好处是极大的节省空间，因为1个数字只占用1个bit空间。
@@ -649,7 +650,7 @@ public static class Bitset {
 }
 ```
 
-### 位运算实现加减乘除
+# 位运算实现加减乘除
 ```
 public static int add(int a, int b) {
     int ans =a;
@@ -695,7 +696,7 @@ public static int div(int a, int b) {
     return a < 0 ^ b < 0 ? neg(ans) : ans;
 }
 ```
-### 链表高频题和必备技巧
+# 链表高频题和必备技巧
 #### 返回两个无环链表相交的第一个结点
 ```
 长链表先走多出的结点个数的步数，然后两个链表一起走
@@ -762,9 +763,9 @@ public static boolean isPalindrome(ListNode head) {
 
 #### 在链表上排序。时间复杂度O(n * log n)，空间复杂度O(1)，有稳定性
 
-### 数据结构设计高频题
-#### setAll功能哈希表
-```
+# 数据结构设计高频题
+## setAll功能哈希表
+```java
 public class SetAllHashMap {
     public static HashMap<Integer, int[]> map = new HashMap<>();
     public static int setAllValue;
@@ -800,8 +801,8 @@ public class SetAllHashMap {
 }
 ```
 
-#### 实现LRU结构
-```
+## 实现LRU结构
+```java
 class LRUCache {
     class DoubleNode {
         public int key;
@@ -909,15 +910,91 @@ class LRUCache {
     }
 }
 ```
-#### 插入、删除和获取随机元素O(1)时间的结构
+## 插入、删除和获取随机元素O(1)时间的结构
 增、删、随即得到
 hashset记录值和下表
 数组结构里记录值
 删除掉一个值时，将最后一个值移动到删除值所在位置
-#### 插入、删除和获取随机元素O(1)时间且允许有重复数字的结构
+## 插入、删除和获取随机元素O(1)时间且允许有重复数字的结构
 
-#### 快速获得数据流的中位数的结构
+## 快速获得数据流的中位数的结构
+大根堆（较小的数）、小根堆（较大的数）
+## 最大频率栈
 
-#### 最大频率栈
+## 全O(1)的数据结构
+双向链表桶
 
-#### 全O(1)的数据结构
+# 二叉树高频提-不含树型dp
+## 二叉树层序遍历
+```java
+// 二叉树的层序遍历
+// 测试链接 : https://leetcode.cn/problems/binary-tree-level-order-traversal/
+public class Code01_LevelOrderTraversal {
+	// 不提交这个类
+	public static class TreeNode {
+		public int val;
+		public TreeNode left;
+		public TreeNode right;
+	}
+	// 提交时把方法名改为levelOrder，此方法为普通bfs，此题不推荐
+	public static List<List<Integer>> levelOrder1(TreeNode root) {
+		List<List<Integer>> ans = new ArrayList<>();
+		if (root != null) {
+			Queue<TreeNode> queue = new LinkedList<>();
+			HashMap<TreeNode, Integer> levels = new HashMap<>();
+			queue.add(root);
+			levels.put(root, 0);
+			while (!queue.isEmpty()) {
+				TreeNode cur = queue.poll();
+				int level = levels.get(cur);
+				if (ans.size() == level) {
+					ans.add(new ArrayList<>());
+				}
+				ans.get(level).add(cur.val);
+				if (cur.left != null) {
+					queue.add(cur.left);
+					levels.put(cur.left, level + 1);
+				}
+				if (cur.right != null) {
+					queue.add(cur.right);
+					levels.put(cur.right, level + 1);
+				}
+			}
+		}
+		return ans;
+	}
+
+	// 如果测试数据量变大了就修改这个值
+	public static int MAXN = 2001;
+
+	public static TreeNode[] queue = new TreeNode[MAXN];
+
+	public static int l, r;
+
+	// 提交时把方法名改为levelOrder，此方法为每次处理一层的优化bfs，此题推荐
+	public static List<List<Integer>> levelOrder2(TreeNode root) {
+		List<List<Integer>> ans = new ArrayList<>();
+		if (root != null) {
+			l = r = 0;
+			queue[r++] = root;
+			while (l < r) { // 队列里还有东西
+				int size = r - l;
+				ArrayList<Integer> list = new ArrayList<Integer>();
+				for (int i = 0; i < size; i++) {
+					TreeNode cur = queue[l++];
+					list.add(cur.val);
+					if (cur.left != null) {
+						queue[r++] = cur.left;
+					}
+					if (cur.right != null) {
+						queue[r++] = cur.right;
+					}
+				}
+				ans.add(list);
+			}
+		}
+		return ans;
+	}
+
+}
+```

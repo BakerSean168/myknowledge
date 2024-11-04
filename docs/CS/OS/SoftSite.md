@@ -18,58 +18,75 @@
 
 
 
-## Software
+# 软件推荐
+系统
+- Linux
 
-系统：Linux
-浏览器：[Firefox](https://www.mozilla.org/en-US/firefox/all/#product-desktop-release)
-建模：Blender
-绘画：Krita
-流程图：Draw.io
-视频压制：Handbreak
-视频播放：MPV
-镜像烧录：Rufus
-Markdown 写作：Marktext
-多设备同步：Syncthing
-录屏软件：OBS Studio
-文件版本控制：Git
-代码编辑器：Vscode
-密码管理：Keepass
-屏幕按键显示：Keyviz
-文件，软件管理: utools,everything,maye lite
-文件跨设备互传: localsend
-图吧工具箱  IDE mpv 7-zip
+浏览器
+- [Firefox](https://www.mozilla.org/en-US/firefox/all/#product-desktop-release)
+
+压缩工具
+-   7-zip
+
+建模
+- Blender
+
+绘画
+- Krita
+
+流程图
+- Draw.io
+
+视频压制
+- Handbreak
+
+视频播放
+- MPV
+
+镜像烧录
+- Rufus
+
+Markdown 写作
+- Marktext
+
+多设备同步
+- Syncthing
+
+录屏软件
+- OBS Studio
+
+文件版本控制
+- Git
+
+代码编辑器
+- Vscode
+
+密码管理
+- Keepass
+
+屏幕按键显示
+- Keyviz
+
+文件，软件管理
+- utools
+- everything
+- maye lite
+
+文件跨设备互传
+- localsend
+
+硬件处理工具
+- 图吧工具箱
+
+OCR
+- [Umi-OCR 文字识别工具](https://github.com/hiroi-sora/Umi-OCR) - 免费，开源，可批量的离线OCR软件
+
 
 videodownloader: VidJuice UniTube
 
-0.去广告搜索『intitle:（关键词）』
-1.限定文件类型
-『（关键词）filetype:（文件类型）』
-＊常见文件类型:
-〔pdf〕PDF文件
-〔xls〕:excle文件
-〔ppt〕:powerpoint文件
-〔doc〕:word文件
-〔txt〕:文本文档.
-2.关键词包含在正文中
-『intext:（关键词）』
-3.限定搜索网站
-『（关键词）inurl:（网站类型）』
-＊常见网站类型
-〔.com〕商业组织和公司。
-〔.net〕网络服务商。
-〔.gov〕政府部门。
-〔.org〕非营利性组织。
-〔.int〕国际组织。
-〔.edu〕教育部门。
-4.限定搜索时间
-如需搜索2018-2019年
-『2018..2019』
-即『（开始时间）..（结束时间）』
-注：以上搜索方式可复合使用
 
 
-
-## Website
+# Website
 
 
 ### CTF

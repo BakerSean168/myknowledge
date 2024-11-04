@@ -1,3 +1,63 @@
+# 浏览器搜索技巧
+
+| 技巧 | 说明 |
+| --- | --- |
+| 去广告搜索 | 使用 `intitle:(关键词)` |
+| 限定文件类型 | 使用 `(关键词) filetype:(文件类型)` |
+|  | 常见文件类型: |
+|  | - `pdf`: PDF文件 |
+|  | - `xls`: Excel文件 |
+|  | - `ppt`: PowerPoint文件 |
+|  | - `doc`: Word文件 |
+|  | - `txt`: 文本文档 |
+| 关键词包含在正文中 | 使用 `intext:(关键词)` |
+| 限定搜索网站 | 使用 `(关键词) inurl:(网站类型)` |
+|  | 常见网站类型: |
+|  | - `.com`: 商业组织和公司 |
+|  | - `.net`: 网络服务商 |
+|  | - `.gov`: 政府部门 |
+|  | - `.org`: 非营利性组织 |
+|  | - `.int`: 国际组织 |
+|  | - `.edu`: 教育部门 |
+| 限定搜索时间 | 如需搜索2018-2019年，使用 `2018..2019` |
+|  | 即 `(开始时间)..(结束时间)` |
+
+注：以上搜索方式可复合使用
+注：以上搜索方式可复合使用
+
+# cmd常用命令
+
+| 命令 | 说明 |
+| --- | --- |
+| `dxdiag` | 查看电脑系统属性 |
+| `systeminfo` | 查看系统信息 |
+| `wmic bios` | 查询 BIOS 详细信息 |
+| `wmic cpu` | 查看 CPU 详细信息 |
+| `wmic cpu list brief` | 查看 CPU 型号 |
+| `wmic memorychip` | 查看内存详细信息 |
+| `wmic memorychip list brief` | 查看内存条数 |
+| `wmic memcache list brief` | 查看缓存内存 |
+| `wmic diskdrive` | 查看磁盘详细信息 |
+| `wmic logicaldisk` | 查看盘符格式大小以及剩余空间 |
+| `shutdown /s` | 关机 |
+| `shutdown /r` | 重启 |
+| `shutdown /l` | 注销 |
+| `shutdown /h /f` | 休眠 |
+| `shutdown /a` | 取消关机 |
+| `shutdown /s /t 3600` | 定时关机（3600 秒后关机） |
+
+# VSCode 快捷键
+
+| 快捷键 | 说明 |
+| --- | --- |
+| `Alt + 鼠标点击` | 在每一个点击的地方添加输入光标 |
+| `Alt + Shift + 鼠标左键按住拖动` | 竖列多行选择。先选择起始点，然后按住 Alt + Shift 加上左键按住拖动。 |
+| `鼠标中键选中多行` | 效果和 Alt + Shift + 鼠标左键按住拖动 一样，不过不用先选择起始点，而是鼠标浮动到哪，按住鼠标中键，起始点就是哪里。 |
+| `Ctrl + D` | 逐一查找并选中，您选中的内容。 |
+| `Ctrl + U` | 回退到上一个 Ctrl + D 选中的内容 |
+| `Ctrl + Shift + L` | 类似 Ctrl + D, 不过这是立即选中全部匹配项 |
+| `Shift + Alt + i` | 为选中的多行代码末尾插入光标 |
+
 # git
 
 [Pro Git book,这是一本关于如何使用 Git 的优秀图书](https://git-scm.com/book/en/v2)

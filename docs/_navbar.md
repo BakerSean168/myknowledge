@@ -30,3 +30,6 @@
 
 * 文档
     * [文档](/CS/Document/Document)
+
+* 其他
+    * [一些知识与技术](/other.md)
