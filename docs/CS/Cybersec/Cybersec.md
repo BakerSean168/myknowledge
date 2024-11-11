@@ -1,6 +1,3 @@
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk_output -->
 
 - [xiaodisec](#xiaodisec)
   - [信息收集](#信息收集)
@@ -52,7 +49,7 @@
     - [反序列化](#反序列化)
       - [PHP反序列化](#php反序列化)
       - [Java反序列化](#java反序列化)
-    - [XML&XXE](#xmlxxe)
+    - [XML\&XXE](#xmlxxe)
   - [Java安全](#java安全)
     - [JWT安全](#jwt安全)
     - [预编译CASE注入](#预编译case注入)
@@ -70,6 +67,7 @@
     - [成品EXE：](#成品exe)
       - [反特征码](#反特征码)
       - [反 VT 沙盒](#反-vt-沙盒)
+  - [内网安全](#内网安全)
   - [SRC挖掘](#src挖掘)
 - [myctf](#myctf)
   - [PHP](#php)
@@ -126,16 +124,17 @@ fofa，shodan，zoomeye
 ### sql注入漏洞
 
 #### mysql注入
-MYSQL5.0 以上版本：自带的数据库名 information_schema
-information_schema：存储数据库下的数据库名及表名，列名信息的数据库
-information_schema.schemata：记录库名信息的表
-information_schema.tables：记录表名信息的表
-information_schema.columns：记录列名信息表
+MYSQL5.0 以上版本：自带的数据库名 information_schema  
+information_schema：存储数据库下的数据库名及表名，列名信息的数据库  
+information_schema.schemata：记录库名信息的表  
+information_schema.tables：记录表名信息的表  
+information_schema.columns：记录列名信息表  
+
 获取相关数据：
-1、数据库版本-看是否符合 information_schema 查询-version()   -5.5.532
-2、数据库用户-看是否符合 ROOT 型注入攻击-user()       -root@localhost
-3、当前操作系统-看是否支持大小写或文件路径选择-@@version_compile_os-win
-4、数据库名字-为后期猜解指定数据库下的表，列做准备-database()    -syguestbook
+1. 数据库版本-看是否符合 information_schema 查询-version()   -5.5.532
+2. 数据库用户-看是否符合 ROOT 型注入攻击-user()       -root@localhost
+3. 当前操作系统-看是否支持大小写或文件路径选择-@@version_compile_os-win
+4. 数据库名字-为后期猜解指定数据库下的表，列做准备-database()    -syguestbook
 
 load_file('route')  读取文件
 union select 1,'x',3 into outfile 'route' 写入文件
@@ -150,14 +149,15 @@ union select 1,'x',3 into outfile 'route' 写入文件
 ##### union联合注入
 
 1.  **判断有无注入点**
-老方法：
-id=1 and 1=1 limit 0，1 正常
-id=1 and 1=2 limit 0，1 错误
-id=1 or 1=1 limit 0，1 正常
-id=1 or 1=2 limit 0，1 正常
+老方法：  
+id=1 and 1=1 limit 0，1 正常  
+id=1 and 1=2 limit 0，1 错误  
+id=1 or 1=1 limit 0，1 正常  
+id=1 or 1=2 limit 0，1 正常  
 
 新方法：
-id=1alsdfjel 错误
+id=1alsdfjel 错误  
+
 2. **判断字段数**
 order by
 3. **判断回显点**
@@ -208,30 +208,38 @@ union select 1，2，3，4 //要先使原先的查询语句不显示，如id=1 a
 
 .\sqlmap.py -u "http://192.168.xxx.xxx/sqli/Less-1/?id=1" --dbms=MySQL --technique=T -v 3
 爆破数据
---current-db 当前使用的数据库
---dbs 列出数据库信息
--D 指定数据库，爆破指定数据库中的表
--D 数据库名 --tables
--T 指定数据表名，爆破指定表中的字段
--D 库名 -T 表名 --columns
--C 指定字段名，爆破具体数据
---dump 将数据导出、转储
+--current-db 当前使用的数据库  
+--dbs 列出数据库信息  
+-D 指定数据库，爆破指定数据库中的表  
+-D 数据库名 --tables  
+-T 指定数据表名，爆破指定表中的字段  
+-D 库名 -T 表名 --columns  
+-C 指定字段名，爆破具体数据  
+--dump 将数据导出、转储  
 
-指定库、表、字段，查询具体数据
-.\sqlmap.py -u "http://192.168.xxx.xxx/sqli/Less-1/?id=1" --dbms=MySQL --technique=T -v 3 -D 
+指定库、表、字段，查询具体数据  
+.\sqlmap.py -u "http://192.168.xxx.xxx/sqli/Less-1/?id=1" --dbms=MySQL --technique=T -v 3 -D  
 
 ##### post注入
-用 # 注释
+
+用 # 注释  
+
 ##### cookie注入
+
 ##### HTTP头部注入
+
 ##### json注入
 
 ##### 插入注入
+
 ##### 二次注入
+
 ##### dnslog带外注入
+
 ##### 堆叠注入
 http://ceye.io/
 https://github.com/ADOOO/DnslogSqlinj
+
 ##### WAF绕过注入
 **数据**
 - 大小写
