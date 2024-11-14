@@ -9,11 +9,30 @@ Arch系列
 Slackware Linux：SUSE  
 
 ## shell
+
 `cat /etc/shells`  查看系统内的shell
 可以使用路径切换到相应的shell版本
 `echo $SHELL`      查看当前系统变量中显示的shell版本   
 `echo $0`          当前正在执行的脚本名称
 `chsh -s $(which zsh)` 切换为zsh
+
+### Command-Line 日常使用技巧
+
+| 快捷键 | 作用 |
+| --- | --- |
+| `ctrl-w` | 删除你键入的最后一个单词 |
+| `ctrl-u` | 删除行内光标所在位置之前的内容 |
+| `alt-b` | 以单词为单位向后移动光标 |
+| `alt-f` | 以单词为单位向前移动光标 |
+| `ctrl-a` | 将光标移至行首 |
+| `ctrl-e` | 将光标移至行尾 |
+| `ctrl-k` | 删除光标至行尾的所有内容 |
+| `ctrl-l` | 清屏 |
+| `man readline` | 查看 Bash 中的默认快捷键 |
+
+- 在 Bash 中，可以通过按 Tab 键实现自动补全参数，使用 ctrl-r 搜索命令行历史记录（按下按键之后，输入关键字便可以搜索，重复按下 ctrl-r 会向后查找匹配项，按下 Enter 键会执行当前匹配的命令，而按下右方向键会将匹配项放入当前行中，不会直接执行，以便做出修改）。
+- 为了便于编辑长命令，在设置你的默认编辑器后（例如 export EDITOR=vim），ctrl-x ctrl-e 会打开一个编辑器来编辑当前输入的命令。在 vi 风格下快捷键则是 escape-v。
+- pstree -p 以一种优雅的方式展示进程树。
 
 ## 包管理器
 **Redhat系列**

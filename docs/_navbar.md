@@ -20,12 +20,15 @@
     * [算法](/CS/Language/Algorithm)
 
 * 操作系统
-    * [Linux](/CS/OS/LInux)
     * [Windows](/CS/OS/Windows)
     * [Andriod](/CS/OS/Andriod)
     * [硬件](/CS/OS/Hardware)
     * [软件](/CS/OS/Software)
     
+* Linux
+    * [Linux](/CS/OS/Linux)
+    * [the-art-of-command-line](/CS/OS/the-art-of-command-line)
+
 * 编程
     * [编程](/CS/Program/Prog)
 
