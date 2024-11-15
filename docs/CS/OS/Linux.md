@@ -35,34 +35,182 @@ Slackware Linux：SUSE
 - pstree -p 以一种优雅的方式展示进程树。
 
 ## 包管理器
-**Redhat系列**
-- rpm
-    ```
-    RPM包默认安装路径
-    /etc/配置文件安装目录
-    /usr/bin/可执行的命令安装目录
-    /usr/lib/程序所使用的函数库保存位置
-    /usr/share/doc/基本的软件使用手册保存位置
-    /usr/share/man/帮助文件保存位置
-    ```
-- yum
-换源
-`curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo ##CentOS 7`
 
+### Redhat系列
 
-**Debian系列**
-- apt
-    ```
-    sudo apt update
-    sudo apt list --upgradable
-    sudo apt upgrade
-    ```
+#### rpm
 
-## 进程管理
+**RPM 包的组成**  
 
-`ps -ef` 查看进程信息  
-`ps -ef | grep 关键字`  
-`kill [-9] 进程号` 关闭指定进程 -9表示强制关闭 
+RPM 包通常包含二进制文件、配置文件、文档和其他相关文件。  
+RPM 包的文件名通常包含包名、版本号、发布号、架构和扩展名 `.rpm`。  
+
+**RPM 包的命名格式**
+
+格式：`<name>-<version>-<release>.<architecture>.rpm`  
+例如：`httpd-2.4.6-90.el7.centos.x86_64.rpm`  
+
+**RPM 包的默认安装路径**
+
+| 目录 | 作用 |
+| --- | --- |
+| `/etc/` | 配置文件安装目录 |
+| `/usr/bin/` | 可执行的命令安装目录 |
+| `/usr/lib/` | 程序所使用的函数库保存位置 |
+| `/usr/share/doc/` | 基本的软件使用手册保存位置 |
+| `/usr/share/man/` | 帮助文件保存位置 |
+| `/usr/share/man/` | 帮助文件保存位置 |
+
+##### 常用 RPM 命令
+
+| 命令 | 作用 |
+| --- | --- |
+| `rpm -ivh package.rpm` | 安装 RPM 包 |
+| `rpm -Uvh package.rpm` | 升级 RPM 包 |
+| `rpm -e package` | 卸载 RPM 包 |
+| `rpm -q package` | 查询已安装的 RPM 包 |
+| `rpm -qa` | 列出所有已安装的 RPM 包 |
+| `rpm -qi package` | 显示已安装 RPM 包的信息 |
+| `rpm -ql package` | 列出已安装 RPM 包的文件 |
+| `rpm -qc package` | 列出已安装 RPM 包的配置文件 |
+| `rpm -qf /path/to/file` | 查询文件属于哪个 RPM 包 |
+| `rpm -V package` | 验证已安装的 RPM 包 |
+| `rpm --import /path/to/key` | 导入 GPG 密钥 |
+| `rpm -K package.rpm` | 验证 RPM 包的完整性和签名 |
+
+#### yum
+
+**YUM 包管理器**
+
+YUM (Yellowdog Updater, Modified) 是一个基于 RPM 的包管理器，广泛用于 CentOS、RHEL 和 Fedora 等发行版。它的主要特点包括：
+
+- 依赖管理：自动处理包依赖关系，简化软件安装和更新过程。
+- 仓库支持：支持多个仓库，可以从不同的源获取软件包。
+- 插件系统：支持插件，可以扩展 YUM 的功能。
+- 易用性：命令简单易用，适合新手和高级用户。
+
+**YUM 源配置文件**
+
+YUM 源配置文件通常位于 `/etc/yum.repos.d/` 目录下，每个仓库对应一个 `.repo` 文件。每个 `.repo` 文件包含仓库的配置信息。
+
+**YUM 源配置文件示例**
+
+以下是一个典型的 YUM 源配置文件示例：
+
+```ini
+[base]
+name=CentOS-$releasever - Base
+baseurl=http://mirror.centos.org/centos/$releasever/os/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+
+[updates]
+name=CentOS-$releasever - Updates
+baseurl=http://mirror.centos.org/centos/$releasever/updates/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+
+[extras]
+name=CentOS-$releasever - Extras
+baseurl=http://mirror.centos.org/centos/$releasever/extras/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+```
+换源  
+`curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo ##CentOS 7`  
+
+##### 常用 YUM 命令
+
+| 命令 | 作用 |
+| --- | --- |
+| `yum install package` | 安装软件包 |
+| `yum update package` | 更新软件包 |
+| `yum remove package` | 卸载软件包 |
+| `yum list` | 列出所有可用的软件包 |
+| `yum search keyword` | 搜索软件包 |
+| `yum info package` | 显示软件包信息 |
+| `yum clean all` | 清理缓存 |
+
+#### DNF
+
+DNF (Dandified YUM) 是 YUM 的下一代版本，默认用于 Fedora 和 RHEL 8 及更高版本。它的主要特点包括：
+
+- **性能提升**：相比 YUM，DNF 的性能更好，处理速度更快。
+- **内存使用优化**：DNF 使用更少的内存，适合资源有限的系统。
+- **改进的依赖解析**：DNF 使用更先进的算法来处理包依赖关系，减少冲突和错误。
+- **插件支持**：与 YUM 类似，DNF 也支持插件，可以扩展其功能。
+
+##### 常用 DNF 命令
+
+| 命令 | 作用 |
+| --- | --- |
+| `dnf install package` | 安装软件包 |
+| `dnf update package` | 更新软件包 |
+| `dnf remove package` | 卸载软件包 |
+| `dnf list` | 列出所有可用的软件包 |
+| `dnf search keyword` | 搜索软件包 |
+| `dnf info package` | 显示软件包信息 |
+| `dnf clean all` | 清理缓存 |
+
+### Debian系列
+
+#### apt
+
+**APT 包管理器**
+
+APT (Advanced Package Tool) 是 Debian 和 Ubuntu 及其衍生发行版中使用的包管理器。它的主要特点包括：
+
+- **依赖管理**：自动处理包依赖关系，简化软件安装和更新过程。
+- **仓库支持**：支持多个仓库，可以从不同的源获取软件包。
+- **易用性**：命令简单易用，适合新手和高级用户。
+
+**APT 源配置文件**
+
+APT 源配置文件通常位于 `/etc/apt/sources.list` 文件中，或者位于 `/etc/apt/sources.list.d/` 目录下的 `.list` 文件中。每个文件包含仓库的配置信息。
+
+**APT 源配置文件示例**
+
+以下是一个典型的 APT 源配置文件示例：
+
+```plaintext
+deb http://archive.ubuntu.com/ubuntu/ focal main restricted
+deb http://archive.ubuntu.com/ubuntu/ focal-updates main restricted
+deb http://archive.ubuntu.com/ubuntu/ focal universe
+deb http://archive.ubuntu.com/ubuntu/ focal-updates universe
+deb http://archive.ubuntu.com/ubuntu/ focal multiverse
+deb http://archive.ubuntu.com/ubuntu/ focal-updates multiverse
+deb http://archive.ubuntu.com/ubuntu/ focal-backports main restricted universe multiverse
+deb http://security.ubuntu.com/ubuntu focal-security main restricted
+deb http://security.ubuntu.com/ubuntu focal-security universe
+deb http://security.ubuntu.com/ubuntu focal-security multiverse
+```
+
+##### 常用 APT 命令
+
+| 命令 | 作用 |
+| --- | --- |
+| `apt update` | 更新软件包列表 |
+| `apt upgrade` | 升级已安装的软件包 |
+| `apt install package` | 安装软件包 |
+| `apt remove package` | 卸载软件包 |
+| `apt list` | 列出所有可用的软件包 |
+| `apt search keyword` | 搜索软件包 |
+| `apt show package` | 显示软件包信息 |
+| `apt autoremove` | 自动删除不再需要的软件包 |
+| `apt clean` | 清理本地缓存的包文件 |
+
+## 进程管理工具
+
+| 命令 | 作用 |
+| --- | --- |
+| `ps` | 显示进程信息 |
+| `top` | 实时显示系统进程信息 |
+| `htop` | `top` 命令的增强版，提供更友好的用户界面 |
+| `kill` | 终止进程 |
+| `pkill` | 根据名称终止进程 |
+| `pgrep` | 根据名称查找进程 |
+| `nice` | 启动进程并设置优先级 |
+| `renice` | 调整正在运行的进程的优先级 |
 
 ## 任务管理工具
 
@@ -430,7 +578,7 @@ dig命令的行为可以通过在${HOME}/.digrc文件中设置每个用户的选
     - gg		# 跳至文件首行
     - dG		# 删除光标所在行到末尾行内容，d删除，G跳转到文件末尾行
 
-## 文本查询工具
+## 文本处理工具
 
 ### 正则表达式
 
@@ -485,11 +633,42 @@ dig命令的行为可以通过在${HOME}/.digrc文件中设置每个用户的选
 4. () 表示分组，例如 egrep ‘(ab)+’ 表示匹配ab的一个或多个重复
 5. {} 表示出现次数，例如 egrep ‘a{3}’ 表示匹配a出现3次 
 
-## 主机状态监控工具
-`top`  
-`df -h` 查看磁盘使用率  
-`iostat` 产看磁盘速率  
-`sar -n DEV` 查看网络情况  
+## 压缩和解压工具
+
+### tar
+
+### gzip
+
+### bzip2
+
+### zip
+
+### unzip
+
+## 系统信息和监控工具
+
+| 命令 | 作用 |
+| --- | --- |
+| `uname` | 显示系统信息 |
+| `hostnamectl` | 显示或设置系统的主机名 |
+| `lsb_release` | 显示发行版信息 |
+| `uptime` | 显示系统运行时间及负载 |
+| `dmesg` | 显示系统启动信息及内核日志 |
+| `free` | 显示内存使用情况 |
+| `df` | 显示磁盘使用情况 |
+| `du` | 显示目录或文件的磁盘使用情况 |
+| `top` | 实时显示系统进程信息 |
+| `htop` | `top` 命令的增强版，提供更友好的用户界面 |
+| `ps` | 显示进程信息 |
+| `lscpu` | 显示 CPU 架构信息 |
+| `lsblk` | 列出所有块设备信息 |
+| `lspci` | 列出所有 PCI 设备信息 |
+| `lsusb` | 列出所有 USB 设备信息 |
+| `dmidecode` | 显示系统硬件信息，包括 BIOS、内存、处理器等 |
+| `dmidecode`| 显示系统硬件信息，包括 BIOS、内存、处理器等 |
+| `hwinfo`   | 提供详细的硬件信息（需要安装） |
+| `inxi`     | 提供系统和硬件信息的简洁报告（需要安装） |
+| `sar -n DEV` | 查看网络情况 |
 
 | 列名    | 含义                                                                 |
 | ------- | -------------------------------------------------------------------- |
@@ -505,6 +684,10 @@ dig命令的行为可以通过在${HOME}/.digrc文件中设置每个用户的选
 | %MEM    | 进程使用的物理内存百分比                                             |
 | TIME+   | 进程使用的CPU时间总计，单位1/100秒                                   |
 | COMMAND | 命令名/命令行                                                        |
+
+### 系统信息显示工具
+
+neofetch  
 
 ## 服务管理工具
 
