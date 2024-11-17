@@ -352,13 +352,19 @@ IIS6/7.x，Apache，Nginx
 
 
 ### XSS跨站脚本漏洞
-反射型，持久型，dom型
+
+反射型，持久型，dom型  
+
 #### 持久型
-**XSS平台**
-xss platform
-**XSS工具**
-webshell箱子
-beef
+
+**XSS平台**  
+
+xss platform  
+
+**XSS工具**  
+
+webshell箱子  
+beef  
 
 
 ##### 绕过

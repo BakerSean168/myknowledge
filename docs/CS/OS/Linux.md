@@ -743,7 +743,15 @@ service 命令就是管理 System V 类型服务的命令。它主要用于操�
 ## 服务
 
 ### ssh 服务
-配置文件路径 `/etc/ssh/sshd_config`
+
+
+SSHD（SSH Daemon）是 SSH 服务的守护进程，负责处理传入的 SSH 连接请求。它通常在服务器上运行，监听指定端口（默认是 22），并处理客户端的连接请求。
+
+
+SSHD 的配置文件通常位于 `/etc/ssh/sshd_config`  
+
+
+ssh 的配置文件路径 `/etc/ssh/sshd_config`  
 ```
 service ssh start   启动ssh
 service ssh status  查看ssh服务是否正常运行
