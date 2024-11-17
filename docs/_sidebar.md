@@ -13,7 +13,7 @@
     * [Python](/CS/Language/Python)
     * [算法](/CS/Language/Algorithm)
 
-    * [Linux](/CS/OS/LInux)
+    * [Linux](/CS/OS/Linux)
     * [Windows](/CS/OS/Windows)
     * [Andriod](/CS/OS/Andriod)
     * [硬件](/CS/OS/Hardware)
