@@ -20,12 +20,10 @@
     * [常用软件网站](/CS/OS/SoftSite)
     * [命令行的艺术](/CS/OS/the-art-of-command-line)
 
-
     * [编程](/CS/Prog)
 
     * [CTF](/CS/CTF/CTF)
     
-
     * [网络安全](/CS/Cybersec/Cybersec)
     * [网安工具](/CS/Tools)
 
