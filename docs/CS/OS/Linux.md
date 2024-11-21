@@ -569,6 +569,27 @@ dig命令的行为可以通过在${HOME}/.digrc文件中设置每个用户的选
 ![alt text](assert/linux-basic-command_dig2.png)
 +nocmd +noall +answer
 
+## 网络传输工具
+
+### curl
+
+curl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。
+
+#### 常用命令
+
+| 命令 | 作用 |
+| --- | --- |
+| `curl http://example.com` | 发送 GET 请求到指定 URL |
+| `curl -o file.txt http://example.com/file.txt` | 下载文件并保存为 `file.txt` |
+| `curl -O http://example.com/file.txt` | 下载文件并使用原始文件名保存 |
+| `curl -d "param1=value1&param2=value2" -X POST http://example.com` | 发送 POST 请求并附带数据 |
+| `curl -H "Content-Type: application/json" -d '{"key":"value"}' -X POST http://example.com` | 发送带有 JSON 数据的 POST 请求 |
+| `curl -u username:password http://example.com` | 使用基本身份验证发送请求 |
+| `curl -b cookies.txt http://example.com` | 发送请求时附带 Cookies |
+| `curl -c cookies.txt http://example.com` | 将服务器返回的 Cookies 保存到文件 |
+| `curl -x http://proxyserver:port http://example.com` | 通过 HTTP 代理发送请求 |
+| `curl -I http://example.com` | 发送 HEAD 请求，获取响应头信息 |
+
 ## 文本编辑器
 
 ### vim

@@ -2,15 +2,18 @@
 
 <!-- code_chunk_output -->
 
-- [Software](#software)
+- [软件](#软件)
+  - [Windows、 Linux](#windows-linux)
+  - [Android](#android)
 - [Website](#website)
-  - [CTF](#ctf)
-  - [SRC平台](#src平台)
-  - [DNS,DOMIN](#dnsdomin)
-  - [proxy software](#proxy-software)
-  - [download software](#download-software)
-  - [code](#code)
-  - [CSS+HTML练习](#csshtml练习)
+    - [CTF](#ctf)
+  - [智联招聘打卡积分](#智联招聘打卡积分)
+    - [SRC平台](#src平台)
+    - [DNS,DOMIN](#dnsdomin)
+    - [proxy software](#proxy-software)
+    - [download software](#download-software)
+    - [code](#code)
+    - [CSS+HTML练习](#csshtml练习)
 
 <!-- /code_chunk_output -->
 
@@ -18,7 +21,9 @@
 
 
 
-# 软件推荐
+# 软件
+
+## Windows、 Linux
 系统
 - Linux
 
@@ -81,10 +86,20 @@ Markdown 写作
 OCR
 - [Umi-OCR 文字识别工具](https://github.com/hiroi-sora/Umi-OCR) - 免费，开源，可批量的离线OCR软件
 
+csv编辑器
+- SmoothCSV
+
+图片处理工具
+- IT-XIAOBIN - 本地运行，数据安全，支持单张/批量抠图，AI抠图，证件照，图片转换，图片压缩
+
+系统精简
+- MSMG Toolkit
 
 videodownloader: VidJuice UniTube
 
+## Android
 
+网页打包软件
 
 # Website
 
