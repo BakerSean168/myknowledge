@@ -154,6 +154,7 @@ docker exec -it redis redis-cli //redis镜像执行redis-cli命令连接
 
 
 # nvm
+
 *windows下的node.js版本管理器*
 
 | 命令 | 说明 |
@@ -174,23 +175,31 @@ docker exec -it redis redis-cli //redis镜像执行redis-cli命令连接
 | `nvm version` | 查看当前的版本 |.
 
 # virtualenv
+
 *windows下的python包管理器*
 
-create
-virtualenv --python route env_name
-run
-.\env_name\Scripts\activate
-stop
-deactivate
+## virtualenv 常用命令
+
+| 命令 | 作用 |
+| --- | --- |
+| `pip install virtualenv` | 安装 `virtualenv` |
+| `virtualenv myenv` | 创建一个名为 `myenv` 的虚拟环境 |
+| `source myenv/bin/activate` | 激活虚拟环境（Unix 或 MacOS） |
+| `myenv\Scripts\activate` | 激活虚拟环境（Windows） |
+| `pip install package_name` | 在虚拟环境中安装包 |
+| `pip list` | 列出虚拟环境中已安装的包 |
+| `deactivate` | 退出虚拟环境 |
+| `rm -rf myenv` | 删除虚拟环境 |
 
 
 # 传输文件
-```
+
 有ssh服务时，可以直接用scp命令传输文件:
 
 ```powershell
 scp -i ~/.ssh/code.pem -r root@47.108.204.117:/output1 D:/
 ```
+
 解释：
 - -i ~/.ssh/code.pem：指定私钥文件路径。
 - -r：递归复制整个目录（可以传输文件夹）。
