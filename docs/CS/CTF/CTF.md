@@ -8,6 +8,31 @@ Cookie
 基础认证  
 响应包源代码  
 
+## php
+
+### md5 绕过
+
+#### 数组绕过
+
+原理：PHP md5函数接收的参数为string（字符串型），如果传入arry（数组型）就无法计算其md5值，但不会报错，导致数组md5值都相等.
+
+#### 科学计数法绕过
+
+原理解释：PHP在进行“==”（弱类型比较）时，会先转换字符串类型，再进行字符串比较，而进行md5后以0e开头的都会被PHP识别为科学计数法，即0e*被视作0的*次方，结果都为0，故我们只需找到md5后为0e*的字符串。  
+
+常用md5后为0e*的有：
+
+| 字符串 | 对应 MD5 值 |
+| --- | --- |
+| 240610708 | 0e462097431906509019562988736854 |
+| QLTHNDT | 0e405967825401955372549139051580 |
+| QNKCDZO | 0e830400451993494058024219903391 |
+| PJNPDWY | 0e291529052894702774557631701704 |
+| NWWKITQ | 0e763082070976038347657360817689 |
+| NOOPCJF | 0e818888003657176127862245791911 |
+| MMHUWUV | 0e701732711630150438129209816536 |
+| MAUXXQC | 0e478478466848439040434801845361 |
+
 ## 信息泄露
 
 目录遍历  
@@ -109,7 +134,17 @@ DNS重绑定 Bypass
 
 # Crypto|密码学
 
-## 介绍
+## 工具
+
+Conda  
+yafu  
+factordb  
+quipqiup  
+MATLAB  
+
+## 编码
+
+### 介绍
 
 ````
 密码学（英语：Cryptography）可分为古典密码学和现代密码学。在西方语文中，密码学一词源于希腊语 kryptós“隐藏的”，和*gráphein*“书写”。古典密码学主要关注资讯的保密书写和传递，以及与其相对应的破译方法。而现代密码学不只关注资讯保密问题，还同时涉及资讯完整性验证（消息验证码）、资讯发布的不可抵赖性（数码签名）、以及在分布式计算中产生的来源于内部和外部的攻击的所有信息安全问题。
@@ -133,27 +168,76 @@ DNS重绑定 Bypass
 
 虽然不再符合现代 严谨的密码学 的定义，但在广义的密码学上 「编码 Encoding 」 依旧被承认为密码学分支，同时编码在现代密码学信息承载上依旧有巨大作用。
 
-## 工具
+### 工具
 
-### CyberChef
+#### CyberChef
 
 [CyberChef](https://github.com/gchq/CyberChef "Github地址") 是 CTF 中最常用的编码解码工具之一，内含多种编码和解码方式。  
 
-### Ciphey
+#### Ciphey
 
 [Ciphey](https://github.com/Ciphey/Ciphey  "Github地址") is a Fully automated decryption/decoding/cracking tool using natural language processing & artificial intelligence, along with some common sense.  
 
-### 随波逐流
+#### 随波逐流
 
 [随波逐流 CTF 编码工具](http://1o1o.xyz/bo_ctfcode.html) 由随波逐编写开发，CTF 编码工具为用户提供丰富的离线符编码进行转换，加密解密功能。
 
-## 常见编码
+### 常见编码
 
 ASCLL  
 HEx  
 URL  
 BASE  
 摩斯密码  
+
+## 古典密码
+
+「古典密码学 Classic cryptography 」 在形式上可分成 「移位密码 Shift Cipher 」 和 「替代密码 Substitution Cipher」 两类，其中 替代密码 又可分为 单表替代 和 多表替代。有时则是两者的混合。其于历史中经常使用，但现代已经很少使用，大部分的已经不再使用了。
+
+### 移位密码
+
+移位式密码，它们字母本身不变，但它们在消息中顺序是依照一个定义明确的项目改变。许多移位式密码是基于几何而设计的。一个简单的加密（也易被破解），可以将字母向右移 1 位。例如，明文 "Hello my name is Alice." 将变成 "olleH ym eman si ecilA."。
+
+栅| 密码名称 | 描述 |
+| --- | --- |
+| 栅栏密码 (Rail-fence) | 将明文按一定规律写成栅栏状，然后逐行读取密文。 |
+| 曲路密码 (Curve) | 按曲线路径排列明文，然后按顺序读取密文。 |
+| 列移位密码 (Columnar Transposition) | 将明文写成矩阵形式，然后按列读取密文。 |
+| rot | 通过将字母表中的字母循环移动固定的位数来加密明文，例如 ROT13。 |
+
+
+### 替换密码
+
+替代密码是字母（或是字母群）作有系统的代换，直到消息被替换成其它难以解读的字。
+
+替换式密码亦有许多不同类型。如果每一个字母为一单元（或称元素）进行加密操作，就可以称之为 「简易替换密码 simple substitution cipher」 或 「单表加密 monoalphabetic cipher 」 另又称为 单字母替换加密 ; 以数个字母为一单元则称为 「多表加密 polyalphabetic cipher」 或 「表格式加密 polygraphic」。
+
+阿特巴希密码 Atbash  
+猪圈密码 Pigpen  
+圣堂武士密码 Templar  
+培根密码 Bacon  
+凯撒密码 Caesar  
+维吉尼亚密码 Vigenère Cipher  
+
+## AES
+
+## DES
+
+## RSA
+
+| 算法描述 | 变量表示 |
+| --- | --- |
+| ① 选择两个大质数 p 和 q | p, q |
+| ② 计算 n = p * q | n |
+| ③ 欧拉公式 φ(n) = (p - 1) * (q - 1) | φ(n) |
+| ④ 选择一个整数 e，使得 1 < e < φ(n)，且 e 和 φ(n) 互质 | e |
+| ⑤ 计算 e 关于 φ(n) 的模逆元 d，即 ed ≡ 1 (mod φ(n)) | d |
+
+## 流密码
+
+## 哈希
+
+## ECC
 
 # Misc
 

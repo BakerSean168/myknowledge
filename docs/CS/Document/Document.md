@@ -205,3 +205,46 @@ scp -i ~/.ssh/code.pem -r root@47.108.204.117:/output1 D:/
 - -r：递归复制整个目录（可以传输文件夹）。
 - root@47.108.204.117:/output1：云服务器上的目录路径。
 - D:/：Windows 本地目录路径。
+
+# hadoop
+
+## hadoop 文件系统
+
+HDFS Shell CLI 支持多种文件系统，包括本地文件系统（file：///）、分布式文件系统（hdfs：//nn：8020）等  
+没有指定前缀，默认读取环境变量中 fs.defaultFS 属性的值作为默认文件系统。
+
+## hadoop 常用命令
+
+| 命令 | 作用 |
+| --- | --- |
+| `hadoop version` | 查看 Hadoop 版本信息 |
+| `hadoop fs -ls /path` | 列出 HDFS 中指定路径的文件和目录 |
+| `hadoop fs -mkdir /path` | 在 HDFS 中创建目录 |
+| `hadoop fs -put localfile /path` | 将本地文件上传到 HDFS |
+| `hadoop fs -get /path localfile` | 从 HDFS 下载文件到本地 |
+| `hadoop fs -rm /path` | 删除 HDFS 中的文件或目录 |
+| `hadoop fs -rmdir /path` | 删除 HDFS 中的空目录 |
+| `hadoop fs -cat /path` | 显示 HDFS 中文件的内容 |
+| `hadoop fs -copyFromLocal localfile /path` | 将本地文件复制到 HDFS |
+| `hadoop fs -copyToLocal /path localfile` | 将 HDFS 文件复制到本地 |
+| `hadoop fs -moveFromLocal localfile /path` | 将本地文件移动到 HDFS |
+| `hadoop fs -moveToLocal /path localfile` | 将 HDFS 文件移动到本地 |
+| `hadoop fs -chown user:group /path` | 更改 HDFS 文件或目录的所有者和组 |
+| `hadoop fs -chmod permissions /path` | 更改 HDFS 文件或目录的权限 |
+| `hadoop fs -chgrp group /path` | 更改 HDFS 文件或目录的组 |
+| `hadoop fs -du /path` | 显示 HDFS 中目录的磁盘使用情况 |
+| `hadoop fs -df /path` | 显示 HDFS 的磁盘空间使用情况 |
+| `hadoop fs -stat /path` | 显示 HDFS 文件或目录的状态信息 |
+| `hadoop fs -tail /path` | 显示 HDFS 文件的最后部分内容 |
+| `hadoop fs -test -e /path` | 测试 HDFS 路径是否存在 |
+| `hadoop fs -test -d /path` | 测试 HDFS 路径是否为目录 |
+| `hadoop fs -test -f /path` | 测试 HDFS 路径是否为文件 |
+| `hadoop fs -text /path` | 将 HDFS 文件内容显示为文本 |
+| `hadoop jar myjar.jar [mainClass] args...` | 运行 Hadoop 应用程序 |
+| `start-dfs.sh` | 启动 HDFS 服务 |
+| `stop-dfs.sh` | 停止 HDFS 服务 |
+| `start-yarn.sh` | 启动 YARN 服务 |
+| `stop-yarn.sh` | 停止 YARN 服务 |
+| `jps` | 查看 Hadoop 相关进程 |
+
+
