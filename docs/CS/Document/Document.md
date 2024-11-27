@@ -149,10 +149,6 @@ docker run -p 6379:6379 --name redis -v /mydata/redis/data:/data \
 docker exec -it redis redis-cli //redis镜像执行redis-cli命令连接
 ```
 
-# hadoop
-
-
-
 # nvm
 
 *windows下的node.js版本管理器*
