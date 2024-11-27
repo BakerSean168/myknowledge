@@ -117,7 +117,7 @@ user.email=youremail@yourdomain.com
 已经运行的容器添加策略  
 ```docker container update --restart 策略 容器```
 
-查看容器的重启策略
+查看容器的重启策略  
 ```docker inspect -f "{{ .HostConfig.RestartPolicy.Name }}" 容器```
 
 查看容器启动次数命令  
