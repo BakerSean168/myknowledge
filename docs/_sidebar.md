@@ -17,7 +17,6 @@
     * [Windows](/CS/OS/Windows)
     * [Andriod](/CS/OS/Andriod)
     * [硬件](/CS/OS/Hardware)
-    * [常用软件网站](/CS/OS/SoftSite)
     * [命令行的艺术](/CS/OS/the-art-of-command-line)
 
     * [编程](/CS/Prog)
@@ -28,3 +27,5 @@
     * [网安工具](/CS/Tools)
 
     * [各类软件工具的使用文档](/CS/Document/Document)
+    * [软件网站留档](/CS/Document/SoftSite)
+    * [如何学](/CS/Document/Learn)

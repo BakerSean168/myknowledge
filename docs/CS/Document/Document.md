@@ -180,6 +180,7 @@ docker exec -it redis redis-cli //redis镜像执行redis-cli命令连接
 | --- | --- |
 | `pip install virtualenv` | 安装 `virtualenv` |
 | `virtualenv myenv` | 创建一个名为 `myenv` 的虚拟环境 |
+| `virtualenv -p /usr/bin/python3.8 myenv` | 指定 python 环境为 3.8 |
 | `source myenv/bin/activate` | 激活虚拟环境（Unix 或 MacOS） |
 | `myenv\Scripts\activate` | 激活虚拟环境（Windows） |
 | `pip install package_name` | 在虚拟环境中安装包 |
@@ -187,6 +188,7 @@ docker exec -it redis redis-cli //redis镜像执行redis-cli命令连接
 | `deactivate` | 退出虚拟环境 |
 | `rm -rf myenv` | 删除虚拟环境 |
 
+[详细命令查看文档](https://virtualenv.pypa.io/en/latest/cli_interface.html#cli-flags)
 
 # 传输文件
 

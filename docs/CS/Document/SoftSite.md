@@ -1,22 +1,36 @@
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+# App
 
-<!-- code_chunk_output -->
+## CC
 
-- [软件](#软件)
-  - [Windows、 Linux](#windows-linux)
-  - [Android](#android)
-- [Website](#website)
-    - [CTF](#ctf)
-  - [智联招聘打卡积分](#智联招聘打卡积分)
-    - [SRC平台](#src平台)
-    - [DNS,DOMIN](#dnsdomin)
-    - [proxy software](#proxy-software)
-    - [download software](#download-software)
-    - [code](#code)
-    - [CSS+HTML练习](#csshtml练习)
+| 工具 | 英文说明 | 中文说明 |
+| --- | --- | --- |
+| [bindiff](https://github.com/google/bindiff) | Quickly find differences and similarities in disassembled code | 快速查找反汇编代码中的差异和相似之处 |
+| [Interactive Delphi Reconstructor IDR](https://github.com/crypto2011/IDR) | a decompiler of executable files (EXE) and dynamic libraries (DLL), written in Delphi and executed in Windows32 environment. | 一个用于反编译可执行文件（EXE）和动态库（DLL）的工具，使用Delphi编写，在Windows32环境中执行。 |
+| [Decompyle++](https://github.com/zrax/pycdc) | Decompyle++ aims to translate compiled Python byte-code back into valid and human-readable Python source code. While other projects have achieved this with varied success, Decompyle++ is unique in that it seeks to support byte-code from any version of Python. | Decompyle++ 旨在将编译后的Python字节码翻译回有效且可读的Python源代码。虽然其他项目在这方面取得了不同程度的成功，但Decompyle++的独特之处在于它支持任何版本的Python字节码。 |
+| [Detect It Easy (DiE)](https://github.com/horsicq/Detect-It-Easy) | Detect It Easy (DiE) is a powerful tool for file type identification, popular among malware analysts, cybersecurity experts, and reverse engineers worldwide. Supporting both signature-based and heuristic analysis, DiE enables efficient file inspections across a broad range of platforms, including Windows, Linux, and MacOS. Its adaptable, script-driven detection architecture makes it one of the most versatile tools in the field, with a comprehensive list of supported OS images. | Detect It Easy (DiE) 是一个强大的文件类型识别工具，在全球的恶意软件分析师、网络安全专家和逆向工程师中非常受欢迎。支持基于签名和启发式分析，DiE 能够在包括Windows、Linux和MacOS在内的广泛平台上进行高效的文件检查。其可适应的脚本驱动检测架构使其成为该领域最通用的工具之一，支持的操作系统镜像列表非常全面。 |
+| [IDA Professional 9.0](https://hex-rays.com/ida-pro/) | IDA Pro is a powerful disassembler and debugger for analyzing binary files, widely used in reverse engineering and vulnerability research. | IDA Pro 是一个强大的反汇编和调试工具，用于分析二进制文件，广泛应用于逆向工程和漏洞研究。 |
+| [ExeinfoPe](http://exeinfo.atwebpages.com/) | Exeinfo PE is a software that provides detailed information about executable files, including packer, compiler, and linker details. | Exeinfo PE 是一个提供可执行文件详细信息的软件，包括打包器、编译器和链接器的详细信息。 |
+| [dirsearch](https://github.com/maurosoria/dirsearch) | dirsearch is a simple command line tool designed to brute force directories and files in websites. | dirsearch 是一个简单的命令行工具，旨在暴力破解网站中的目录和文件。 |
+| [bbot](https://github.com/blacklanternsecurity/bbot) | A recursive internet scanner for hackers. | 扫描工具 |
+| []() |  |  |
 
-<!-- /code_chunk_output -->
+## CTF
 
+### Crypto
+
+| 工具 | 英文说明 | 中文说明 |
+| --- | --- | --- |
+| [ciphey](https://bakersean168.github.io/2024/11/28/cipheyInstall/) | Automatically decrypt encryptions without knowing the key or cipher, decode encodings, and crack hashes | 自动破解加密 |
+| [yafu](https://github.com/Ciphey/Ciphey) | Automated integer factorization | 大质数分解 |
+| [ToolsFx](https://github.com/Leon406/ToolsFx) | 基于kotlin+tornadoFx的跨平台密码学工具箱.包含编解码,编码转换,加解密, 哈希,MAC,签名,大数运算,压缩,二维码功能,ctf等实用功能,支持插件 | 基于kotlin+tornadoFx的跨平台密码学工具箱。包含编解码、编码转换、加解密、哈希、MAC、签名、大数运算、压缩、二维码功能、CTF等实用功能，支持插件。 |
+| [factordb](https://factordb.com/) | Online database of factorizations | 在线因数分解数据库 |
+| [quipqiup](https://www.quipqiup.com/) | Fast and automated cryptogram solver | 快速自动的密码解码器 |
+| []() |  |  |
+
+## Other
+
+[VeraCrypt](https://www.veracrypt.fr/en/Home.html)  
+硬盘加密
 
 
 
@@ -24,6 +38,10 @@
 # 软件
 
 ## Windows、 Linux
+
+硬盘加密
+- VeraCrypt
+
 系统
 - Linux
 
