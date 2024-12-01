@@ -140,14 +140,18 @@ Collections.sort(processes, new Comparator<Process>() {
 例如 Internationalization and Localization 缩写成i18n，Uniform Resource Identifier缩写成URI，Data Access Object缩写成DAO，JSON Web Token缩写成JWT，HyperText Markup Language缩写成HTML等等)。
 
 https://blog.csdn.net/cxyxysam/article/details/136218734
-### ==
-8大类型（String,Integer,Long,Byte,Boolean等）
-==比较的是内存地址,equal比较的是值
-String str1 = new String("Hello");
-String str2 = new String("Hello");
-str1 == str2 // false
-str1.equals(str2) // true
 
+### ==
+
+8大类型（String,Integer,Long,Byte,Boolean等）  
+
+==比较的是内存地址,equal比较的是值  
+```
+String str1 = new String("Hello");  
+String str2 = new String("Hello");  
+str1 == str2 // false  
+str1.equals(str2) // true  
+```
 
 ### break
 break只能跳出与之最近的for，while循环，跟if没有关系。

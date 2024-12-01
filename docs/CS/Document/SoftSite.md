@@ -1,117 +1,77 @@
-# App
+# C
 
-## CC
+## Reverse
 
-| 工具 | 英文说明 | 中文说明 |
-| --- | --- | --- |
-| [bindiff](https://github.com/google/bindiff) | Quickly find differences and similarities in disassembled code | 快速查找反汇编代码中的差异和相似之处 |
-| [Interactive Delphi Reconstructor IDR](https://github.com/crypto2011/IDR) | a decompiler of executable files (EXE) and dynamic libraries (DLL), written in Delphi and executed in Windows32 environment. | 一个用于反编译可执行文件（EXE）和动态库（DLL）的工具，使用Delphi编写，在Windows32环境中执行。 |
-| [Decompyle++](https://github.com/zrax/pycdc) | Decompyle++ aims to translate compiled Python byte-code back into valid and human-readable Python source code. While other projects have achieved this with varied success, Decompyle++ is unique in that it seeks to support byte-code from any version of Python. | Decompyle++ 旨在将编译后的Python字节码翻译回有效且可读的Python源代码。虽然其他项目在这方面取得了不同程度的成功，但Decompyle++的独特之处在于它支持任何版本的Python字节码。 |
-| [Detect It Easy (DiE)](https://github.com/horsicq/Detect-It-Easy) | Detect It Easy (DiE) is a powerful tool for file type identification, popular among malware analysts, cybersecurity experts, and reverse engineers worldwide. Supporting both signature-based and heuristic analysis, DiE enables efficient file inspections across a broad range of platforms, including Windows, Linux, and MacOS. Its adaptable, script-driven detection architecture makes it one of the most versatile tools in the field, with a comprehensive list of supported OS images. | Detect It Easy (DiE) 是一个强大的文件类型识别工具，在全球的恶意软件分析师、网络安全专家和逆向工程师中非常受欢迎。支持基于签名和启发式分析，DiE 能够在包括Windows、Linux和MacOS在内的广泛平台上进行高效的文件检查。其可适应的脚本驱动检测架构使其成为该领域最通用的工具之一，支持的操作系统镜像列表非常全面。 |
-| [IDA Professional 9.0](https://hex-rays.com/ida-pro/) | IDA Pro is a powerful disassembler and debugger for analyzing binary files, widely used in reverse engineering and vulnerability research. | IDA Pro 是一个强大的反汇编和调试工具，用于分析二进制文件，广泛应用于逆向工程和漏洞研究。 |
-| [ExeinfoPe](http://exeinfo.atwebpages.com/) | Exeinfo PE is a software that provides detailed information about executable files, including packer, compiler, and linker details. | Exeinfo PE 是一个提供可执行文件详细信息的软件，包括打包器、编译器和链接器的详细信息。 |
-| [dirsearch](https://github.com/maurosoria/dirsearch) | dirsearch is a simple command line tool designed to brute force directories and files in websites. | dirsearch 是一个简单的命令行工具，旨在暴力破解网站中的目录和文件。 |
-| [bbot](https://github.com/blacklanternsecurity/bbot) | A recursive internet scanner for hackers. | 扫描工具 |
-| []() |  |  |
+| 工具 | 中文说明 |
+| --- | --- |
+| [bindiff](https://github.com/google/bindiff) | 快速查找反汇编代码中的差异和相似之处 |
+| [Interactive Delphi Reconstructor IDR](https://github.com/crypto2011/IDR) | 一个用于反编译可执行文件（EXE）和动态库（DLL）的工具，使用Delphi编写，在Windows32环境中执行。 |
+| [Decompyle++](https://github.com/zrax/pycdc) | Decompyle++ 旨在将编译后的Python字节码翻译回有效且可读的Python源代码。虽然其他项目在这方面取得了不同程度的成功，但Decompyle++的独特之处在于它支持任何版本的Python字节码。 |
+| [Detect It Easy (DiE)](https://github.com/horsicq/Detect-It-Easy) | Detect It Easy (DiE) 是一个强大的文件类型识别工具，在全球的恶意软件分析师、网络安全专家和逆向工程师中非常受欢迎。支持基于签名和启发式分析，DiE 能够在包括Windows、Linux和MacOS在内的广泛平台上进行高效的文件检查。其可适应的脚本驱动检测架构使其成为该领域最通用的工具之一，支持的操作系统镜像列表非常全面。 |
+| [IDA Professional 9.0](https://hex-rays.com/ida-pro/) | IDA Pro 是一个强大的反汇编和调试工具，用于分析二进制文件，广泛应用于逆向工程和漏洞研究。 |
+| [ExeinfoPe](http://exeinfo.atwebpages.com/) | Exeinfo PE 是一个提供可执行文件详细信息的软件，包括打包器、编译器和链接器的详细信息。 |
 
-## CTF
+## Information
 
-### Crypto
+| 工具 | 中文说明 |
+| --- | --- |
+| [水泽](https://github.com/0x727/ShuiZe_0x727) | 信息收集自动化工具 |
+| [dirsearch](https://github.com/maurosoria/dirsearch) | dirsearch 是一个简单的命令行工具，旨在暴力破解网站中的目录和文件。 |
+| [bbot](https://github.com/blacklanternsecurity/bbot) | 扫描工具 |
+| [Meppo](https://github.com/wingsSec/Meppo) | 快速检测高危漏洞 |
+| [Libra](https://github.com/rabbitmask/Libra) | 网站篡改、暗链、死链监测平台 |
+| [ARL](https://github.com/TophantTechnoLogy/ARL) | 资产收集发现平台 |
 
-| 工具 | 英文说明 | 中文说明 |
-| --- | --- | --- |
-| [ciphey](https://bakersean168.github.io/2024/11/28/cipheyInstall/) | Automatically decrypt encryptions without knowing the key or cipher, decode encodings, and crack hashes | 自动破解加密 |
-| [yafu](https://github.com/Ciphey/Ciphey) | Automated integer factorization | 大质数分解 |
-| [ToolsFx](https://github.com/Leon406/ToolsFx) | 基于kotlin+tornadoFx的跨平台密码学工具箱.包含编解码,编码转换,加解密, 哈希,MAC,签名,大数运算,压缩,二维码功能,ctf等实用功能,支持插件 | 基于kotlin+tornadoFx的跨平台密码学工具箱。包含编解码、编码转换、加解密、哈希、MAC、签名、大数运算、压缩、二维码功能、CTF等实用功能，支持插件。 |
-| [factordb](https://factordb.com/) | Online database of factorizations | 在线因数分解数据库 |
-| [quipqiup](https://www.quipqiup.com/) | Fast and automated cryptogram solver | 快速自动的密码解码器 |
-| []() |  |  |
+## Crypto
+
+| 工具 | 中文说明 |
+| --- | --- |
+| [ciphey](https://bakersean168.github.io/2024/11/28/cipheyInstall/) | 自动破解加密 |
+| [yafu](https://github.com/Ciphey/Ciphey) | 大质数分解 |
+| [ToolsFx](https://github.com/Leon406/ToolsFx) | 基于kotlin+tornadoFx的跨平台密码学工具箱。包含编解码、编码转换、加解密、哈希、MAC、签名、大数运算、压缩、二维码功能、CTF等实用功能，支持插件。 |
+| [factordb](https://factordb.com/) | 在线因数分解数据库 |
+| [quipqiup](https://www.quipqiup.com/) | 快速自动的密码解码器 |
 
 ## Other
 
-[VeraCrypt](https://www.veracrypt.fr/en/Home.html)  
-硬盘加密
+| 工具 | 中文说明 |
+| --- | --- |
+| [VeraCrypt](https://www.veracrypt.fr/en/Home.html) | 硬盘加密 |
 
 
-
-
-# 软件
+# APP
 
 ## Windows、 Linux
 
-硬盘加密
-- VeraCrypt
+| 工具 | 说明 |
+| --- | --- |
+| VeraCrypt | 硬盘加密 |
+| Linux | 系统 |
+| [Firefox](https://www.mozilla.org/en-US/firefox/all/#product-desktop-release) | 浏览器 |
+| 7-zip | 压缩工具 |
+| Blender | 建模 |
+| Krita | 绘画 |
+| Draw.io | 流程图 |
+| Handbreak | 视频压制 |
+| MPV | 视频播放 |
+| Rufus | 镜像烧录 |
+| Marktext | Markdown 写作 |
+| Syncthing | 多设备同步 |
+| OBS Studio | 录屏软件 |
+| Git | 文件版本控制 |
+| Vscode | 代码编辑器 |
+| Keepass | 密码管理 |
+| Keyviz | 屏幕按键显示 |
+| utools | 文件，软件管理 |
+| everything | 文件，软件管理 |
+| maye lite | 文件，软件管理 |
+| localsend | 文件跨设备互传 |
+| 图吧工具箱 | 硬件处理工具 |
+| [Umi-OCR 文字识别工具](https://github.com/hiroi-sora/Umi-OCR) | 免费，开源，可批量的离线OCR软件 |
+| SmoothCSV | csv编辑器 |
+| IT-XIAOBIN | 图片处理工具 - 本地运行，数据安全，支持单张/批量抠图，AI抠图，证件照，图片转换，图片压缩 |
+| MSMG Toolkit | 系统精简 |
 
-系统
-- Linux
-
-浏览器
-- [Firefox](https://www.mozilla.org/en-US/firefox/all/#product-desktop-release)
-
-压缩工具
--   7-zip
-
-建模
-- Blender
-
-绘画
-- Krita
-
-流程图
-- Draw.io
-
-视频压制
-- Handbreak
-
-视频播放
-- MPV
-
-镜像烧录
-- Rufus
-
-Markdown 写作
-- Marktext
-
-多设备同步
-- Syncthing
-
-录屏软件
-- OBS Studio
-
-文件版本控制
-- Git
-
-代码编辑器
-- Vscode
-
-密码管理
-- Keepass
-
-屏幕按键显示
-- Keyviz
-
-文件，软件管理
-- utools
-- everything
-- maye lite
-
-文件跨设备互传
-- localsend
-
-硬件处理工具
-- 图吧工具箱
-
-OCR
-- [Umi-OCR 文字识别工具](https://github.com/hiroi-sora/Umi-OCR) - 免费，开源，可批量的离线OCR软件
-
-csv编辑器
-- SmoothCSV
-
-图片处理工具
-- IT-XIAOBIN - 本地运行，数据安全，支持单张/批量抠图，AI抠图，证件照，图片转换，图片压缩
-
-系统精简
-- MSMG Toolkit
 
 videodownloader: VidJuice UniTube
 
@@ -121,10 +81,14 @@ videodownloader: VidJuice UniTube
 
 # Website
 
+## 影视
+
+[茶杯狐](https://cupfox.love/) 
+[泥视频]
 
 ### CTF
 
-[NSSCTF](https://www.nssctf.cn/index) (多功能Xenny 适合一人单刷 也适合团队训练 更详细的可以参考 NSSCTF平台食用指南
+[NSSCTF](https://www.nssctf.cn/index) 
 
 [BUUCTF](https://buuoj.cn/)
 
@@ -168,18 +132,6 @@ pcap修复
 
   - 手机号码
     - [美国手机号](https://www.truepeoplesearch.com) 20240517 bilibi评论
-
-工具
-  - [水泽](https://github.com/0x727/ShuiZe_0x727?tab=readme-ov-file)
-    - 语法	功能
-      python3 ShuiZe.py -d domain.com	收集单一的根域名资产
-      python3 ShuiZe.py --domainFile domain.txt	批量跑根域名列表
-      python3 ShuiZe.py -c 192.168.1.0,192.168.2.0,192.168.3.0	收集C段资产
-      python3 ShuiZe.py -f url.txt	对url里的网站漏洞检测
-      python3 ShuiZe.py --fofaTitle XXX大学	从fofa里收集标题为XXX大学的资产，然后漏洞检测
-      python3 ShuiZe.py -d domain.com --justInfoGather 1	仅信息收集，不检测漏洞
-      python3 ShuiZe.py -d domain.com --ksubdomain 0	不调用ksubdomain爆破子域名
-  - URLfinder
 
 插件
   - open Multiple URLs
