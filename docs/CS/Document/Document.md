@@ -62,20 +62,89 @@
 
 [Pro Git book,这是一本关于如何使用 Git 的优秀图书](https://git-scm.com/book/en/v2)
 
-设置全局 Git 用户名和密码
-```
-git config --global user.name "Your Name"
-git config --global user.email "youremail@yourdomain.com"
-```
-这些值保存在全局配置文件 ~/.gitconfig 中
+## Git 常用命令
 
-确认信息
-```
-git config --list
-user.name=Your Name
-user.email=youremail@yourdomain.com
-```
+### 配置
 
+| 命令 | 说明 |
+| --- | --- |
+| `git config --global user.name "Your Name"` | 设置全局 Git 用户名 |
+| `git config --global user.email "youremail@yourdomain.com"` | 设置全局 Git 用户邮箱 |
+| `git config --list` | 列出所有 Git 配置信息 |
+
+*这些值保存在全局配置文件 ~/.gitconfig 中*
+
+### 基本操作
+
+| 命令 | 说明 |
+| --- | --- |
+| `git init` | 初始化一个新的 Git 仓库 |
+| `git clone [url]` | 克隆远程仓库 |
+| `git status` | 查看当前仓库状态 |
+| `git add [file]` | 添加文件到暂存区 |
+| `git add .` | 添加所有文件到暂存区 |
+| `git commit -m "message"` | 提交暂存区的文件 |
+| `git push [remote] [branch]` | 推送本地分支到远程仓库 |
+| `git pull` | 拉取远程仓库的更新并合并到本地 |
+| `git pull --rebase` | 拉取远程仓库的更新并在本地变基 |
+| `git fetch` | 从远程仓库获取更新但不合并 |
+
+### 分支操作
+
+| 命令 | 说明 |
+| --- | --- |
+| `git branch` | 列出所有本地分支 |
+| `git branch -r` | 列出所有远程分支 |
+| `git branch [branch-name]` | 创建新分支 |
+| `git checkout [branch-name]` | 切换到指定分支 |
+| `git checkout -b [branch-name]` | 创建并切换到新分支 |
+| `git merge [branch-name]` | 合并指定分支到当前分支 |
+| `git branch -d [branch-name]` | 删除本地分支 |
+| `git push origin --delete [branch-name]` | 删除远程分支 |
+
+### 标签操作
+
+| 命令 | 说明 |
+| --- | --- |
+| `git tag` | 列出所有标签 |
+| `git tag [tag-name]` | 创建新标签 |
+| `git tag -d [tag-name]` | 删除本地标签 |
+| `git push origin [tag-name]` | 推送标签到远程仓库 |
+| `git push origin --delete [tag-name]` | 删除远程标签 |
+
+### 查看历史
+
+| 命令 | 说明 |
+| --- | --- |
+| `git log` | 查看提交历史 |
+| `git log --oneline` | 查看简洁的提交历史 |
+| `git log --graph` | 查看图形化的提交历史 |
+| `git diff` | 查看工作区与暂存区的差异 |
+| `git diff [branch-name]` | 查看当前分支与指定分支的差异 |
+
+### 撤销操作
+
+| 命令 | 说明 |
+| --- | --- |
+| `git reset [file]` | 撤销暂存区的文件 |
+| `git reset --hard` | 重置工作区和暂存区到最后一次提交 |
+| `git revert [commit]` | 撤销指定的提交 |
+| `git rebase --abort` | 取消变基操作 |
+
+### 远程仓库
+
+| 命令 | 说明 |
+| --- | --- |
+| `git remote -v` | 查看远程仓库信息 |
+| `git remote add [name] [url]` | 添加远程仓库 |
+| `git remote remove [name]` | 删除远程仓库 |
+| `git push [remote] [branch]` | 推送本地分支到远程仓库 |
+| `git pull [remote] [branch]` | 拉取远程仓库的更新并合并到本地 |
+
+这些命令可以帮助你更有效地使用 `git` 进行版本控制和项目管理。## Git 常用命令
+
+
+## other
 
 1. Always try `git pull --rebase` first
 2. if you get a merge conflict,you can undo everything with`git rebase --abort`
@@ -98,7 +167,11 @@ user.email=youremail@yourdomain.com
 | `docker exec -it [container] /bin/bash` | 进入一个运行中的容器 |
 | `docker-compose up -d` | 启动 Docker Compose 服务 |
 | `docker-compose down` | 停止 Docker Compose 服务 |
-
+| `docker stop $(docker ps -aq)` | 停止所有的容器 |
+| `docker rm $(docker ps -aq)` | 删除所有的容器 |
+| `docker container prune -f` | 删除所有停止的容器 |
+| `docker image prune -f -a` | 删除所有不使用的镜像 |
+| `docker rmi $(docker images -q)` | 删除所有的镜像 |
 ## docker 容器自动重启
 
 重启策略如下
@@ -148,27 +221,6 @@ docker run -p 6379:6379 --name redis -v /mydata/redis/data:/data \
   	
 docker exec -it redis redis-cli //redis镜像执行redis-cli命令连接
 ```
-
-# nvm
-
-*windows下的node.js版本管理器*
-
-| 命令 | 说明 |
-| --- | --- |
-| `nvm list` | 查看已经安装的版本 |
-| `nvm list installed` | 查看已经安装的版本 |
-| `nvm list available` | 查看网络可以安装的版本 |
-| `nvm arch` | 查看当前系统的位数和当前nodejs的位数 |
-| `nvm install [arch]` | 安装制定版本的node 并且可以指定平台 version 版本号 arch 平台 |
-| `nvm on` | 打开nodejs版本控制 |
-| `nvm off` | 关闭nodejs版本控制 |
-| `nvm proxy [url]` | 查看和设置代理 |
-| `nvm node_mirror [url]` | 设置或者查看setting.txt中的node_mirror，如果不设置的默认是 https://nodejs.org/dist/ |
-| `nvm npm_mirror [url]` | 设置或者查看setting.txt中的npm_mirror,如果不设置的话默认的是：https://github.com/npm/npm/archive/. |
-| `nvm uninstall` | 卸载指定的版本 |
-| `nvm use [version] [arch]` | 切换指定的node版本和位数 |
-| `nvm root [path]` | 设置和查看root路径 |
-| `nvm version` | 查看当前的版本 |.
 
 # virtualenv
 

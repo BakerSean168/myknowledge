@@ -43,34 +43,37 @@
 
 ## Windows、 Linux
 
-| 工具 | 说明 |
+| 中文说明 | 工具 |
 | --- | --- |
-| VeraCrypt | 硬盘加密 |
-| Linux | 系统 |
-| [Firefox](https://www.mozilla.org/en-US/firefox/all/#product-desktop-release) | 浏览器 |
-| 7-zip | 压缩工具 |
-| Blender | 建模 |
-| Krita | 绘画 |
-| Draw.io | 流程图 |
-| Handbreak | 视频压制 |
-| MPV | 视频播放 |
-| Rufus | 镜像烧录 |
-| Marktext | Markdown 写作 |
-| Syncthing | 多设备同步 |
-| OBS Studio | 录屏软件 |
-| Git | 文件版本控制 |
-| Vscode | 代码编辑器 |
-| Keepass | 密码管理 |
-| Keyviz | 屏幕按键显示 |
-| utools | 文件，软件管理 |
-| everything | 文件，软件管理 |
-| maye lite | 文件，软件管理 |
-| localsend | 文件跨设备互传 |
-| 图吧工具箱 | 硬件处理工具 |
-| [Umi-OCR 文字识别工具](https://github.com/hiroi-sora/Umi-OCR) | 免费，开源，可批量的离线OCR软件 |
-| SmoothCSV | csv编辑器 |
-| IT-XIAOBIN | 图片处理工具 - 本地运行，数据安全，支持单张/批量抠图，AI抠图，证件照，图片转换，图片压缩 |
-| MSMG Toolkit | 系统精简 |
+| 硬盘加密 | VeraCrypt |
+| 系统 | Linux |
+| 浏览器 | [Firefox](https://www.mozilla.org/en-US/firefox/all/#product-desktop-release) |
+| 压缩工具 | 7-zip |
+| 建模 | Blender |
+| 绘画 | Krita |
+| 流程图 | Draw.io |
+| 视频压制 | Handbreak |
+| 视频播放 | MPV |
+| 镜像烧录 | Rufus |
+| Markdown 写作 | Marktext |
+| 多设备同步 | Syncthing |
+| 录屏软件 | OBS Studio |
+| 文件版本控制 | Git |
+| 代码编辑器 | Vscode |
+| 密码管理 | Keepass |
+| 屏幕按键显示 | Keyviz |
+| 快速启动 | utools<br>maye lite |
+| 文件搜索工具 | everything<br>FileLocator Pro（文件内搜索） |
+| 文件跨设备互传 | localsend |
+| 硬件处理工具 | 图吧工具箱 |
+| 免费，开源，可批量的离线OCR软件 | [Umi-OCR 文字识别工具](https://github.com/hiroi-sora/Umi-OCR) |
+| csv编辑器 | SmoothCSV |
+| 图片处理工具 - 本地运行，数据安全，支持单张/批量抠图，AI抠图，证件照，图片转换，图片压缩 | IT-XIAOBIN |
+| 系统精简 | MSMG Toolkit |
+| 软件卸载 | geek |
+| 输入法 | [RIME](https://github.com/rime/weasel/releases)<br>[白霜拼音](https://github.com/gaboolic/rime-frost) |
+
+
 
 
 videodownloader: VidJuice UniTube
