@@ -1,5 +1,0 @@
-* [Linux](/CS/OS/LInux)
-* [Windows](/CS/OS/Windows)
-* [Andriod](/CS/OS/Andriod)
-* [硬件](/CS/OS/Hardware)
-* [命令行的艺术](/CS/OS/the-art-of-command-line)

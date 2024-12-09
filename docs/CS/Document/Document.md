@@ -83,6 +83,7 @@
 | `git status` | 查看当前仓库状态 |
 | `git add [file]` | 添加文件到暂存区 |
 | `git add .` | 添加所有文件到暂存区 |
+| `git reset [file]` | 取消暂存 |
 | `git commit -m "message"` | 提交暂存区的文件 |
 | `git push [remote] [branch]` | 推送本地分支到远程仓库 |
 | `git pull` | 拉取远程仓库的更新并合并到本地 |

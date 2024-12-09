@@ -33,6 +33,20 @@ Electron  Tauri  Flutter  Qt
 
 Node.js是一个基于V8引擎的JavaScript运行环境
 
+## 镜像源
+
+```
+.npmrc 文件
+
+# 华为镜像源
+# registry=https://repo.huaweicloud.com/repository/npm/
+
+# npm 官方在中国大陆地区的镜像源
+registry=https://registry.npmmirror.com/
+disturl=https://registry.npmmirror.com/-/binary/node
+ELECTRON_MIRROR=https://registry.npmmirror.com/-/binary/electron/
+```
+
 ## 版本管理器
 
 ### nvm
@@ -172,8 +186,22 @@ npm（Node Packaged Modules）
 | `pnpm uninstall -g [package]` | 全局卸载指定的 pnpm 包 |
 | `pnpm root -g` | 显示全局安装的 pnpm 包的路径 |
 
+# vue + electron
 
-### 技术栈
+[基于Vue CLI Plugin Electron Builder来把Vue引入Electron工程](https://juejin.cn/post/6983843979133468708#heading-16) 还有 electron-vue  
+
+```
+npm i @vue/cli -g
+
+vue create [name]
+
+cd tasky-vue
+vue add electron-builder
+```
+
+
+# 技术栈
+
 **开发框架**
 - Vue3 
 - SpringBoot SpringMVC
@@ -196,7 +224,7 @@ npm（Node Packaged Modules）
 - MyBatis MyBatis Plus
 
 
-### SpringBoot
+# SpringBoot
 
 **web入门**
 - Spring Boot将传统Web开发的mvc，json，tomcat等框架整合提供了spring-boot-start-web组件，简化了Web应用配置。

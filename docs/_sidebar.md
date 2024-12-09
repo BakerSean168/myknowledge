@@ -7,25 +7,35 @@
 * 物
     * [材料](/Object/Material)
 
-* CS
+* 网络安全
+    * [网络安全](/CS/Cybersec/Cybersec)
+    * [工具](/CS/Cybersec/Tools)
+
+* 语言基础
     * [汇编](/CS/Language/Assembly)
+    * [C](/CS/Language/C)
+    * [C++](/CS/Language/C++)
     * [Java](/CS/Language/Java)
     * [Python](/CS/Language/Python)
     * [算法](/CS/Language/Algorithm)
 
-    * [Linux](/CS/OS/Linux)
+* 操作系统
     * [Windows](/CS/OS/Windows)
     * [Andriod](/CS/OS/Andriod)
-    * [硬件](/CS/OS/Hardware)
-    * [命令行的艺术](/CS/OS/the-art-of-command-line)
-
-    * [编程](/CS/Prog)
-
-    * [CTF](/CS/CTF/CTF)
     
-    * [网络安全](/CS/Cybersec/Cybersec)
-    * [网安工具](/CS/Tools)
+* Linux
+    * [Linux](/CS/OS/Linux)
+    * [the-art-of-command-line](/CS/OS/the-art-of-command-line)
 
-    * [各类软件工具的使用文档](/CS/Document/Document)
+* 编程
+    * [编程](/CS/Program/Prog)
+
+* 文档
+    * [文档](/CS/Document/Document)
     * [软件网站留档](/CS/Document/SoftSite)
     * [如何学](/CS/Document/Learn)
+
+* 其他
+    * [一些知识与技术](/other.md)
+
+* [硬件](/CS/Hardware)

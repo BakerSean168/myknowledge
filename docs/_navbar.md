@@ -22,7 +22,6 @@
 * 操作系统
     * [Windows](/CS/OS/Windows)
     * [Andriod](/CS/OS/Andriod)
-    * [硬件](/CS/OS/Hardware)
     
 * Linux
     * [Linux](/CS/OS/Linux)
@@ -38,3 +37,5 @@
 
 * 其他
     * [一些知识与技术](/other.md)
+
+* [硬件](/CS/Hardware)
