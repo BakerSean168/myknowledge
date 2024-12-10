@@ -229,8 +229,35 @@ out： CPU从端口写入数据
 2. **引发9号中断**
 3. **执行int 9中断例程**
 
+---
 
+# C
 
+## 编译器
+
+GCC、Clang、Microsoft C++、Intel C++、Borland C++、IBM XLC、Digital Mars、Cygwin、MinGW 和 DJGPP
+
+### MSVC
+
+MSVC是微软Windows平台Visual Studio自带的C/C++编译器。
+
+优点：对Windows平台支持好，编译快。
+
+缺点：对C++的新标准支持得少。
+
+### GCC
+
+GCC原名GNU C Compiler，后来逐渐支持更多的语言编译（C++、Fortran、Pascal、Objective-C、Java、Ada、Go等），所以变成了GNU Compiler Collection（GNU编译器套装），是一套由GNU工程开发的支持多种编程语言的编译器。GCC是自由软件发展过程中的著名例子，由自由软件基金会以GPL协议发布，是大多数类Unix（如Linux、BSD、Mac OS X等）的标准编译器，而且适用于Windows（借助其他移植项目实现的，比如MingW、Cygwin等）。GCC支持多种计算机体系芯片，如x86、ARM，并已移植到其他多种硬件平台。
+
+优点：类Unix下的标准编译器，支持众多语言，支持交叉编译。
+
+缺点：默认不支持Windows，需要第三方移植才可用于Windows。
+
+### Clang
+
+基于 LLVM 的编译器，编译速度快，错误信息友好，模块化设计易于扩展，但某些优化不如 GCC。
+
+---
 
 # Java
 
