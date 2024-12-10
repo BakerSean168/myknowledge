@@ -85,6 +85,18 @@ Swiftbackup，支持备份apk的同时可以备份应用数据
 
 # Website
 
+## 论坛
+
+[NodeSeek](https://www.nodeseek.com/) 主机交流论坛  
+[主机交流论坛](https://hostloc.com/forum.php) 主机交流论坛  
+
+## 网站域名管理
+
+[Hurricane Electric Hosted DNS](https://dns.he.net/)  
+[Sitelutions - Solutions for your site. All in one place.](https://www.sitelutions.com/)  
+[ClouDNS: Dashboard](https://www.cloudns.net/index/show/login/)  
+[在线ping_多地ping_多线路ping_持续ping_网络延迟测试_服务器延迟测试](https://www.itdog.cn/ping/)  
+
 ## 影视
 
 [茶杯狐](https://cupfox.love/) 
@@ -234,6 +246,7 @@ Wifi万能钥匙SRC https://sec.wifi.com/
 智联招聘SRC https://src.zhaopin.com
 
 ### DNS,DOMIN
+
 clouDNS:https://www.cloudns.net/main/
 
 ### proxy software

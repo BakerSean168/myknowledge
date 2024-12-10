@@ -41,7 +41,7 @@ Node.js是一个基于V8引擎的JavaScript运行环境
 # 华为镜像源
 # registry=https://repo.huaweicloud.com/repository/npm/
 
-# npm 官方在中国大陆地区的镜像源
+# npm 官方在中国大陆地区的镜像源 ？ 淘宝新镜像源
 registry=https://registry.npmmirror.com/
 disturl=https://registry.npmmirror.com/-/binary/node
 ELECTRON_MIRROR=https://registry.npmmirror.com/-/binary/electron/

@@ -18,10 +18,6 @@
     * [Java](/CS/Language/Java)
     * [Python](/CS/Language/Python)
     * [算法](/CS/Language/Algorithm)
-
-* 操作系统
-    * [Windows](/CS/OS/Windows)
-    * [Andriod](/CS/OS/Andriod)
     
 * Linux
     * [Linux](/CS/OS/Linux)
@@ -39,3 +35,5 @@
     * [一些知识与技术](/other.md)
 
 * [硬件](/CS/Hardware)
+* [OS](/CS/OS)
+* [软件网站](/CS/SoftSite)
