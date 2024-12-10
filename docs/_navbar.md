@@ -34,6 +34,6 @@
 * 其他
     * [一些知识与技术](/other.md)
 
-* [硬件](/CS/Hardware)
 * [OS](/CS/OS)
 * [软件网站](/CS/SoftSite)
+* [CS知识（硬件知识、装机知识）](/CS/CSKnow)
