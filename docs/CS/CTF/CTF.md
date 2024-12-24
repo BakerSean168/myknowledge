@@ -2,7 +2,14 @@
 
 ## HTTP协议
 
-请求方式  
+### 请求方式
+
+#### GET
+
+#### POST
+
+form-data
+
 302跳转  
 Cookie  
 基础认证  

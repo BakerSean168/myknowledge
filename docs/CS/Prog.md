@@ -1,55 +1,26 @@
- | 分类 | 技术 |
-| --- | --- |
-| 编程语言 | 低级语言：Assembly, C<br>高级语言：Python, Java, C++, C#, JavaScript, Ruby, PHP, Swift, Kotlin, Go, Rust, TypeScript, Dart |
-| 前端开发 | 框架和库：React, Angular, Vue.js, Svelte<br>工具：Webpack, Babel, npm, Yarn<br>CSS：Sass, Less, Tailwind CSS, Bootstrap |
-| 后端开发 | 框架：Spring Boot, Django, Flask, Express.js, Ruby on Rails, ASP.NET, Laravel<br>语言：Java, Python, JavaScript (Node.js), Ruby, PHP, C#, Go |
-| 数据库 | 关系型数据库：MySQL, PostgreSQL, Oracle, SQL Server<br>非关系型数据库：MongoDB, Cassandra, Redis, CouchDB<br>图数据库：Neo4j |
-| 云计算 | 服务提供商：AWS, Google Cloud Platform, Microsoft Azure, IBM Cloud<br>技术：Docker, Kubernetes, OpenStack, Terraform, Ansible |
-| DevOps | CI/CD：Jenkins, Travis CI, CircleCI, GitLab CI<br>监控：Prometheus, Grafana, Nagios, ELK Stack (Elasticsearch, Logstash, Kibana)<br>版本控制：Git, GitHub, GitLab, Bitbucket |
-| 操作系统 | 桌面：Windows, macOS, Linux (Ubuntu, Fedora, Debian)<br>移动：Android, iOS<br>嵌入式：FreeRTOS, VxWorks, Zephyr |
-| 网络与安全 | 网络协议：TCP/IP, HTTP/HTTPS, FTP, DNS<br>安全技术：SSL/TLS, Firewalls, VPN, IDS/IPS, Encryption (AES, RSA), OAuth, JWT |
-| 人工智能与机器学习 | 框架和库：TensorFlow, PyTorch, Keras, Scikit-learn, OpenCV<br>技术：深度学习, 强化学习, 自然语言处理 (NLP), 计算机视觉 |
-| 数据科学与大数据 | 工具和框架：Hadoop, Spark, Kafka, Flink<br>语言：Python, R, SQL<br>可视化：Tableau, Power BI, Matplotlib, Seaborn |
-| 区块链 | 平台：Ethereum, Hyperledger, Bitcoin<br>技术：智能合约, DApps, 加密货币 |
-| 虚拟化与容器化 | 虚拟化：VMware, Hyper-V, KVM<br>容器化：Docker, Kubernetes, OpenShift |
-| 物联网 (IoT) | 平台：Arduino, Raspberry Pi, ESP8266/ESP32<br>协议：MQTT, CoAP, Zigbee, LoRaWAN |
-| 图形与游戏开发 | 引擎：Unity, Unreal Engine, Godot<br>图形库：OpenGL, DirectX, Vulkan |
-| 量子计算 | 平台：IBM Q, Google Quantum AI, Microsoft Quantum<br>语言：Qiskit, Cirq, Q# |
+# environment
 
-# 跨平台框架
-
-Electron  Tauri  Flutter  Qt  
-
-## 跨平台框架比较
-
-| 框架 | 优点 | 缺点 | 适用场景 |
-| --- | --- | --- | --- |
-| Electron | - 使用 HTML、CSS 和 JavaScript 构建跨平台桌面应用<br>- 大量现成的库和工具<br>- 强大的社区支持 | - 应用体积大<br>- 内存和 CPU 占用高 | - 需要快速开发跨平台桌面应用<br>- 需要使用现有的 Web 技术栈 |
-| Tauri | - 体积小，资源占用低<br>- 使用 Rust 构建，性能高<br>- 与前端框架（如 Vue、React）集成良好 | - 生态系统较新，社区和文档不如 Electron 丰富 | - 需要高性能和小体积的跨平台桌面应用<br>- 需要与现代前端框架集成 |
-| Flutter | - 使用 Dart 语言，性能高<br>- 单一代码库支持多平台（iOS、Android、Web、桌面）<br>- 丰富的组件和工具 | - Dart 语言相对较新，学习曲线较陡<br>- 桌面支持相对较新，可能不如移动端稳定 | - 需要构建跨平台移动应用<br>- 需要统一代码库支持多平台 |
-| Qt | - 使用 C++ 构建，性能高<br>- 丰富的功能和工具<br>- 支持多平台（桌面、移动、嵌入式） | - 学习曲线较陡<br>- 商业许可费用较高 | - 需要高性能和稳定性的跨平台应用<br>- 需要支持嵌入式设备 |
-
-# Nodejs
+## Nodejs
 
 Node.js是一个基于V8引擎的JavaScript运行环境
 
-## 镜像源
+### 镜像源
 
 ```
 .npmrc 文件
 
-# 华为镜像源
-# registry=https://repo.huaweicloud.com/repository/npm/
+## 华为镜像源
+## registry=https://repo.huaweicloud.com/repository/npm/
 
-# npm 官方在中国大陆地区的镜像源 ？ 淘宝新镜像源
+## npm 官方在中国大陆地区的镜像源 ？ 淘宝新镜像源
 registry=https://registry.npmmirror.com/
 disturl=https://registry.npmmirror.com/-/binary/node
 ELECTRON_MIRROR=https://registry.npmmirror.com/-/binary/electron/
 ```
 
-## 版本管理器
+### 版本管理器
 
-### nvm
+#### nvm
 
 *windows下的node.js版本管理器*
 
@@ -70,11 +41,11 @@ ELECTRON_MIRROR=https://registry.npmmirror.com/-/binary/electron/
 | `nvm root [path]` | 设置和查看root路径 |
 | `nvm version` | 查看当前的版本 |
 
-## 软件包管理器的管理器
+### 软件包管理器的管理器
 
 [corepack](https://nodejs.org/api/corepack.html)
 
-### corepack 常用命令
+#### corepack 常用命令
 
 | 命令 | 说明 |
 | --- | --- |
@@ -91,13 +62,13 @@ ELECTRON_MIRROR=https://registry.npmmirror.com/-/binary/electron/
 | `corepack --version` | 显示 Corepack 的版本 |
 | `corepack help` | 显示 Corepack 的帮助信息 |
 
-## 软件包管理器
+### 软件包管理器
 
-### npm
+#### npm
 
 npm（Node Packaged Modules）
 
-#### npm 常用命令
+##### npm 常用命令
 
 | 命令 | 说明 |
 | --- | --- |
@@ -120,9 +91,9 @@ npm（Node Packaged Modules）
 | `npm help` | 显示 npm 帮助信息 |
 | `npm install -g npm` | 更新npm |
 
-### yarn
+#### yarn
 
-#### yarn 常用命令
+##### yarn 常用命令
 
 | 命令 | 说明 |
 | --- | --- |
@@ -150,7 +121,7 @@ npm（Node Packaged Modules）
 
 *如果yarn install有误时。可重新install或者清除 重新执行*
 
-#### yarn 版本管理
+##### yarn 版本管理
 
 | 命令 | 说明 |
 | --- | --- |
@@ -159,9 +130,9 @@ npm（Node Packaged Modules）
 | `yarn upgrade v1.21.3` | yarn 升级指定版本 |
 | `yarn upgrade v1.21.3` | yarn 降低到指定版本（先卸载，再安装） |
 
-### pnpm
+#### pnpm
 
-#### pnpm 常用命令
+##### pnpm 常用命令
 
 | 命令 | 说明 |
 | --- | --- |
@@ -186,6 +157,48 @@ npm（Node Packaged Modules）
 | `pnpm uninstall -g [package]` | 全局卸载指定的 pnpm 包 |
 | `pnpm root -g` | 显示全局安装的 pnpm 包的路径 |
 
+---
+
+---
+
+# technology
+
+| 分类 | 技术 |
+| --- | --- |
+| 编程语言 | 低级语言：Assembly, C<br>高级语言：Python, Java, C++, C#, JavaScript, Ruby, PHP, Swift, Kotlin, Go, Rust, TypeScript, Dart |
+| 前端开发 | 框架和库：React, Angular, Vue.js, Svelte<br>工具：Webpack, Babel, npm, Yarn<br>CSS：Sass, Less, Tailwind CSS, Bootstrap |
+| 后端开发 | 框架：Spring Boot, Django, Flask, Express.js, Ruby on Rails, ASP.NET, Laravel<br>语言：Java, Python, JavaScript (Node.js), Ruby, PHP, C#, Go |
+| 数据库 | 关系型数据库：MySQL, PostgreSQL, Oracle, SQL Server<br>非关系型数据库：MongoDB, Cassandra, Redis, CouchDB<br>图数据库：Neo4j |
+| 云计算 | 服务提供商：AWS, Google Cloud Platform, Microsoft Azure, IBM Cloud<br>技术：Docker, Kubernetes, OpenStack, Terraform, Ansible |
+| DevOps | CI/CD：Jenkins, Travis CI, CircleCI, GitLab CI<br>监控：Prometheus, Grafana, Nagios, ELK Stack (Elasticsearch, Logstash, Kibana)<br>版本控制：Git, GitHub, GitLab, Bitbucket |
+| 操作系统 | 桌面：Windows, macOS, Linux (Ubuntu, Fedora, Debian)<br>移动：Android, iOS<br>嵌入式：FreeRTOS, VxWorks, Zephyr |
+| 网络与安全 | 网络协议：TCP/IP, HTTP/HTTPS, FTP, DNS<br>安全技术：SSL/TLS, Firewalls, VPN, IDS/IPS, Encryption (AES, RSA), OAuth, JWT |
+| 人工智能与机器学习 | 框架和库：TensorFlow, PyTorch, Keras, Scikit-learn, OpenCV<br>技术：深度学习, 强化学习, 自然语言处理 (NLP), 计算机视觉 |
+| 数据科学与大数据 | 工具和框架：Hadoop, Spark, Kafka, Flink<br>语言：Python, R, SQL<br>可视化：Tableau, Power BI, Matplotlib, Seaborn |
+| 区块链 | 平台：Ethereum, Hyperledger, Bitcoin<br>技术：智能合约, DApps, 加密货币 |
+| 虚拟化与容器化 | 虚拟化：VMware, Hyper-V, KVM<br>容器化：Docker, Kubernetes, OpenShift |
+| 物联网 (IoT) | 平台：Arduino, Raspberry Pi, ESP8266/ESP32<br>协议：MQTT, CoAP, Zigbee, LoRaWAN |
+| 图形与游戏开发 | 引擎：Unity, Unreal Engine, Godot<br>图形库：OpenGL, DirectX, Vulkan |
+| 量子计算 | 平台：IBM Q, Google Quantum AI, Microsoft Quantum<br>语言：Qiskit, Cirq, Q# |
+
+## electron
+
+## vite
+
+# 跨平台框架
+
+Electron  Tauri  Flutter  Qt  
+
+## 跨平台框架比较
+
+| 框架 | 优点 | 缺点 | 适用场景 |
+| --- | --- | --- | --- |
+| Electron | - 使用 HTML、CSS 和 JavaScript 构建跨平台桌面应用<br>- 大量现成的库和工具<br>- 强大的社区支持 | - 应用体积大<br>- 内存和 CPU 占用高 | - 需要快速开发跨平台桌面应用<br>- 需要使用现有的 Web 技术栈 |
+| Tauri | - 体积小，资源占用低<br>- 使用 Rust 构建，性能高<br>- 与前端框架（如 Vue、React）集成良好 | - 生态系统较新，社区和文档不如 Electron 丰富 | - 需要高性能和小体积的跨平台桌面应用<br>- 需要与现代前端框架集成 |
+| Flutter | - 使用 Dart 语言，性能高<br>- 单一代码库支持多平台（iOS、Android、Web、桌面）<br>- 丰富的组件和工具 | - Dart 语言相对较新，学习曲线较陡<br>- 桌面支持相对较新，可能不如移动端稳定 | - 需要构建跨平台移动应用<br>- 需要统一代码库支持多平台 |
+| Qt | - 使用 C++ 构建，性能高<br>- 丰富的功能和工具<br>- 支持多平台（桌面、移动、嵌入式） | - 学习曲线较陡<br>- 商业许可费用较高 | - 需要高性能和稳定性的跨平台应用<br>- 需要支持嵌入式设备 |
+
+
 # vue + electron
 
 [基于Vue CLI Plugin Electron Builder来把Vue引入Electron工程](https://juejin.cn/post/6983843979133468708#heading-16) 还有 electron-vue  
@@ -199,6 +212,9 @@ cd tasky-vue
 vue add electron-builder
 ```
 
+## pinia
+
+状态管理 存储数据
 
 # 技术栈
 
