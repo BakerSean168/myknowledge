@@ -22,7 +22,8 @@
 
 * [操作系统](/CS/OS)
 * [网站软件](/CS/SoftSite)
-* [CS知识（硬件、装机）](/CS/CSKnow)
+* [CS知识](/CS/CSKnow)
 * [语言](/CS/Language)
 * [编程](/CS/Prog)
 * [算法](/CS/Algorithm)
+* [装机](/CS/装机)
