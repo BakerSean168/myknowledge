@@ -1,10 +1,12 @@
 ## To C/To B/To G
+
 互联网产品从服务的不同角度进行的划分  
 To C : 面向的是个人用户  
 To B : 面向商业企业用户  
 To G : 面向的企业为政府或相关事业单位
 
 ## IPLC （International Private Leased Circuit/国际私用出租线路）
+
 指用户专用的跨国的数据、话音等综合信息业务的通信线路
 
 优点

@@ -454,3 +454,6 @@ mounted
 
 [Vue Amazing UI](https://themusecatcher.github.io/vue-amazing-ui/guide/components/drawer.html)  
 看着不错哦  
+
+# information
+

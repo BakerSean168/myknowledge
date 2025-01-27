@@ -21,7 +21,7 @@
     * [如何学](/CS/Document/Learn)
 
 * [操作系统](/CS/OS)
-* [网站软件](/CS/SoftSite)
+* [资源](/CS/Resource)
 * [CS知识](/CS/CSKnow)
 * [语言](/CS/Language)
 * [编程](/CS/Prog)

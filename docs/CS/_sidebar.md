@@ -1,5 +1,5 @@
 * [操作系统](/CS/OS)
-* [网站软件](/CS/SoftSite)
+* [资源](/CS/Resource)
 * [CS知识（硬件、装机）](/CS/CSKnow)
 * [语言](/CS/Language)
 * [编程](/CS/Prog)

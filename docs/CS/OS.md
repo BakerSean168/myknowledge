@@ -1021,6 +1021,18 @@ I personally disable this trigger on all of my systems. While the man-db cache i
 
 # Windows
 
+
+## 系统镜像
+
+Windows 操作系统主要区分为 Ghost 系统和 MSDN 系统。
+
+- Ghost 系统  
+    Ghost 系统一般由个人或团队修改官方原版 Windows 操作系统而成，因为 Ghost 系统安装时间短，安装后可能默认已经激活，所以深受装机商们的喜爱。但 Ghost 系统可能会造成系统不稳定，网上各种 Ghost 系统可能存在后门、自带各种第三方软件、篡改浏览器主页等行为。Ghost 系统有利也有弊，Ghost 系统详细介绍请前往 https://baike.baidu.com/item/ghost系统/8452726 进行了解。  
+- MSDN 系统 
+    MSDN 的全称为 Microsoft Developer Network，意为《微软开发者网络》，是微软一个期刊产品，专门介绍各种编程技巧。  
+    真正意义上的 MSDN 指的是 MSDN Subscription（MSDN 订阅）。这是一种付费订阅服务，可以将微软几乎所有可开发软件以开发为目的使用，包括各种操作系统和应用程序。  
+    MSDN 系统为官方原版，由 MSDN 订阅者从微软 MSDN 订阅中心下载，因为 Windows 操作系统属于商业软件，所以安装后一般默认为未激活，需要使用有效的正版密钥激活。  
+
 ## Windows 权限管理
 
 ### 用户账户
