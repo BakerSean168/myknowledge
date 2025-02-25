@@ -1,5 +1,14 @@
 # 工具
 
+## 配色
+
+- [Material Theme Builder](https://material-foundation.github.io/material-theme-builder/)  
+- [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)  
+  对比度验证  
+  普通文本对比度 ≥ 4.5:1  
+  大文本对比度 ≥ 3:1  
+  UI 组件对比度 ≥ 3:1  
+
 ## 文件传输
 
 - [文叔叔](https://www.wenshushu.cn/)  
@@ -32,7 +41,7 @@
 
 网站  
 - chatbox  
-  一个可以使用聊天AI的软网站，需要配合转发api来操作) 
+  一个可以使用聊天AI的软网站，需要配合转发api来操作  
 
 软件  
 - GPTAssistant  
@@ -40,7 +49,7 @@
 
 ## 图片
 
-- stable diffusion  
+- [stable diffusion](https://stabledifffusion.com/tools/ai-image-generator)  
   开源、在线、免费的图片生成 AI 网站
 
 # 资源
@@ -63,7 +72,7 @@
 网站  
 - [bilibili 视频下载](https://snapany.com/zh/bilibili)  
 - [茶杯狐](https://cupfox.love/) 
-- [泥视频]
+- [泥视频](https://www.nivod.lv/)
 
 ## 音乐
 
@@ -215,10 +224,6 @@ videodownloader: VidJuice UniTube
 
 网页打包软件
 Swiftbackup，支持备份apk的同时可以备份应用数据
-
-
-
-
 
 ## CTF 训练
 
