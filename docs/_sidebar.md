@@ -12,15 +12,15 @@
     * [网络安全](/CS/Cybersec/Cybersec)
     * [工具](/CS/Cybersec/Tools)
 
+* CS
+    * [CS知识（硬件、装机）](/CS/CSKnow)
+    * [操作系统](/CS/OS)
+    * [语言](/CS/Language)
+    * [算法](/CS/Algorithm)
+    * [编程](/CS/Prog)
+    * [资源](/CS/Resource)
+
 * 文档
     * [文档](/CS/Document/Document)
     * [如何学](/CS/Document/Learn)
     * [the-art-of-command-line](/CS/Document/the-art-of-command-line)
-
-* [操作系统](/CS/OS)
-* [资源](/CS/Resource)
-* [CS知识](/CS/CSKnow)
-* [语言](/CS/Language)
-* [编程](/CS/Prog)
-* [算法](/CS/Algorithm)
-* [装机](/CS/装机)
