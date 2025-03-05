@@ -1,6 +1,66 @@
-# 正则表达式
+# 正则表达式基础知识
 
-## 常用的一些
+## 基本元字符
+
+| 元字符 | 描述 | 示例 |
+|--------|------|------|
+| `.` | 匹配除换行符外的任意单个字符 | `a.c` 匹配 "abc"、"adc" 等 |
+| `^` | 匹配行的开始 | `^abc` 匹配以 "abc" 开头的行 |
+| `$` | 匹配行的结束 | `abc$` 匹配以 "abc" 结尾的行 |
+| `*` | 匹配前面的字符 0 次或多次 | `ab*c` 匹配 "ac"、"abc"、"abbc" 等 |
+| `+` | 匹配前面的字符 1 次或多次 | `ab+c` 匹配 "abc"、"abbc" 等 |
+| `?` | 匹配前面的字符 0 次或 1 次 | `ab?c` 匹配 "ac"、"abc" |
+| `\` | 转义字符 | `\.` 匹配点号字符 |
+
+## 字符类
+
+| 字符类 | 描述 | 示例 |
+|--------|------|------|
+| `[abc]` | 匹配方括号中的任意字符 | `[abc]` 匹配 "a"、"b" 或 "c" |
+| `[^abc]` | 匹配除方括号中字符外的任意字符 | `[^abc]` 匹配除 "a"、"b"、"c" 外的字符 |
+| `[a-z]` | 匹配指定范围内的任意字符 | `[a-z]` 匹配任意小写字母 |
+| `\d` | 匹配任意数字，等价于 `[0-9]` | `\d+` 匹配一个或多个数字 |
+| `\w` | 匹配字母、数字、下划线，等价于 `[a-zA-Z0-9_]` | `\w+` 匹配一个或多个单词字符 |
+| `\s` | 匹配任意空白字符（空格、制表符、换行符） | `\s+` 匹配一个或多个空白字符 |
+
+## 量词
+
+| 量词 | 描述 | 示例 |
+|------|------|------|
+| `{n}` | 精确匹配 n 次 | `a{3}` 匹配 "aaa" |
+| `{n,}` | 匹配至少 n 次 | `a{2,}` 匹配 "aa"、"aaa" 等 |
+| `{n,m}` | 匹配 n 到 m 次 | `a{2,4}` 匹配 "aa"、"aaa"、"aaaa" |
+| `*` | 匹配 0 次或多次，等价于 `{0,}` | `ab*` 匹配 "a"、"ab"、"abb" 等 |
+| `+` | 匹配 1 次或多次，等价于 `{1,}` | `ab+` 匹配 "ab"、"abb" 等 |
+| `?` | 匹配 0 次或 1 次，等价于 `{0,1}` | `ab?` 匹配 "a"、"ab" |
+
+## 分组和引用
+
+| 语法 | 描述 | 示例 |
+|------|------|------|
+| `(...)` | 捕获组，创建一个子表达式 | `(ab)+` 匹配 "ab"、"abab" 等 |
+| `(?:...)` | 非捕获组，不创建子表达式 | `(?:ab)+` 同上，但不捕获 |
+| `\1`, `\2` | 反向引用，引用之前的捕获组 | `(a)\1` 匹配 "aa" |
+
+## 常用标志
+
+| 标志 | 描述 |
+|------|------|
+| `i` | 忽略大小写 |
+| `g` | 全局搜索 |
+| `m` | 多行模式 |
+| `s` | 点号匹配所有字符（包括换行符） |
+
+## 常用示例
+
+| 用途 | 正则表达式 | 说明 |
+|------|------------|------|
+| 邮箱 | `^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$` | 匹配电子邮件地址 |
+| 手机号 | `^1[3-9]\d{9}$` | 匹配中国大陆手机号 |
+| URL | `^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$` | 匹配 URL |
+| IP地址 | `^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$` | 匹配 IPv4 地址 |
+
+## 使用过的示例
 
 ### 添加一级标题
 
@@ -165,7 +225,9 @@
 2. if you get a merge conflict,you can undo everything with`git rebase --abort`
 
 # docker
+
 ## 常见命令
+
 [docker镜像查找](https://hub.docker.com/)
 
 | 命令 | 说明 |
@@ -187,6 +249,7 @@
 | `docker container prune -f` | 删除所有停止的容器 |
 | `docker image prune -f -a` | 删除所有不使用的镜像 |
 | `docker rmi $(docker images -q)` | 删除所有的镜像 |
+
 ## docker 容器自动重启
 
 重启策略如下
@@ -372,3 +435,88 @@ python 版本的为 `python dirsearch.py ...`
 5. **TXT 记录**：存储任意文本数据，常用于域名验证和安全设置。
 
 了解这些基础知识可以帮助你更好地理解和管理域名。
+
+# Monaco Editor 的使用
+
+## executeEdits（） 方法
+
+```ts
+import { ref } from 'vue'
+import MonacoEditor from 'monaco-editor-vue3'
+import * as monaco from 'monaco-editor' // 必须引入 monaco 核心
+
+const value = ref('Test')
+const editor = ref<monaco.editor.IStandaloneCodeEditor>() // 严格类型
+
+const editorDidMount = (instance: monaco.editor.IStandaloneCodeEditor) => {
+  editor.value = instance
+  const editorElement = instance.getDomNode()
+  
+  editorElement.addEventListener('paste', (e: ClipboardEvent) => {
+    e.preventDefault() // 关键：阻止默认粘贴
+    
+    const clipboardData = e.clipboardData
+    if (!clipboardData) return
+    
+    // 获取当前光标位置
+    const position = instance.getPosition()
+    if (!position) return
+    
+    // 创建正确的 Range 对象
+    const range = new monaco.Range(
+      position.lineNumber,
+      position.column,
+      position.lineNumber,
+      position.column
+    )
+    
+    // 执行编辑操作
+    instance.executeEdits('paste-operation', [{
+      range: range,
+      text: '插入的内容',
+      forceMoveMarkers: true // 保持后续标记位置
+    }])
+    
+    // 更新光标位置
+    const newPosition = position.delta(0, '插入的内容'.length)
+    instance.setPosition(newPosition)
+  })
+}
+```
+1. 使用 monaco 核心创建 Range
+2. 使用 editor 实例来调用 executeEdits 方法
+
+### executeEdits 参数详解
+
+方法签名  
+```ts
+executeEdits(
+  source: string, //操作来源标识 
+  edits: IIdentifiedSingleEditOperation[], // 操作集合 
+  endCursorState?: Selection[] | null // 编辑后光标位置状态
+): void
+```
+
+### 编辑操作对象详解
+
+```ts
+interface IIdentifiedSingleEditOperation {
+  range: IRange;                   // 编辑范围
+  text: string;                    // 插入文本
+  forceMoveMarkers?: boolean;      // 是否移动标记
+  identifier?: ITextModelResolvedOptions;
+}
+
+// 创建范围需要 4 个参数：
+// startLineNumber, startColumn, endLineNumber, endColumn
+const range = new monaco.Range(
+  当前行号, 
+  当前列号, 
+  当前行号, 
+  当前列号
+)
+
+forceMoveMarkers: true 
+// 表示插入文本后，后面的标记（如断点）会跟随移动
+// 如果设为 false，插入文本后的标记保持原位置
+```
