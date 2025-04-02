@@ -219,7 +219,8 @@ public static void heapSort(int[] arr) {
 ```
 
 # 哈希表，有序表和比较器的用法
-哈希表的用法（认为是集合，根据值来做key 或者 根据内存地址做key）
+
+哈希表的用法（认为是集合，根据值来做 key 或者 根据内存地址做 key）
 - HashSet和HashMap原理一样，有无伴随数据的区别
 - 增，删，改，查时间为O（1），但是大常数
 - 所以当key的范围是固定的，可控的情况下，可以用数组结构替代哈希表结构
@@ -239,8 +240,11 @@ public static void heapSort(int[] arr) {
 - 定义类，直接Lamda表达式
 
 # 堆结构常见问题
+
 合并K个有序链表
+
 ```java
+
 public static ListNode mergeKLists(ArrayList<ListNode> arr) {
     // 小根堆
     PriorityQueue<ListNode> heap = new PriorityQueue<>((a,b) -> a.val - b.val);
@@ -268,9 +272,12 @@ public static ListNode mergeKLists(ArrayList<ListNode> arr) {
     }
     return h;
 }
+
 ```
+
 #### 线段最多重合问题
-```
+
+```java
 public class MaxCover {
     public static in MAXN = 10001;
     public static int[][] line = new int [MAXN][2];
@@ -455,16 +462,16 @@ public static void radixSort(int[] arr, int n, int bits) {
 # 重要排序算法的总结
 **稳定性：**同样大小的样本再排序之后不会改变原始的相对次序
 
-|  排序           | 时间        | 空间      | 稳定性 |
-|:-------------:|:---------:|:-------:|:---:|
-| SelectionSort | O(N^2)    | O(1)    | 无   |
-| BubbleSort    | O(N^2)    | O(1)    | 有   |
-| InsertionSort | O(N^2)    | O(1)    | 有   |
-| MergeSort     | O(N*logN) | O(N)    | 有   |
-| QuickSort     | O(N*logN) | O(logN) | 无   |
-| HeapSort      | O(N*logN) | O(1)    | 无   |
-| CountSort     | O(N)      | O(M)    | 有   |
-| RadixSort     | O(N)      | O(M)    | 有   |
+|     排序      |   时间    |  空间   | 稳定性 |
+| :-----------: | :-------: | :-----: | :----: |
+| SelectionSort |  O(N^2)   |  O(1)   |   无   |
+|  BubbleSort   |  O(N^2)   |  O(1)   |   有   |
+| InsertionSort |  O(N^2)   |  O(1)   |   有   |
+|   MergeSort   | O(N*logN) |  O(N)   |   有   |
+|   QuickSort   | O(N*logN) | O(logN) |   无   |
+|   HeapSort    | O(N*logN) |  O(1)   |   无   |
+|   CountSort   |   O(N)    |  O(M)   |   有   |
+|   RadixSort   |   O(N)    |  O(M)   |   有   |
 
 数据量非常小时非常迅速：插入排序
 性能优异，实现简单且利于改进，不在乎稳定性：随机快排
@@ -912,20 +919,26 @@ class LRUCache {
 }
 ```
 ## 插入、删除和获取随机元素O(1)时间的结构
+
 增、删、随即得到
 hashset记录值和下表
 数组结构里记录值
 删除掉一个值时，将最后一个值移动到删除值所在位置
+
 ## 插入、删除和获取随机元素O(1)时间且允许有重复数字的结构
 
 ## 快速获得数据流的中位数的结构
+
 大根堆（较小的数）、小根堆（较大的数）
+
 ## 最大频率栈
 
 ## 全O(1)的数据结构
+
 双向链表桶
 
 # 二叉树高频题-不含树型dp
+
 ## 二叉树层序遍历
 ```java
 // 二叉树的层序遍历
@@ -1065,3 +1078,247 @@ public class Code09_CountCompleteTreeNodes {
 ```
 
 ## 公共祖先
+
+# 面试
+
+## 股票
+
+```js
+function maxAsset(n, m, a) {
+    let prev = new Map();
+    prev.set(0, m); // 初始状态：持有0股，现金为m
+
+    for (let i = 0; i < n; i++) {
+        const price = a[i];
+        const curr = new Map();
+
+        for (const [h, c] of prev) {
+            // 不操作的情况
+            if (!curr.has(h) || c > curr.get(h)) {
+                curr.set(h, c);
+            }
+
+            // 尝试买入
+            if (c >= price) {
+                const newH = h + 1;
+                const newC = c - price;
+                if (!curr.has(newH) || newC > curr.get(newH)) {
+                    curr.set(newH, newC);
+                }
+            }
+
+            // 尝试卖出
+            if (h > 0) {
+                const newH = h - 1;
+                const newC = c + price;
+                if (!curr.has(newH) || newC > curr.get(newH)) {
+                    curr.set(newH, newC);
+                }
+            }
+        }
+
+        prev = curr;
+    }
+
+    let maxTotal = 0;
+    const lastPrice = a[n - 1];
+    for (const [h, c] of prev) {
+        const total = h * lastPrice + c;
+        if (total > maxTotal) {
+            maxTotal = total;
+        }
+    }
+
+    return maxTotal;
+}
+
+// 示例输入处理
+const input = `6 2
+2 3 1 1 1 2`;
+const lines = input.split('\n');
+const [n, m] = lines[0].split(' ').map(Number);
+const a = lines[1].split(' ').map(Number);
+
+console.log(maxAsset(n, m, a)); // 输出6
+```
+
+# 回溯
+
+## 子集型
+
+[子集](https://leetcode.cn/problems/subsets/description/)
+
+每个元素是选还是不选  
+
+### 模板1（输入角度）
+
+- 当前操作？ 枚举第 i 个数选/不选
+- 子问题？ 从下标 >= i 的数字中构造子集
+- 下一个子问题？ 从下标 >= i+1 的数字中构造子集
+
+
+```js
+
+var subsets = function(nums) {
+    let res = [];
+    let path =[];
+
+    function dfs(i) {
+        if (i === nums.length) {
+            res.push([...path]);
+            return;
+        }
+
+        dfs(i+1); // 不选，直接跳过当前数，进入下一个数
+
+        path.push(nums[i]);
+        dfs(i+1); // 选，添加后进入下一个数
+        path.pop();  //恢复现场
+
+    }
+    dfs(0);
+    return res;
+};
+
+```
+
+### 模板2（站在答案视角）
+
+- 当前操作？ 枚举 1 个下标 j >= i 的数字加入 path
+- 子问题？ 从下标 >= i 的数字中构造子集
+- 下一个子问题？ 从下标 >= j+1 的数字中构造子集
+
+每个节点都是答案
+
+```js
+
+var subsets = function (nums) {
+    let res = [];
+    let path = [];
+
+    function dfs(i) {
+        res.push([...path]); // 每个节点都是结果
+        if (i === nums.length) {
+            return;
+        }
+        for (let j = i; j < nums.length; j++) {
+            path.push(nums[j]);
+            dfs(j + 1);
+            path.pop();
+        }
+    }
+    dfs(0);
+    return res;
+};
+
+```
+
+
+## 组合型
+
+## 排列型
+
+
+# 动态规划
+
+递归-》记忆化搜索-》递推
+
+https://leetcode.cn/problems/house-robber/
+
+递归+记忆化 ≈ 动态规划（自顶向下）
+递推+状态存储 = 动态规划（自底向上）
+
+```js
+
+
+// 递归
+var rob = function(nums) {
+    let path = [];
+    let res = [];
+
+    let n = nums.length;
+    let cache = new Array(n).fill(-1); // 遇到已经有记录的直接返回
+    function dfs(i) {
+        if (i < 0) {
+            return 0;
+        }
+        if (cache[i] !== -1) {
+            return cache[i];
+        }
+        res = Math.max(dfs(i-1), dfs(i-2) +nums[i])
+        cache[i] =res; // 记录遇到的值，记忆化搜索
+        return res;
+    }
+    return dfs(n-1);
+};
+
+
+// 递推
+var rob = function(nums) {
+        let n = nums.length;
+
+    let f = new Array(n+2).fill(0);
+
+    for (let i = 0; i<n;i++) {
+        f[i+2] = Math.max(f[i+1], f[i]+nums[i])
+    }
+    return f[n+1];
+};
+
+```
+
+## 01 背包 和 完全背包
+
+完全背包状态转移方程：  
+`dp[i][j] = dp[i-1][j] + dp[i][j-coins[i-1]]`
+
+01背包：  
+`dp[i][j] = dp[i-1][j] + dp[i-1][j-coins[i-1]]`
+
+选或不选 
+
+
+什么时候要把状态定义成【前 i 个元素】中的最优值，什么时候要把状态定义成【以第 i 个元素结束】的最优值？  
+如果是 01 背包或者最长公共子序列 LCS 那种，用【选或不选】思考的题目，要定义成【前 i 个元素】；  
+如果是本节课讲的最长递增子序列 LIS 这种，用【枚举选哪个】思考的题目，要定义成【以第 i 个元素结束】。
+
+### 至多装
+
+### 恰好装
+
+### 至少装
+
+# 技巧
+
+用 usd 数组来标识元素是否被选过
+
+```js
+
+var permute = function(nums) {
+    let res = [];
+    let path = [];
+    let n = nums.length;
+    let used = new Array(n).fill(false);
+    
+    function backtrack() {
+        if (path.length === n) {
+            res.push([...path]);
+            return;
+        }
+        
+        for (let i = 0; i < n; i++) {
+            if (!used[i]) {
+                used[i] = true;
+                path.push(nums[i]);
+                backtrack();
+                path.pop();
+                used[i] = false;
+            }
+        }
+    }
+    
+    backtrack();
+    return res;
+};
+
+```

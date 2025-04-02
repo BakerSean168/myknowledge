@@ -160,7 +160,7 @@ ARM是精简指令集RISC下的处理器架构。ARMv3至ARMv7支持32位寻址�
 
 # 计算机操作系统
 
-# 外设
+# 3C产品
 
 ## 键盘
 
@@ -261,9 +261,11 @@ TOP 结构  手感扎实
 
 - 传感器  
    3395  
+   [鼠标性能测试工具MouseTester](https://www.overclock.net/threads/mousetester-software.1535687/page-6?post_id=29120717&nested_view=1&sortby=oldest#post-29120717)  
 - 模具  
    握姿 + 手长  
    [鼠标模具查看网站](www.eloshapes.com)
+- 微动
 
 - 回报率  
    回报率也被称为轮询率或者刷新率（FPS），通常是指鼠标向计算机报告其位置的频率，单位为 Hz（赫兹）。比如一个鼠标回报率是 125 Hz，那么它每秒会向计算机报告其位置125次。理论上来说，回报率越高，操作鼠标时的延迟就会越低，鼠标移动也就更丝滑。  
@@ -408,9 +410,85 @@ HDMI
     2.1 支持 2k 180Hz
 DP（推荐）
 
-# Test
+## USB
 
-图片
-![image](data:image/png;base64,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)
+USB（Universal Serial Bus），通用串行总线  
 
-图片
+### USB 协议版本
+
+| 协议名称         | 别名                   | 发布时间 | 理论速率 | 供电能力 (默认) | 编码方式      | 兼容性           |
+|------------------|------------------------|----------|----------|-----------------|---------------|------------------|
+| USB 1.0          | -                      | 1996     | 1.5 Mbps | 5V/0.5A         | -             | 向下兼容         |
+| USB 1.1          | Full Speed             | 1998     | 12 Mbps  | 5V/0.5A         | -             | 向下兼容         |
+| USB 2.0          | High Speed             | 2000     | 480 Mbps | 5V/0.5A         | -             | 向下兼容         |
+| USB 3.0          | USB 3.2 Gen 1          | 2008     | 5 Gbps   | 5V/0.9A         | 8b/10b        | 兼容USB 2.0      |
+| USB 3.1 Gen 1    | USB 3.2 Gen 1x1        | 2013     | 5 Gbps   | 5V/0.9A         | 8b/10b        | 向下兼容         |
+| USB 3.1 Gen 2    | USB 3.2 Gen 2x1        | 2013     | 10 Gbps  | 5V/0.9A         | 128b/132b     | 向下兼容         |
+| USB 3.2 Gen 2x2  | USB 3.2                | 2017     | 20 Gbps  | 5V/0.9A         | 128b/132b     | 需Type-C接口     |
+| USB4              | 兼容 Thunderbolt 3     | 2019     | 40 Gbps  | 最高100W (PD)   | 128b/132b     | 需Type-C接口     |
+
+### 物理接口类型
+
+| 接口类型        | 典型协议支持          | 特点                                                                 |
+|-----------------|-----------------------|----------------------------------------------------------------------|
+| Type-A          | USB 1.0 - 3.2 Gen 1  | -经典矩形接口，仅正反两面可插（需区分方向）<br>USB 3.0的传输速度更快，颜色通常为蓝色<br>USB 2.0的传输速度较慢，颜色为黑色 |
+| Type-B          | USB 1.0 - 3.0        | 方形接口，常见于打印机等设备                                         |
+| Mini-USB        | USB 2.0              | 小型化设计，已被Micro-USB替代                                       |
+| Micro-USB       | USB 2.0              | 更薄的设计，曾为安卓设备标准充电接口                                 |
+| Type-C          | USB 3.1 Gen2及以上   | 正反可插，支持USB4/雷电3/DisplayPort Alt Mode，最高支持240W供电（PD3.1）|
+
+### 特色功能
+
+| 功能特性          | 支持协议/接口          | 说明                                                                 |
+|-------------------|------------------------|----------------------------------------------------------------------|
+| Power Delivery (PD) | USB-C + USB3.1及以上   | 最高支持48V/5A（240W）供电（PD3.1标准）                            |
+| DisplayPort Alt Mode | USB-C                  | 通过USB-C传输视频信号（4K@60Hz）                                    |
+| Thunderbolt 3/4   | USB-C                  | 兼容USB4，支持40Gbps速率和双4K显示输出                              |
+| USB OTG           | Micro-USB/Type-C       | 允许手机等设备作为主机连接外设                                       |
+
+### 关键参数速查
+
+
+#### 供电/快充协议
+
+线芯材质:铜芯纯度（无氧铜 > 普通铜）决定导电效率，影响大电流传输能力（如5A/6A快充）  
+线径粗细	截面积（如28AWG vs 24AWG）影响承载电流上限（AWG数值越小，线径越粗）  
+当电流超过3A时，必须配E-Marker芯片E-mark  
+- 标准USB 2.0  
+  5V/0.5A (2.5W)  
+- USB PD 3.0  
+  最高 100W (20V/5A)  
+  没有E-M芯片时（最大电流为 3 A）功率为 60W（20V/3A）  
+- USB PD 3.1:  
+  最高 240W (48V/5A)  
+
+#### 数据传输
+
+- 屏蔽层  
+   铝箔/编织层防止信号干扰，对USB3.0/雷电等高速协议至关重要  
+- 接口触点  
+   Type-C接口的24针全满pin设计才能支持USB4/视频输出等复杂协议  
+- E-Marker芯片  
+   存储线缆参数（最大电流/电压/协议支持）  
+   必需场景：USB3.1 Gen2/雷电3/USB PD 3.1（>60W）*当传输速度达到USB 3.1 Gen1（5Gbps），必须使用E-Marker芯片*  
+- CC逻辑芯片  
+   用于Type-C接口的协议识别与功率协商（如PD快充握手）  
+- 加密芯片  
+   部分私有协议（如华为SCP）需定制芯片验证身份  
+
+- **视频输出支持**：
+  - USB-C + DP Alt Mode: 最高8K@60Hz
+  - Thunderbolt 4: 双4K@60Hz 或 单8K@30Hz
+
+#### 标识识别
+  - SS (SuperSpeed): USB 3.0/3.1 Gen1
+  - SS 10: USB 3.1 Gen2
+  - SS 20: USB 3.2 Gen2x2
+  - 闪电标识: Thunderbolt 接口
+
+### 注意事项
+
+1. 实际传输速度受线缆质量、主控芯片等因素影响
+2. USB4 必须使用 Type-C 接口
+3. 雷电3/4接口完全兼容USB4设备
+4. 快充协议需要设备、线缆、充电器三方兼容

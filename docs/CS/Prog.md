@@ -1,3 +1,8 @@
+# Repository
+
+[Maven](https://mvnrepository.com/)  
+[Docker](https://app.docker.com/)
+
 # environment
 
 ## Nodejs
@@ -428,26 +433,7 @@ form {
 
 
 
-### vue
-
-**MVVM模式**
-- Model-View-ViewModel,核心是提供对View和VIewModel的双向数据绑定
-- Vue提供了MVVM风格的双向数据绑定，核心是MVVM中的VM，ViewModel负责连接View和Model，保证视图和数据的一致性
-
-**Vue框架**
-
-**Vue组件化**
-
-**生命周期函数**
-created
-mounted
-
-
-**Axios网络请求**
-- Axios是一个基于promise网络请求库
-- Axios只用XMLHttpRequests发送网络请求，并能自动完成JSON数据的转换
-
-**前端路由VueRouter**
+##
 
 
 # UI 组件

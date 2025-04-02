@@ -8,6 +8,27 @@
   普通文本对比度 ≥ 4.5:1  
   大文本对比度 ≥ 3:1  
   UI 组件对比度 ≥ 3:1  
+- [Coolors](https://coolors.co)  
+  快速生成配色方案，支持锁定颜色、调整色板、导出代码格式（HEX/RGB等）。  
+- [Adobe Color](https://color.adobe.com)  
+  基于色轮生成配色方案，支持互补色、三元色等规则，可导入到设计工具中。  
+- [Palettte.app](https://palettte.app)
+  可视化调整颜色对比度，生成无障碍友好的调色板。
+- [uicolors](https://uicolors.app/)  
+  选择三个主要颜色  
+- [BairesDev](https://www.bairesdev.com/)  
+  HSV  
+- [CSS Gradoemt](https://cssgradient.io/)  
+  渐变颜色工具  
+- [Neumorphism](https://neumorphism.io/)  
+  拟态风格样式  shouqing
+- [Shots](https://shots.so/)  
+  视觉稿  
+- [Figma](https://figma.com)  
+  设计工具中可直接生成 CSS 代码（颜色、阴影、间距等），支持开发协作。
+- [Storybook](https://storybook.js.org/)  
+  组件驱动开发工具，可视化测试不同配色和交互状态。  
+
 
 ## 文件传输
 
@@ -16,6 +37,8 @@
   速度挺快的  
 - [Wormhole](https://wormhole.app/)  
   小于 5G，在服务器上保留 24 小时；大于 5G，采用 P to P，需要一直在线。最大 10G  
+- [轻松传](https://easychuan.cn/)  
+  在线文件，单次最大 64T  
 
 ## proxy software
 
@@ -34,6 +57,8 @@
 - [个人信息生成器](https://www.meiguodizhi.com/)  
   随机生成个人信息  
 - [临时邮箱](https://www.linshi-email.com/)  
+- [CanvasEditor](https://windrunnermax.github.io/CanvasEditor/)  
+  简历制作网站  
 
 # AIGC 相关
 
@@ -47,7 +72,7 @@
 - GPTAssistant  
   聊天 AI
 
-## 图片
+## 图片生成
 
 - [stable diffusion](https://stabledifffusion.com/tools/ai-image-generator)  
   开源、在线、免费的图片生成 AI 网站
@@ -141,6 +166,38 @@
 
 # C
 
+## SRC 挖掘  
+
+### 信息收集
+
+#### 网络空间搜索引擎
+
+- [Hunter](https://hunter.qianxin.com/)
+- [Shodan](https://www.shodan.io/)
+- [FOFA](https://fofa.so/)
+- [Quake](https://quake.360.cn/quake/#/index)
+- [ZoomEye](https://www.zoomeye.org/)
+
+#### 企业信息
+
+- [小蓝本](https://sou.xiaolanben.com/)
+- [爱站](https://data.chinaz.com/)
+- [站长工具](https://www.aizhan.com/)
+
+#### IP
+
+https://www.nodecook.com/tcping  
+  Global Ping、Traceroute、DNS、HTTP and ，more
+https://ip138.com/  
+  IP 地址查询、手机号码查询归属地|邮政编码查询
+- 手机号码
+  - [美国手机号](https://www.truepeoplesearch.com) 20240517 bilibi评论
+
+#### SRC 平台
+
+[安全客](https://www.anquanke.com/)
+[补天](https://www.butian.net/)
+
 ## Reverse
 
 | 工具 | 中文说明 |
@@ -179,6 +236,52 @@
 | --- | --- |
 | [VeraCrypt](https://www.veracrypt.fr/en/Home.html) | 硬盘加密 |
 
+## CTF
+
+[CTFshow](https://ctf.show/) (MISC和Web的入门题单很赞)  
+[NSSCTF](https://www.nssctf.cn/index)   
+[BUUCTF](https://buuoj.cn/)  
+[春秋云境.com](https://yunjing.ichunqiu.com/) CEV  
+[攻防世界](https://adworld.xctf.org.cn/home/index)  
+[青少年CTF](https://www.qsnctf.com/)  
+[CTFhub](https://www.ctfhub.com/#/index) (技能树确实不错 但是更新慢)  
+[Bugku](https://ctf.bugku.com/) (AWD做的比较好)  
+[pwn.college](https://pwn.college/) (当然如果您一来就相中了PWN的话，这个平台也是不错的选择)  
+[BUUCTF](https://buuoj.cn/) / [QsnCTF](https://www.qsnctf.com/) 几大经典靶场 —— Upload-Labs sqli-labs PikaChu Web-DVWA XSS-Lab……  
+
+### CTF_Crypto
+
+[CyberChef](https://cyberchef.org/)  
+[CMD5](https://www.cmd5.com/)  
+[SOMD5](https://www.somd5.com/)  
+
+[quipquip](https://quipqiup.com/)  
+[factordb](http://www.factordb.com/)  
+
+### CTF-Information
+
+航线查询网站
+- https://www.flightradar24.com/
+- https://flightadsb.variflight.com/
+
+数据库漏洞利用网站
+- [Exploit Database](https://www.exploit-db.com/)
+  - Exploit-DB 使用小结
+
+pcap修复
+- [pcapfix](https://f00l.de/hacking/pcapfix.php)
+
+
+插件
+  - open Multiple URLs
+  - xia SQL
+
+平台
+  - bugcrowd
+  - hackerone
+  - webpack
+
+智联招聘打卡积分
 
 # APP
 
@@ -225,66 +328,6 @@ videodownloader: VidJuice UniTube
 网页打包软件
 Swiftbackup，支持备份apk的同时可以备份应用数据
 
-## CTF 训练
-
-[NSSCTF](https://www.nssctf.cn/index) 
-
-[BUUCTF](https://buuoj.cn/)
-
-[CTFshow](https://ctf.show/) (MISC和Web的入门题单很赞)
-
-[攻防世界](https://adworld.xctf.org.cn/home/index)
-
-[青少年CTF](https://www.qsnctf.com/)
-
-[CTFhub](https://www.ctfhub.com/#/index) (技能树确实不错 但是更新慢)
-
-[Bugku](https://ctf.bugku.com/) (AWD做的比较好)
-
-[pwn.college](https://pwn.college/) (当然如果您一来就相中了PWN的话，这个平台也是不错的选择)
-
-[春秋云境.com](https://yunjing.ichunqiu.com/) CEV
-
-[BUUCTF](https://buuoj.cn/) / [QsnCTF](https://www.qsnctf.com/) 几大经典靶场 —— Upload-Labs sqli-labs PikaChu Web-DVWA XSS-Lab……
-
-航线查询网站
-- https://www.flightradar24.com/
-- https://flightadsb.variflight.com/
-
-数据库漏洞利用网站
-- [Exploit Database](https://www.exploit-db.com/)
-  - Exploit-DB 使用小结
-
-pcap修复
-- [pcapfix](https://f00l.de/hacking/pcapfix.php)
-
-信息收集
-  - 网络空间搜索引擎
-    - [Hunter](https://hunter.qianxin.com/)
-    - [Shodan](https://www.shodan.io/)
-    - [FOFA](https://fofa.so/)
-    - [Quake](https://quake.360.cn/quake/#/index)
-    - [ZoomEye](https://www.zoomeye.org/)
-  - 企业信息
-    - [小蓝本](https://sou.xiaolanben.com/)
-    - [爱站](https://data.chinaz.com/)
-
-  - 手机号码
-    - [美国手机号](https://www.truepeoplesearch.com) 20240517 bilibi评论
-
-插件
-  - open Multiple URLs
-  - xia SQL
-
-平台
-  - bugcrowd
-  - hackerone
-  - webpack
-
-智联招聘打卡积分
-
-
-
 # 编程相关
 
 ## CSS+HTML练习
@@ -316,116 +359,3 @@ pcap修复
 
 在支持Server酱的软件界面或配置文件中填入SendKey，即可使用
 你也可以自己往 https://sctapi.ftqq.com/<SENDKEY>.send 发送请求，就可以收到消息啦
-
-## 翻译接口
-
-```
-一、国内免费翻译接口汇总
-1. 百度翻译 - 100万字符免费/每月（需个人认证）
-百度翻译API接口免费翻译额度：标准版（5万字符免费/每月）、高级版（100万字符免费/每月-需个人认证，基本都能通过）、尊享版（200万字符免费/每月-需企业认证，门槛高）；
-
-超出免费额度价格：49元/百万字符；
-
-官方介绍：百度翻译开放平台
-
-2. 腾讯翻译 - 500万字符免费/每月
-腾讯翻译API接口免费翻译额度：500万字符免费/每月；
-
-超出免费额度价格：58元/百万字符，有字符资源包出售；
-
-官方介绍：机器翻译 计费概述-购买指南-文档中心-腾讯云
-
-3. 阿里翻译(通用版) - 100万字符免费/每月
-阿里云翻译API接口免费翻译额度：100万字符免费/每月；
-
-超出免费额度价格：50元/百万字符，有字符资源包出售；
-
-官方介绍：机器翻译的付费模式及具体定价_机器翻译-阿里云帮助中心
-
- 4. 华为翻译 - 100万字符免费/每月
-华为翻译API接口免费翻译额度： 100万字符免费/每月；
-
-超出免费额度价格：50元/100万字符；
-
-官方介绍：机器翻译_语言翻译_翻译中心_即时通讯_视频字幕翻译解决方案-华为云
-
-5. 火山翻译（字节跳动旗下）- 200万字符免费/每月
-火山翻译API接口免费翻译额度：200万字符免费/每月
-
-超出免费额度价格：49元/百万字符；
-
-官方介绍：产品计费--机器翻译-火山引擎
-
- 6. 小牛翻译 - 20万字符免费/每日（相当于600万免费每月）
-小牛翻译API接口免费翻译额度： 20万字符免费/每日（相当于于600万免费每月），新用户还可以领一次100万字符免费福利；
-
-超出免费额度价格：只按字符资源包出售（例如1000万字符包-1年-500元，5000万字符包-1年-2000元...）；
-
-官方介绍：小牛翻译开放平台 - 机器翻译找小牛-纯文本翻译、小牛翻译开放平台 - XML翻译
-
-7. 有道翻译（通用版） - 新用户赠50元免费体验资金
-有道翻译API接口免费翻译额度：无，新用户一次性赠50元免费体验资金；
-
-超出免费额度价格：48元/百万字符，有字符资源包出售；
-
-官方介绍：有道翻译产品文档-自然语言翻译服务
-
- 8. 讯飞翻译 - 200万字符免费包(1年内，该免费包仅能领一次)
-讯飞翻译API接口免费翻译额度：讯飞翻译普通版 - 200万字符免费包(1年内，该免费包仅能领一次)，讯飞翻译niutrans版 - 200万字符免费包(90天内，该免费包仅能领一次)；
-
-超出免费额度价格：只按字符资源包出售（例如100万字符包-1年-48元，2000万字符包-1年-900元...）；
-
-官方介绍：机器翻译-讯飞开放平台、机器翻译 niutrans - 语音扩展 - 讯飞开放平台
-
-9. 彩云小译 - 100万字符免费(新用户30天内)
-彩云小译翻译API接口免费翻译额度：100万字符免费(新用户第一个30天内有效，不是每个月都有）；
-
-超出免费额度价格：39元/百万字符；
-
-官方介绍：五分钟学会彩云小译 API | 彩云天气 API
-
-二、国外免费翻译接口汇总
-1. 谷歌翻译 - 50万字符免费/每月（新用户赠300美元，90天内有效）
-Google翻译API接口免费翻译额度： 50万字符免费/每月，新用户赠300美元（90天内有效）；
-
-超出免费额度价格：20美元(约140元)/百万字符；
-
-官方介绍：https://cloud.google.com/translate/?hl=zh-cn（需访问外网）
-
-2. DeepL翻译 - 50万字符免费/每月
-DeepL翻译API接口免费翻译额度：50万字符免费/每月（API Free版本，超出50万后无法使用，需使用API Pro版本）；
-
-超出免费额度价格：25美元(约180元)/百万字符（Pro版本才可以使用，每月固定5.49美元套餐费，例如新加坡地区），申请开通困难可以尝试某宝；
-
-官方介绍：DeepL翻译API|机器翻译技术
-
-3. 微软翻译 - 200万字符免费/每月（新用户前12个月）
-微软翻译API接口免费翻译额度：200万字符免费/每月（新用户前12个月才有）；
-
-超出免费额度价格：10美元(约71元)/百万字符；
-
-官方介绍：Translator - 翻译服务型软件 | Microsoft Azure
-
-4. Amazon翻译（亚马逊翻译） - 200万字符免费/每月（新用户前12个月）
-Amazon翻译API接口免费翻译额度：200万字符免费/每月（新用户前12个月才有）；
-
-超出免费额度价格：15美元(约107元)/百万字符；
-
-官方介绍：Amazon Translate 神经网络机器翻译_自然语言处理-AWS云服务
-
-5. Yandex翻译 - 无免费的
-超出免费额度价格：3.9美元(约28元)/100万字符；
-
-官方介绍：Translate API – Yandex Translate | Yandex Cloud - Services
-
-6. OpenAI 接口 - 无免费的
-申请使用比较困难
-
-官方介绍：OpenAI - chatgpt（需访问外网）
-————————————————
-
-                            版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。
-                        
-原文链接：https://blog.csdn.net/moshi_6/article/details/133016065
-```
-
