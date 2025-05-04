@@ -1,3 +1,7 @@
 * [各类软件工具的使用文档](/CS/Document/Document)
 * [如何学](/CS/Document/Learn)
 * [命令行的艺术](/CS/Document/the-art-of-command-line)
+* [Git 文档](/CS/Document/Git)
+* [Nginx 文档](/CS/Document/Nginx)
+* [Linux常用快捷键](/CS/Document/linux常用快捷键)
+* [返回上级](/CS/_sidebar)
