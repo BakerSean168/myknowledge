@@ -2101,22 +2101,7 @@ Axios 是一个基于 Promise 的 HTTP 客户端库，封装了 XHR 对象，支
 - 递归
 - structuredClone()
 
-### 常用函数、方法、对象
-
-#### 遍历对象属性
-
-Object.keys  
-Object.getOwnPropertyNames  
-Object.entries  
-for...in
-
-#### 读取二进制文件
-
-ArrayBuffer
-
-### API
-
-## 面试
+## OTHER
 
 ### for in 和 for of
 
