@@ -2,6 +2,7 @@
 * 前端基础
     * [CSS](/CS/前端/CSS)
     * [HTML](/CS/前端/HTML)
+    * [XML](/CS/前端/XML)
     * [JavaScript](/CS/前端/JavaScript)
     * [TS](/CS/前端/TS)
     * [Nodejs](/CS/前端/Nodejs)

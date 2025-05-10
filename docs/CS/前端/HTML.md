@@ -10,59 +10,6 @@
 重绘  
 当页面元素样式改变不影响元素在文档流中的位置时（如background-color，border-color，visibility），浏览器只会将新样式赋予元素并进行重新绘制操作。
 
-### DOM
-
-Document Object Model, 文档对象模型  
-
-- 元素（element）  
-  文档中的所有标签都是元素，元素可以看成是对象  
-- 节点（node）  
-  文档中所有的内容都是节点：标签，属性，文本  
-- 文档（document）  
-  一个页面就是一个文档  
-
-文档包含节点，节点包含元素  
-
-#### 对 DOM 树的操作
-
-```js
-
-// 取：  
-document.getElementById();
-
-// 获取节点所有属性  
-node.attributes  
-
-// 获取节点所有子元素  
-node.childNodes  
-
-// 增：  
-let a = createElement('a')
-document.body.append(a)
-
-// 删：
-document.body.removeChild(div);
-
-```
-
-##### 改变节点中的文本值
-
-##### innerHTML、innerText、textContent
-
-- innerHTML  
-  表示所有 HTML  
-  Element 对象的属性  
-- innerText  
-  表示所有文本内容  
-  HTMLElement 对象的属性  
-- textContent  
-  返回的是字符串或 null  
-  修改该属性会删除其他全部节点  
-  Node 对象的属性  
-
-innerText会触发回流，但是textContent可能不会触发回流，所以实际应用中，使用textContent性能更佳  
-innerTTML会返回HTML文本，textContent的内容不会解析成HTML文本，使用textContent可以防止XSS攻击  
-
 ## 面试
 
 ### URL 到 页面渲染
