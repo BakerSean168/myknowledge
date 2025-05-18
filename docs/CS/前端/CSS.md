@@ -133,6 +133,27 @@ unset 对于可继承属性 inherit；不可继承属性 = initial
 
 优先级相同，后出现的样式生效  
 
+## 动画
+
+animation
+
+### 常用属性
+
+| 属性 | 说明 | 示例值 |
+|------|------|--------|
+| `animation-name` | 指定要运用的关键帧名称 | `slideIn` |
+| `animation-duration` | 动画完成一个周期所需时间 | `1s` 或 `1000ms` |
+| `animation-timing-function` | 动画的速度曲线 | `linear`, `ease`, `ease-in`, `ease-out`, `cubic-bezier(0.1, 0.7, 1.0, 0.1)` |
+| `animation-delay` | 动画开始前的延迟时间 | `2s` |
+| `animation-iteration-count` | 动画播放次数 | `3`, `infinite` |
+| `animation-direction` | 动画是否反向播放 | `normal`, `reverse`, `alternate`, `alternate-reverse` |
+| `animation-fill-mode` | 动画执行前后如何应用样式 | `none`, `forwards`, `backwards`, `both` |
+| `animation-play-state` | 动画运行或暂停 | `running`, `paused` |
+
+## transform
+
+## transiton
+
 ## link 和 @import 引用 CSS 的区别
 
 link  
