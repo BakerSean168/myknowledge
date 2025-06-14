@@ -379,19 +379,15 @@ ElementType
 
 #### 定型数组
 
-定型数组是另一种形式的 ArrayBuffer 视图。虽然概念上与 DataView 接近，但定型数组的区别
-在于，它特定于一种 ElementType 且遵循系统原生的字节序。相应地，定型数组提供了适用面更广的
-API 和更高的性能。设计定型数组的目的就是提高与 WebGL 等原生库交换二进制数据的效率。由于定
-型数组的二进制表示对操作系统而言是一种容易使用的格式，JavaScript 引擎可以重度优化算术运算、
-按位运算和其他对定型数组的常见操作，因此使用它们速度极快。
+定型数组是另一种形式的 ArrayBuffer 视图。虽然概念上与 DataView 接近，但定型数组的区别在于，它特定于一种 ElementType 且遵循系统原生的字节序。相应地，定型数组提供了适用面更广的 API 和更高的性能。  
+设计定型数组的目的就是提高与 WebGL 等原生库交换二进制数据的效率。  
+由于定型数组的二进制表示对操作系统而言是一种容易使用的格式，JavaScript 引擎可以重度优化算术运算、按位运算和其他对定型数组的常见操作，因此使用它们速度极快。
 
 ### Map
 
-与 Object 只能使用数值、字符串或符号作为键不同，Map 可以使用任何 JavaScript 数据类型作为
-键。
+与 Object 只能使用数值、字符串或符号作为键不同，Map 可以使用任何 JavaScript 数据类型作为键。
 
-与 Object 类型的一个主要差异是，Map 实例会维护键值对的插入顺序，因此可以根据插入顺序执
-行迭代操作。
+与 Object 类型的一个主要差异是，Map 实例会维护键值对的插入顺序，因此可以根据插入顺序执行迭代操作。
 
 | 比较维度     | Object                                     | Map                                                | 选择建议                    |
 | ------------ | ------------------------------------------ | -------------------------------------------------- | --------------------------- |
@@ -1406,7 +1402,8 @@ location 是最有用的 BOM 对象之一，提供了当前窗口中加载文档
 
 #### 查询字符串
 
-老旧方法  
+老旧方法
+
 ```js
 let getQueryStringArgs = function () {
   // 取得没有开头问号的查询字符串
@@ -1427,202 +1424,207 @@ let getQueryStringArgs = function () {
 ```
 
 URLSearchParams 提供了一组标准 API 方法，通过它们可以检查和修改查询字符串。  
-给URLSearchParams 构造函数传入一个查询字符串，就可以创建一个实例。这个实例上暴露了get()、set()和delete()等方法，可以对查询字符串执行相应操作。
+给 URLSearchParams 构造函数传入一个查询字符串，就可以创建一个实例。这个实例上暴露了 get()、set()和 delete()等方法，可以对查询字符串执行相应操作。
 
 #### 操作地址
 
-可以通过修改location对象修改浏览器的地址。  
-1. location.assign("http://www.wrox.com");  
-2. window.location = "http://www.wrox.com";  
-3. location.href = "http://www.wrox.com";  
+可以通过修改 location 对象修改浏览器的地址。
 
-*除了hash之外，只要修改location的一个属性，就会导致页面重新加载新URL*
+1. location.assign("http://www.wrox.com");
+2. window.location = "http://www.wrox.com";
+3. location.href = "http://www.wrox.com";
+
+_除了 hash 之外，只要修改 location 的一个属性，就会导致页面重新加载新 URL_
 
 **replace()**
 如果不希望增加历史记录，可以使用 replace()方法。  
-这个方法接收一个URL参数，但重新加载后不会增加历史记录。  
-调用replace()之后，用户不能回到前一页。
+这个方法接收一个 URL 参数，但重新加载后不会增加历史记录。  
+调用 replace()之后，用户不能回到前一页。
 
 **reload()**
 能重新加载当前显示的页面。  
-调用reload()而不传参数，页面会以最有效的方式重新加载。也就是说，如果页面自上次请求以来没有修改过，浏览器可能会从缓存中加载页面。  
-如果想强制从服务器重新加载，可以像下面这样给reload()传个true  
+调用 reload()而不传参数，页面会以最有效的方式重新加载。也就是说，如果页面自上次请求以来没有修改过，浏览器可能会从缓存中加载页面。  
+如果想强制从服务器重新加载，可以像下面这样给 reload()传个 true
+
 ```js
-location.reload();     // 重新加载，可能是从缓存加载 
-location.reload(true); // 重新加载，从服务器加载 
+location.reload(); // 重新加载，可能是从缓存加载
+location.reload(true); // 重新加载，从服务器加载
 ```
 
 ### navigator 对象
 
-navigator 对象的属性通常用于确定浏览器的类型。  
+navigator 对象的属性通常用于确定浏览器的类型。
 
 检测插件  
-注册处理程序  
+注册处理程序
 
-### screen 对象  
+### screen 对象
 
 这个对象中保存的纯粹是客户端能力信息。  
 也就是浏览器窗口外面的客户端显示器的信息，比如像素宽度和像素高度。  
-每个浏览器都会在screen对象上暴露不同的属性。
+每个浏览器都会在 screen 对象上暴露不同的属性。
 
-### history对象 
+### history 对象
 
-history对象表示当前窗口首次使用以来用户的导航历史记录。  
-因为history是window的属性，所以每个window都有自己的history对象。  
-出于安全考虑，这个对象不会暴露用户访问过的URL，但可以通过它在不知道实际URL的情况下前进和后退。
+history 对象表示当前窗口首次使用以来用户的导航历史记录。  
+因为 history 是 window 的属性，所以每个 window 都有自己的 history 对象。  
+出于安全考虑，这个对象不会暴露用户访问过的 URL，但可以通过它在不知道实际 URL 的情况下前进和后退。
 
-#### 导航 
+#### 导航
 
-go()方法可以在用户历史记录中沿任何方向导航，可以前进也可以后退。  
+go()方法可以在用户历史记录中沿任何方向导航，可以前进也可以后退。
 
-history 对象还有一个length属性，表示历史记录中有多个条目。  
+history 对象还有一个 length 属性，表示历史记录中有多个条目。
 
-#### 历史状态管理 
+#### 历史状态管理
 
 hashchange 事件
 
 ## 客户端检测
 
 能力检测，在使用之前先测试浏览器的特定能力。  
-用户代理检测，通过用户代理字符串确定浏览器。  
+用户代理检测，通过用户代理字符串确定浏览器。
 
 ## DOM
 
-文档对象模型（DOM，Document Object Model）是HTML和XML文档的编程接口。  
-DOM表示由多层节点构成的文档，通过它开发者可以添加、删除和修改页面的各个部分。
+文档对象模型（DOM，Document Object Model）是 HTML 和 XML 文档的编程接口。  
+DOM 表示由多层节点构成的文档，通过它开发者可以添加、删除和修改页面的各个部分。
 
-Document Object Model, 文档对象模型  
+Document Object Model, 文档对象模型
 
 - 元素（element）  
-  文档中的所有标签都是元素，元素可以看成是对象  
+  文档中的所有标签都是元素，元素可以看成是对象
 - 节点（node）  
-  文档中所有的内容都是节点：标签，属性，文本  
+  文档中所有的内容都是节点：标签，属性，文本
 - 文档（document）  
-  一个页面就是一个文档  
+  一个页面就是一个文档
 
 文档包含节点，节点包含元素
 
 ### 节点层级
 
-任何HTML或XML文档都可以用DOM表示为一个由节点构成的层级结构。  
+任何 HTML 或 XML 文档都可以用 DOM 表示为一个由节点构成的层级结构。  
 节点分很多类型，每种类型对应着文档中不同的信息和（或）标记，也都有自己不同的特性、数据和方法，而且与其他类型有某种关系。  
-这些关系构成了层级，让标记可以表示为一个以特定节点为根的树形结构。  
+这些关系构成了层级，让标记可以表示为一个以特定节点为根的树形结构。
 
-#### Node 类型  
+#### Node 类型
 
-DOM Level 1 描述了名为Node 的接口，这个接口是所有DOM节点类型都必须实现的。  
-Node接口在JavaScript中被实现为Node类型，在除IE之外的所有浏览器中都可以直接访问这个类型。  
-在JavaScript中，所有节点类型都继承Node类型，因此所有类型都共享相同的基本属性和方法。  
+DOM Level 1 描述了名为 Node 的接口，这个接口是所有 DOM 节点类型都必须实现的。  
+Node 接口在 JavaScript 中被实现为 Node 类型，在除 IE 之外的所有浏览器中都可以直接访问这个类型。  
+在 JavaScript 中，所有节点类型都继承 Node 类型，因此所有类型都共享相同的基本属性和方法。
 
-每个节点都有nodeType 属性，表示该节点的类型。  
-节点类型由定义在Node 类型上的12个数值常量表示  
+每个节点都有 nodeType 属性，表示该节点的类型。  
+节点类型由定义在 Node 类型上的 12 个数值常量表示
 
-1. nodeName 与 nodeValue 
-  nodeName 与 nodeValue 保存着有关节点的信息。这两个属性的值完全取决于节点类型。  
+1. nodeName 与 nodeValue
+   nodeName 与 nodeValue 保存着有关节点的信息。这两个属性的值完全取决于节点类型。
 2. 节点关系  
-  文档中的所有节点都与其他节点有关系。  
+   文档中的所有节点都与其他节点有关系。
 3. 操纵节点
 4. 其他方法  
-  cloneNode()  
+   cloneNode()  
     会返回与调用它的节点一模一样的节点。  
-   normalize()  
-    处理文档子树中的文本节点。  
+    normalize()  
+    处理文档子树中的文本节点。
 
 ```js
-// 取：  
+// 取：
 document.getElementById();
 
-// 获取节点所有属性  
-node.attributes  
+// 获取节点所有属性
+node.attributes;
 
-// 获取节点所有子元素  
-node.childNodes  
+// 获取节点所有子元素
+node.childNodes;
 
-// 增：  
-let a = createElement('a')
-document.body.append(a)
+// 增：
+let a = createElement("a");
+document.body.append(a);
 
 // 删：
 document.body.removeChild(div);
 ```
 
-#### Document 类型  
+#### Document 类型
 
 Document 类型是 JavaScript 中表示文档节点的类型。  
-在浏览器中，文档对象 document 是 HTMLDocument 的实例（HTMLDocument 继承 Document），表示整个HTML页面。  
-document 是window对象的属性，因此是一个全局对象。
+在浏览器中，文档对象 document 是 HTMLDocument 的实例（HTMLDocument 继承 Document），表示整个 HTML 页面。  
+document 是 window 对象的属性，因此是一个全局对象。
 
 1. 文档子节点  
-  虽然DOM规范规定Document 节点的子节点可以是 DocumentType、Element、Processing- Instruction 或 Comment，但也提供了两个访问子节点的快捷方式。  
-  documentElement属性，始终指向HTML页面中的`<html>`元素。  
-  document.body 属性，指向`<body>`  
+   虽然 DOM 规范规定 Document 节点的子节点可以是 DocumentType、Element、Processing- Instruction 或 Comment，但也提供了两个访问子节点的快捷方式。  
+   documentElement 属性，始终指向 HTML 页面中的`<html>`元素。  
+   document.body 属性，指向`<body>`
 2. 文档信息
-  title、URL、domain、referrer  
+   title、URL、domain、referrer
 3. 定位元素
 4. 特殊集合
-  document 对象上还暴露了几个特殊集合，这些集合也都是HTMLCollection的实例。  
-  这些集合是访问文档中公共部分的快捷方式。  
-   document.anchors 包含文档中所有带name属性的`<a>`元素。  
-5. DOM兼容性检测
-  由于 DOM 有多个 Level 和多个部分，因此确定浏览器实现了 DOM 的哪些部分是很必要的。  
-6. 文档写入 
-  document对象有一个古老的能力，即向网页输出流中写入内容。  
-  这个能力对应4个方法：write()、writeln()、open()和close()。  
+   document 对象上还暴露了几个特殊集合，这些集合也都是 HTMLCollection 的实例。  
+   这些集合是访问文档中公共部分的快捷方式。  
+    document.anchors 包含文档中所有带 name 属性的`<a>`元素。
+5. DOM 兼容性检测
+   由于 DOM 有多个 Level 和多个部分，因此确定浏览器实现了 DOM 的哪些部分是很必要的。
+6. 文档写入
+   document 对象有一个古老的能力，即向网页输出流中写入内容。  
+   这个能力对应 4 个方法：write()、writeln()、open()和 close()。
 
 #### Element 类型
 
-Element表示XML或HTML元素，对外暴露出访问元素标签名、子节点和属性的能力。  
-- nodeType = 1
-- nodeName 值为元素的标签名  
-- nodeValue = null
-- parentNode = Document || Element  
-- 子节点可以是 Element、Text、Comment、ProcessingInstruction、CDATASection、EntityReference 类型。 
+Element 表示 XML 或 HTML 元素，对外暴露出访问元素标签名、子节点和属性的能力。
 
-可以通过nodeName 或tagName 属性来获取元素的标签名。  
+- nodeType = 1
+- nodeName 值为元素的标签名
+- nodeValue = null
+- parentNode = Document || Element
+- 子节点可以是 Element、Text、Comment、ProcessingInstruction、CDATASection、EntityReference 类型。
+
+可以通过 nodeName 或 tagName 属性来获取元素的标签名。
 
 #### Text 类型
 
-Text 节点由Text 类型表示，包含按字面解释的纯文本，也可能包含转义后的HTML字符，但不含HTML代码。  
+Text 节点由 Text 类型表示，包含按字面解释的纯文本，也可能包含转义后的 HTML 字符，但不含 HTML 代码。
+
 - nodeType = 3
 - nodeName = "#text"
-- nodeValue = 节点中包含的文本  
-- parentNode = Element 对象  
-- 不支持子节点  
+- nodeValue = 节点中包含的文本
+- parentNode = Element 对象
+- 不支持子节点
 
 默认情况下，包含文本内容的每个元素最多只能有一个文本节点。  
-只要开始标签和结束标签之间有内容，就会创建一个文本节点  
+只要开始标签和结束标签之间有内容，就会创建一个文本节点
 
 #### Comment 类型
 
-DOM中的注释通过Comment类型表示。  
+DOM 中的注释通过 Comment 类型表示。
+
 - nodeType = 8
 - nodeName= "#comment"
 - nodeValue = 注释的内容
-- parentNode = Document 或Element 对象
+- parentNode = Document 或 Element 对象
 - 不支持子节点
 
-Comment 类型与 Text 类型继承同一个基类（CharacterData），因此拥有除 splitText()之外Text 节点所有的字符串操作方法。  
-与Text类型相似，注释的实际内容可以通过nodeValue或data属性获得。 
+Comment 类型与 Text 类型继承同一个基类（CharacterData），因此拥有除 splitText()之外 Text 节点所有的字符串操作方法。  
+与 Text 类型相似，注释的实际内容可以通过 nodeValue 或 data 属性获得。
 
 #### CDATASection 类型
 
-CDATASection 类型表示 XML中特有的 CDATA区块。  
-CDATASection 类型继承 Text 类型，因此拥有包括splitText()在内的所有字符串操作方法。
+CDATASection 类型表示 XML 中特有的 CDATA 区块。  
+CDATASection 类型继承 Text 类型，因此拥有包括 splitText()在内的所有字符串操作方法。
 
 #### DocumentType 类型
 
-DocumentType 类型的节点包含文档的文档类型（doctype）信息  
+DocumentType 类型的节点包含文档的文档类型（doctype）信息
 
 #### DocumentFragment 类型
 
-在所有节点类型中，DocumentFragment类型是唯一一个在标记中没有对应表示的类型。  
-DOM将文档片段定义为“轻量级”文档，能够包含和操作节点，却没有完整文档那样额外的消耗。
+在所有节点类型中，DocumentFragment 类型是唯一一个在标记中没有对应表示的类型。  
+DOM 将文档片段定义为“轻量级”文档，能够包含和操作节点，却没有完整文档那样额外的消耗。
 
 #### Attr 类型
 
-元素数据在DOM中通过Attr类型表示。  
-Attr类型构造函数和原型在所有浏览器中都可以直接访问。  
-技术上讲，属性是存在于元素attributes属性中的节点。
+元素数据在 DOM 中通过 Attr 类型表示。  
+Attr 类型构造函数和原型在所有浏览器中都可以直接访问。  
+技术上讲，属性是存在于元素 attributes 属性中的节点。
 
 ##### 改变节点中的文本值
 
@@ -1630,102 +1632,105 @@ Attr类型构造函数和原型在所有浏览器中都可以直接访问。
 
 - innerHTML  
   表示所有 HTML  
-  Element 对象的属性  
+  Element 对象的属性
 - innerText  
   表示所有文本内容  
-  HTMLElement 对象的属性  
+  HTMLElement 对象的属性
 - textContent  
   返回的是字符串或 null  
   修改该属性会删除其他全部节点  
-  Node 对象的属性  
+  Node 对象的属性
 
-innerText会触发回流，但是textContent可能不会触发回流，所以实际应用中，使用textContent性能更佳  
-innerTTML会返回HTML文本，textContent的内容不会解析成HTML文本，使用textContent可以防止XSS攻击  
+innerText 会触发回流，但是 textContent 可能不会触发回流，所以实际应用中，使用 textContent 性能更佳  
+innerTTML 会返回 HTML 文本，textContent 的内容不会解析成 HTML 文本，使用 textContent 可以防止 XSS 攻击
 
 ### DOM 编程
 
 动态脚本  
 动态样式  
 操作表格  
-使用NodeList  
+使用 NodeList
 
 ### MutationObserver 接口
 
-可以在DOM被修改时异步执行回调。  
-使用MutationObserver 可以观察整个文档、DOM树的一部分，或某个元素。  
-此外还可以观察元素属性、子节点、文本，或者前三者任意组合的变化。   
+可以在 DOM 被修改时异步执行回调。  
+使用 MutationObserver 可以观察整个文档、DOM 树的一部分，或某个元素。  
+此外还可以观察元素属性、子节点、文本，或者前三者任意组合的变化。
 
 ## DOM 扩展
 
-### Selectors API 
+### Selectors API
 
 Selectors API Level 1 的核心是两个方法：querySelector()和 querySelectorAll()。  
-在兼容浏览器中，Document类型和Element类型的实例上都会暴露这两个方法。
+在兼容浏览器中，Document 类型和 Element 类型的实例上都会暴露这两个方法。
 
 ### 元素遍历
 
 ### HTML5
 
-#### CSS类扩展
+#### CSS 类扩展
 
-1. getElementsByClassName() 
-2. classList 属性 
+1. getElementsByClassName()
+2. classList 属性
 
 #### 焦点管理
 
-document.activeElement，始终包含当前拥有焦点的DOM元素。  
-document.hasFocus()方法，该方法返回布尔值，表示文档是否拥有焦点。  
+document.activeElement，始终包含当前拥有焦点的 DOM 元素。  
+document.hasFocus()方法，该方法返回布尔值，表示文档是否拥有焦点。
 
-#### HTMLDocument 扩展 
+#### HTMLDocument 扩展
 
 1. readyState 属性
-  loading，表示文档正在加载  
-  complete，表示文档加载完成  
+   loading，表示文档正在加载  
+   complete，表示文档加载完成
 2. compatMode 属性  
-  指示浏览器当前处于什么渲染模式  
-3. head 属性 
-  document.head 指向 head  
+   指示浏览器当前处于什么渲染模式
+3. head 属性
+   document.head 指向 head
 
-#### 字符集属性 
-#### 自定义数据属性 
-#### 插入标记 
-#### scrollIntoView() 
+#### 字符集属性
 
-scrollIntoView()方法存在于所有 HTML 元素上，可以滚动浏览器窗口或容器元素以便包含元素进入视口。  
+#### 自定义数据属性
+
+#### 插入标记
+
+#### scrollIntoView()
+
+scrollIntoView()方法存在于所有 HTML 元素上，可以滚动浏览器窗口或容器元素以便包含元素进入视口。
 
 这个方法可以用来在页面上发生某个事件时引起用户关注。  
 把焦点设置到一个元素上也会导致浏览器将元素滚动到可见位置。
 
 ## DOM2 到 DOM3
 
-DOM1（DOM Level 1）主要定义了 HTML和 XML文档的底层结构。  
-DOM2（DOM Level 2）和DOM3（DOM Level 3）在这些结构之上加入更多交互能力，提供了更高级的XML特性。  
-实际上，DOM2和DOM3是按照模块化的思路来制定标准的，每个模块之间有一定关联，但分别针对某个DOM子集。
+DOM1（DOM Level 1）主要定义了 HTML 和 XML 文档的底层结构。  
+DOM2（DOM Level 2）和 DOM3（DOM Level 3）在这些结构之上加入更多交互能力，提供了更高级的 XML 特性。  
+实际上，DOM2 和 DOM3 是按照模块化的思路来制定标准的，每个模块之间有一定关联，但分别针对某个 DOM 子集。
 
 ```
- DOM Core：在DOM1核心部分的基础上，为节点增加方法和属性。 
- DOM Views：定义基于样式信息的不同视图。 
- DOM Events：定义通过事件实现DOM文档交互。 
- DOM Style：定义以编程方式访问和修改CSS样式的接口。 
- DOM Traversal and Range：新增遍历 DOM文档及选择文档内容的接口。 
- DOM HTML：在DOM1 HTML部分的基础上，增加属性、方法和新接口。 
+ DOM Core：在DOM1核心部分的基础上，为节点增加方法和属性。
+ DOM Views：定义基于样式信息的不同视图。
+ DOM Events：定义通过事件实现DOM文档交互。
+ DOM Style：定义以编程方式访问和修改CSS样式的接口。
+ DOM Traversal and Range：新增遍历 DOM文档及选择文档内容的接口。
+ DOM HTML：在DOM1 HTML部分的基础上，增加属性、方法和新接口。
  DOM Mutation Observers：定义基于 DOM变化触发回调的接口。这个模块是DOM4级模块，
-用于取代Mutation Events。 
+用于取代Mutation Events。
 ```
 
 ## 事件
 
-JavaScript与HTML的交互是通过事件实现的，事件代表文档或浏览器窗口中某个有意义的时刻。  
+JavaScript 与 HTML 的交互是通过事件实现的，事件代表文档或浏览器窗口中某个有意义的时刻。  
 可以使用仅在事件发生时执行的监听器（也叫处理程序）订阅事件。  
-在传统软件工程领域，这个模型叫“观察者模式”，其能够做到页面行为（在JavaScript中定义）与页面展示（在HTML和CSS中定义）的分离。 
+在传统软件工程领域，这个模型叫“观察者模式”，其能够做到页面行为（在 JavaScript 中定义）与页面展示（在 HTML 和 CSS 中定义）的分离。
 
 ### 事件流
 
-事件流描述了页面接收事件的顺序。  
+事件流描述了页面接收事件的顺序。
 
 #### 事件冒泡
 
-IE事件流被称为事件冒泡，这是因为事件被定义为从最具体的元素（文档树中最深的节点）开始触发，然后向上传播至没有那么具体的元素（文档）。
+IE 事件流被称为事件冒泡，这是因为事件被定义为从最具体的元素（文档树中最深的节点）开始触发，然后向上传播至没有那么具体的元素（文档）。
 
 #### 事件捕获
 
@@ -1734,7 +1739,7 @@ IE事件流被称为事件冒泡，这是因为事件被定义为从最具体的
 
 #### DOM 事件流
 
-DOM2 Events规范规定事件流分为3个阶段：事件捕获、到达目标和事件冒泡。  
+DOM2 Events 规范规定事件流分为 3 个阶段：事件捕获、到达目标和事件冒泡。  
 事件捕获最先发生，为提前拦截事件提供了可能。  
 然后，实际的目标元素接收到事件。最后一个阶段是冒泡，最迟要在这个阶段响应事件。
 
@@ -1743,230 +1748,233 @@ DOM2 Events规范规定事件流分为3个阶段：事件捕获、到达目标�
 事件意味着用户或浏览器执行的某种动作。  
 比如，单击（click）、加载（load）、鼠标悬停（mouseover）。  
 为响应事件而调用的函数被称为事件处理程序（或事件监听器）。  
-事件处理程序的名字以"on"开头，因此click 事件的处理程序叫作onclick，而load 事件的处理程序叫作onload。  
+事件处理程序的名字以"on"开头，因此 click 事件的处理程序叫作 onclick，而 load 事件的处理程序叫作 onload。
 
-#### HTML事件处理程序
+#### HTML 事件处理程序
 
-特定元素支持的每个事件都可以使用事件处理程序的名字以 HTML 属性的形式来指定。  
+特定元素支持的每个事件都可以使用事件处理程序的名字以 HTML 属性的形式来指定。
 
 ### 事件对象
 
-在DOM中发生事件时，所有相关信息都会被收集并存储在一个名为**event**的对象中。  
+在 DOM 中发生事件时，所有相关信息都会被收集并存储在一个名为**event**的对象中。  
 这个对象包含了一些基本信息，比如导致事件的元素、发生的事件类型，以及可能与特定事件相关的任何其他数据。  
 例如，鼠标操作导致的事件会生成鼠标位置信息，而键盘操作导致的事件会生成与被按下的键有关的信息。
 
 ### 事件类型
 
 Web 浏览器中可以发生很多种事件。  
-如前所述，所发生事件的类型决定了事件对象中会保存什么信息。  
+如前所述，所发生事件的类型决定了事件对象中会保存什么信息。
+
 ```
-DOM3 Events定义了如下事件类型。 
- 用户界面事件（UIEvent）：涉及与BOM交互的通用浏览器事件。 
- 焦点事件（FocusEvent）：在元素获得和失去焦点时触发。 
- 鼠标事件（MouseEvent）：使用鼠标在页面上执行某些操作时触发。 
- 滚轮事件（WheelEvent）：使用鼠标滚轮（或类似设备）时触发。 
- 输入事件（InputEvent）：向文档中输入文本时触发。 
- 键盘事件（KeyboardEvent）：使用键盘在页面上执行某些操作时触发。 
+DOM3 Events定义了如下事件类型。
+ 用户界面事件（UIEvent）：涉及与BOM交互的通用浏览器事件。
+ 焦点事件（FocusEvent）：在元素获得和失去焦点时触发。
+ 鼠标事件（MouseEvent）：使用鼠标在页面上执行某些操作时触发。
+ 滚轮事件（WheelEvent）：使用鼠标滚轮（或类似设备）时触发。
+ 输入事件（InputEvent）：向文档中输入文本时触发。
+ 键盘事件（KeyboardEvent）：使用键盘在页面上执行某些操作时触发。
  合成事件（CompositionEvent）：在使用某种IME（Input Method Editor，输入法编辑器）输入
 字符时触发。
 ```
 
 #### 用户界面事件
 
-1. load事件
-  在window 对象上，load 事件会在整个页面（包括所有外部资源如图片、JavaScript文件和 CSS文件）加载完成后触发。  
-2. unload事件
-  在文档卸载完成后触发。unload事件一般是在从一个页面导航到另一个页面时触发，最常用于清理引用，以避免内存泄漏。  
-3. resize事件
-4. scroll事件
+1. load 事件
+   在 window 对象上，load 事件会在整个页面（包括所有外部资源如图片、JavaScript 文件和 CSS 文件）加载完成后触发。
+2. unload 事件
+   在文档卸载完成后触发。unload 事件一般是在从一个页面导航到另一个页面时触发，最常用于清理引用，以避免内存泄漏。
+3. resize 事件
+4. scroll 事件
 
-#### 焦点事件  
+#### 焦点事件
 
 焦点事件在页面元素获得或失去焦点时触发。  
-这些事件可以与 document.hasFocus()和document.activeElement 一起为开发者提供用户在页面中导航的信息。
+这些事件可以与 document.hasFocus()和 document.activeElement 一起为开发者提供用户在页面中导航的信息。
 
-  当焦点从页面中的一个元素移到另一个元素上时，会依次发生如下事件。 
-  (1) focuscout 在失去焦点的元素上触发。 
-  (2) focusin 在获得焦点的元素上触发。 
-  (3) blur 在失去焦点的元素上触发。 
-  (4) DOMFocusOut 在失去焦点的元素上触发。 
-  (5) focus 在获得焦点的元素上触发。 
-  (6) DOMFocusIn 在获得焦点的元素上触发。 
-  其中，blur、DOMFocusOut 和focusout 的事件目标是失去焦点的元素，而focus、DOMFocusIn
-  和focusin 的事件目标是获得焦点的元素。
+当焦点从页面中的一个元素移到另一个元素上时，会依次发生如下事件。
+(1) focuscout 在失去焦点的元素上触发。
+(2) focusin 在获得焦点的元素上触发。
+(3) blur 在失去焦点的元素上触发。
+(4) DOMFocusOut 在失去焦点的元素上触发。
+(5) focus 在获得焦点的元素上触发。
+(6) DOMFocusIn 在获得焦点的元素上触发。
+其中，blur、DOMFocusOut 和 focusout 的事件目标是失去焦点的元素，而 focus、DOMFocusIn
+和 focusin 的事件目标是获得焦点的元素。
 
 #### 鼠标和滚轮事件
 
-   click：在用户单击鼠标主键（通常是左键）或按键盘回车键时触发。这主要是基于无障碍的考
-  虑，让键盘和鼠标都可以触发onclick事件处理程序。 
-   dblclick：在用户双击鼠标主键（通常是左键）时触发。这个事件不是在DOM2 Events中定义
-  的，但得到了很好的支持，DOM3 Events将其进行了标准化。 
-   mousedown：在用户按下任意鼠标键时触发。这个事件不能通过键盘触发。 
-   mouseenter：在用户把鼠标光标从元素外部移到元素内部时触发。这个事件不冒泡，也不会在
-  光标经过后代元素时触发。mouseenter事件不是在DOM2 Events中定义的，而是DOM3 Events
-  中新增的事件。 
-   mouseleave：在用户把鼠标光标从元素内部移到元素外部时触发。这个事件不冒泡，也不会在
-  光标经过后代元素时触发。mouseleave事件不是在DOM2 Events中定义的，而是DOM3 Events
-  中新增的事件。 
-   mousemove：在鼠标光标在元素上移动时反复触发。这个事件不能通过键盘触发。 
-   mouseout：在用户把鼠标光标从一个元素移到另一个元素上时触发。移到的元素可以是原始元
-  素的外部元素，也可以是原始元素的子元素。这个事件不能通过键盘触发。 
-   mouseover：在用户把鼠标光标从元素外部移到元素内部时触发。这个事件不能通过键盘触发。 
-   mouseup：在用户释放鼠标键时触发。这个事件不能通过键盘触发。
+ click：在用户单击鼠标主键（通常是左键）或按键盘回车键时触发。这主要是基于无障碍的考
+虑，让键盘和鼠标都可以触发 onclick 事件处理程序。
+ dblclick：在用户双击鼠标主键（通常是左键）时触发。这个事件不是在 DOM2 Events 中定义
+的，但得到了很好的支持，DOM3 Events 将其进行了标准化。
+ mousedown：在用户按下任意鼠标键时触发。这个事件不能通过键盘触发。
+ mouseenter：在用户把鼠标光标从元素外部移到元素内部时触发。这个事件不冒泡，也不会在
+光标经过后代元素时触发。mouseenter 事件不是在 DOM2 Events 中定义的，而是 DOM3 Events
+中新增的事件。
+ mouseleave：在用户把鼠标光标从元素内部移到元素外部时触发。这个事件不冒泡，也不会在
+光标经过后代元素时触发。mouseleave 事件不是在 DOM2 Events 中定义的，而是 DOM3 Events
+中新增的事件。
+ mousemove：在鼠标光标在元素上移动时反复触发。这个事件不能通过键盘触发。
+ mouseout：在用户把鼠标光标从一个元素移到另一个元素上时触发。移到的元素可以是原始元
+素的外部元素，也可以是原始元素的子元素。这个事件不能通过键盘触发。
+ mouseover：在用户把鼠标光标从元素外部移到元素内部时触发。这个事件不能通过键盘触发。
+ mouseup：在用户释放鼠标键时触发。这个事件不能通过键盘触发。
 
-页面中的所有元素都支持鼠标事件。除了mouseenter和mouseleave，所有鼠标事件都会冒泡，都可以被取消，而这会影响浏览器的默认行为。
+页面中的所有元素都支持鼠标事件。除了 mouseenter 和 mouseleave，所有鼠标事件都会冒泡，都可以被取消，而这会影响浏览器的默认行为。
 
-比如，click事件触发的前提是mousedown事件触发后，紧接着又在同一个元素上触发了mouseup事件。如果mousedown和mouseup中的任意一个事件被取消，那么click事件就不会触发。  
+比如，click 事件触发的前提是 mousedown 事件触发后，紧接着又在同一个元素上触发了 mouseup 事件。如果 mousedown 和 mouseup 中的任意一个事件被取消，那么 click 事件就不会触发。
 
 #### 键盘与输入事件
 
-  键盘事件包含3个事件： 
-   keydown，用户按下键盘上某个键时触发，而且持续按住会重复触发。 
-   keypress，用户按下键盘上某个键并产生字符时触发，而且持续按住会重复触发。Esc 键也会
-  触发这个事件。DOM3 Events废弃了keypress事件，而推荐textInput事件。 
-   keyup，用户释放键盘上某个键时触发。
+键盘事件包含 3 个事件：
+ keydown，用户按下键盘上某个键时触发，而且持续按住会重复触发。
+ keypress，用户按下键盘上某个键并产生字符时触发，而且持续按住会重复触发。Esc 键也会
+触发这个事件。DOM3 Events 废弃了 keypress 事件，而推荐 textInput 事件。
+ keyup，用户释放键盘上某个键时触发。
 
-当用户按下键盘上的某个字符键时，首先会触发keydown事件，然后触发keypress事件，最后触发keyup 事件。  
-注意，这里keydown 和keypress 事件会在文本框出现变化之前触发，而keyup事件会在文本框出现变化之后触发。  
-如果一个字符键被按住不放，keydown 和keypress 就会重复触发，直到这个键被释放。 
+当用户按下键盘上的某个字符键时，首先会触发 keydown 事件，然后触发 keypress 事件，最后触发 keyup 事件。  
+注意，这里 keydown 和 keypress 事件会在文本框出现变化之前触发，而 keyup 事件会在文本框出现变化之后触发。  
+如果一个字符键被按住不放，keydown 和 keypress 就会重复触发，直到这个键被释放。
 
-对于非字符键，在键盘上按一下这个键，会先触发keydown事件，然后触发keyup事件。  
-如果按住某个非字符键不放，则会重复触发keydown事件，直到这个键被释放，此时会触发keyup事件。 
+对于非字符键，在键盘上按一下这个键，会先触发 keydown 事件，然后触发 keyup 事件。  
+如果按住某个非字符键不放，则会重复触发 keydown 事件，直到这个键被释放，此时会触发 keyup 事件。
 
 **textInput 事件**
-- 对keypress 的替代
-- 只在可编辑区域上触发。  
+
+- 对 keypress 的替代
+- 只在可编辑区域上触发。
 - 只在有新字符被插入时才会触发
 
 #### 合成事件
 
-合成事件是DOM3 Events中新增的，用于处理通常使用IME输入时的复杂输入序列。  
-IME可以让用户输入物理键盘上没有的字符。  
+合成事件是 DOM3 Events 中新增的，用于处理通常使用 IME 输入时的复杂输入序列。  
+IME 可以让用户输入物理键盘上没有的字符。
 
 #### HTML5 事件
 
-1. contextmenu 事件 
-2. beforeunload 事件 
-  给开发者提供阻止页面被卸载的机会  
+1. contextmenu 事件
+2. beforeunload 事件
+   给开发者提供阻止页面被卸载的机会
 
 ### 内存与性能
 
-  在JavaScript中，页面中事件处理程序的数量与页面整体性能直接相关。原因有很多。首先，每个函数都是对象，都占用内存空间，对象越多，性能越差。其次，为指定事件处理程序所需访问DOM的次数会先期造成整个页面交互的延迟。只要在使用事件处理程序时多注意一些方法，就可以改善页面性能。
+在 JavaScript 中，页面中事件处理程序的数量与页面整体性能直接相关。原因有很多。首先，每个函数都是对象，都占用内存空间，对象越多，性能越差。其次，为指定事件处理程序所需访问 DOM 的次数会先期造成整个页面交互的延迟。只要在使用事件处理程序时多注意一些方法，就可以改善页面性能。
 
 #### 事件委托
 
 “过多事件处理程序”的解决方案是使用事件委托。  
-事件委托利用事件冒泡，可以只使用一个事件处理程序来管理一种类型的事件。  
+事件委托利用事件冒泡，可以只使用一个事件处理程序来管理一种类型的事件。
 
 #### 删除事件处理程序
 
 ### 模拟事件
 
-以通过JavaScript在任何时候触发任意事件  
+以通过 JavaScript 在任何时候触发任意事件
 
-## 动画与Canvas图形
+## 动画与 Canvas 图形
 
 ## 客户端存储
 
 - Cookie  
   约 4KB（每个域名）  
-  可设置过期时间，默认会话结束时失效。  
+  可设置过期时间，默认会话结束时失效。
 - Web Storage
   localStorage  
-    5-10MB  
-    永久存储，需要手动清除  
+   5-10MB  
+   永久存储，需要手动清除  
   sessionStorage  
-    页面会话结束时清除  
+   页面会话结束时清除
 - IndexedDB  
-    支持异步操作  
-    适用于离线应用  
+   支持异步操作  
+   适用于离线应用
 - Cache API  
-    与Service Worker配合，缓存网络请求资源，支持 PWA 离线访问  
-    存储请求-响应对，常用于静态资源（HTML/CSS/JS）的离线缓存  
+   与 Service Worker 配合，缓存网络请求资源，支持 PWA 离线访问  
+   存储请求-响应对，常用于静态资源（HTML/CSS/JS）的离线缓存
 - 内存缓存  
-    全局变量或状态管理工具（如Vuex、Redux）  
-    数据仅在页面刷新前有效，响应速度快，适合高频访问的临时状态（如用户登录信息）。  
+   全局变量或状态管理工具（如 Vuex、Redux）  
+   数据仅在页面刷新前有效，响应速度快，适合高频访问的临时状态（如用户登录信息）。
 
 ### cookie
 
-用于在客户端存储会话信息  
+用于在客户端存储会话信息
 
-求服务器在响应HTTP请求时，通过发送Set-Cookie HTTP头部包含会话信息。  
-浏览器会存储这些会话信息，并在之后的每个请求中都会通过HTTP头部cookie再将它们发回服务器。  
+求服务器在响应 HTTP 请求时，通过发送 Set-Cookie HTTP 头部包含会话信息。  
+浏览器会存储这些会话信息，并在之后的每个请求中都会通过 HTTP 头部 cookie 再将它们发回服务器。
 
 #### 限制
 
 cookie 是与特定域绑定的。设置 cookie 后，它会与请求一起发送到创建它的域。  
-这个限制能保证cookie 中存储的信息只对被认可的接收者开放，不被其他域访问。
+这个限制能保证 cookie 中存储的信息只对被认可的接收者开放，不被其他域访问。
 
-#### cookie的构成
+#### cookie 的构成
 
-cookie在浏览器中是由以下参数构成的。  
+cookie 在浏览器中是由以下参数构成的。
+
 ```
  名称：唯一标识cookie的名称。cookie名不区分大小写，因此myCookie 和MyCookie 是同一
 个名称。不过，实践中最好将 cookie 名当成区分大小写来对待，因为一些服务器软件可能这样
-对待它们。cookie名必须经过URL编码。 
- 值：存储在cookie里的字符串值。这个值必须经过URL编码。 
+对待它们。cookie名必须经过URL编码。
+ 值：存储在cookie里的字符串值。这个值必须经过URL编码。
  域：cookie有效的域。发送到这个域的所有请求都会包含对应的cookie。这个值可能包含子域（如
 www.wrox.com），也可以不包含（如.wrox.com表示对 wrox.com的所有子域都有效）。如果不明
-确设置，则默认为设置cookie的域。 
+确设置，则默认为设置cookie的域。
  路径：请求URL中包含这个路径才会把 cookie发送到服务器。例如，可以指定 cookie只能由
 http://www.wrox.com/books/访问，因此访问 http://www.wrox.com/下的页面就不会发送 cookie，即
-使请求的是同一个域。 
+使请求的是同一个域。
  过期时间：表示何时删除cookie的时间戳（即什么时间之后就不发送到服务器了）。默认情况下，
 浏览器会话结束后会删除所有cookie。不过，也可以设置删除cookie的时间。这个值是GMT格
 式（Wdy, DD-Mon-YYYY HH:MM:SS GMT），用于指定删除cookie的具体时间。这样即使关闭
-浏览器cookie也会保留在用户机器上。把过期时间设置为过去的时间会立即删除cookie。 
+浏览器cookie也会保留在用户机器上。把过期时间设置为过去的时间会立即删除cookie。
  安全标志：设置之后，只在使用SSL安全连接的情况下才会把cookie发送到服务器。例如，请
 求https://www.wrox.com会发送 cookie，而请求 http://www.wrox.com则不会。
 
-HTTP/1.1 200 OK 
-Content-type: text/html 
-Set-Cookie: name=value; expires=Mon, 22-Jan-07 07:10:24 GMT; domain=.wrox.com 
-Other-header: other-header-value 
+HTTP/1.1 200 OK
+Content-type: text/html
+Set-Cookie: name=value; expires=Mon, 22-Jan-07 07:10:24 GMT; domain=.wrox.com
+Other-header: other-header-value
 这个头部设置一个名为"name"的 cookie，这个 cookie 在 2007 年 1 月 22 日 7:10:24 过期，对
-www.wrox.com及其他wrox.com的子域（如p2p.wrox.com）有效。 
-安全标志secure是cookie中唯一的非名/值对，只需一个secure就可以了。比如： 
-HTTP/1.1 200 OK 
-Content-type: text/html 
-Set-Cookie: name=value; domain=.wrox.com; path=/; secure 
-Other-header: other-header-value 
+www.wrox.com及其他wrox.com的子域（如p2p.wrox.com）有效。
+安全标志secure是cookie中唯一的非名/值对，只需一个secure就可以了。比如：
+HTTP/1.1 200 OK
+Content-type: text/html
+Set-Cookie: name=value; domain=.wrox.com; path=/; secure
+Other-header: other-header-value
 ```
 
-#### 子cookie
+#### 子 cookie
 
-是使用cookie的值在单个cookie中存储多个名/值对  
+是使用 cookie 的值在单个 cookie 中存储多个名/值对
 
-#### 使用cookie的注意事项
+#### 使用 cookie 的注意事项
 
-有一种叫作HTTP-only的cookie。  
-HTTP-only可以在浏览器设置，也可以在服务器设置，但只能在服务器上读取，这是因为JavaScript无法取得这种cookie的值。  
-因为所有cookie都会作为请求头部由浏览器发送给服务器，所以在cookie中保存大量信息可能会影响特定域浏览器请求的性能。  
-保存的cookie越大，请求完成的时间就越长。  
-即使浏览器对cookie大小有限制，最好还是尽可能只通过cookie保存必要信息，以避免性能问题。  
+有一种叫作 HTTP-only 的 cookie。  
+HTTP-only 可以在浏览器设置，也可以在服务器设置，但只能在服务器上读取，这是因为 JavaScript 无法取得这种 cookie 的值。  
+因为所有 cookie 都会作为请求头部由浏览器发送给服务器，所以在 cookie 中保存大量信息可能会影响特定域浏览器请求的性能。  
+保存的 cookie 越大，请求完成的时间就越长。  
+即使浏览器对 cookie 大小有限制，最好还是尽可能只通过 cookie 保存必要信息，以避免性能问题。
 
 ### Web Storage
 
 #### Storage 类型
 
-Storage 类型用于保存名/值对数据，直至存储空间上限（由浏览器决定）  
+Storage 类型用于保存名/值对数据，直至存储空间上限（由浏览器决定）
 
 #### sessionStorage 对象
 
 sessionStorage 对象只存储会话数据，这意味着数据只会存储到浏览器关闭。  
-这跟浏览器关闭时会消失的会话cookie类似。存储在sessionStorage 中的数据不受页面刷新影响，可以在浏览器崩溃并重启后恢复。
+这跟浏览器关闭时会消失的会话 cookie 类似。存储在 sessionStorage 中的数据不受页面刷新影响，可以在浏览器崩溃并重启后恢复。
 
 #### localStorage
 
 作为在客户端持久存储数据的机制。  
-要访问同一个localStorage对象，页面必须来自同一个域（子域不可以）、在相同的端口上使用相同的协议。
+要访问同一个 localStorage 对象，页面必须来自同一个域（子域不可以）、在相同的端口上使用相同的协议。
 
-存储在localStorage中的数据会保留到通过JavaScript删除或者用户清除浏览器缓存。  
-localStorage数据不受页面刷新影响，也不会因关闭窗口、标签页或重新启动浏览器而丢失。  
+存储在 localStorage 中的数据会保留到通过 JavaScript 删除或者用户清除浏览器缓存。  
+localStorage 数据不受页面刷新影响，也不会因关闭窗口、标签页或重新启动浏览器而丢失。
 
-#### 存储事件 
+#### 存储事件
 
-每当Storage 对象发生变化时，都会在文档上触发storage 事件。  
+每当 Storage 对象发生变化时，都会在文档上触发 storage 事件。
 
 ### IndexedDB
 
@@ -1974,163 +1982,173 @@ localStorage数据不受页面刷新影响，也不会因关闭窗口、标签�
 
 ### 理解模块模式
 
-把逻辑分块，各自封装，相互独立，每个块自行决定对外暴露什么，同时自行决定引入执行哪些外部代码。  
+把逻辑分块，各自封装，相互独立，每个块自行决定对外暴露什么，同时自行决定引入执行哪些外部代码。
 
 #### 模块标识符
 
 模块标识符是所有模块系统通用的概念。  
 模块系统本质上是键/值实体，其中每个模块都有个可用于引用它的标识符。  
-这个标识符在模拟模块的系统中可能是字符串，在原生实现的模块系统中可能是模块文件的实际路径。 
+这个标识符在模拟模块的系统中可能是字符串，在原生实现的模块系统中可能是模块文件的实际路径。
 
 #### 模块依赖
 
 模块系统的核心是管理依赖。  
 指定依赖的模块与周围的环境会达成一种契约。  
 本地模块向模块系统声明一组外部模块（依赖），这些外部模块对于当前模块正常运行是必需的。  
-模块系统检视这些依赖，进而保证这些外部模块能够被加载并在本地模块运行时初始化所有依赖。 
+模块系统检视这些依赖，进而保证这些外部模块能够被加载并在本地模块运行时初始化所有依赖。
 
 #### 模块加载
 
-在浏览器中，加载模块涉及几个步骤。  
-- 加载模块涉及执行其中的代码，但必须是在所有依赖都加载并执行之后。  
-- 如果浏览器没有收到依赖模块的代码，则必须发送请求并等待网络返回。  
-- 收到模块代码之后，浏览器必须确定刚收到的模块是否也有依赖。  
-- 然后递归地评估并加载所有依赖，直到所有依赖模块都加载完成。  
+在浏览器中，加载模块涉及几个步骤。
+
+- 加载模块涉及执行其中的代码，但必须是在所有依赖都加载并执行之后。
+- 如果浏览器没有收到依赖模块的代码，则必须发送请求并等待网络返回。
+- 收到模块代码之后，浏览器必须确定刚收到的模块是否也有依赖。
+- 然后递归地评估并加载所有依赖，直到所有依赖模块都加载完成。
 - 只有整个依赖图都加载完成，才可以执行入口模块。
 
 #### 入口
 
-相互依赖的模块必须指定一个模块作为入口（entry point），这也是代码执行的起点。  
+相互依赖的模块必须指定一个模块作为入口（entry point），这也是代码执行的起点。
 
 #### 异步依赖
 
-可以让JavaScript通知模块系统在必要时加载新模块，并在模块加载完成后提供回调。  
+可以让 JavaScript 通知模块系统在必要时加载新模块，并在模块加载完成后提供回调。
 
 #### 动态依赖
 
 允许开发者在程序结构中动态添加依赖。
 
-#### 静态分析  
+#### 静态分析
 
-模块中包含的发送到浏览器的JavaScript代码经常会被静态分析，分析工具会检查代码结构并在不实际执行代码的情况下推断其行为。  
-对静态分析友好的模块系统可以让模块打包系统更容易将代码处理为较少的文件。  
+模块中包含的发送到浏览器的 JavaScript 代码经常会被静态分析，分析工具会检查代码结构并在不实际执行代码的情况下推断其行为。  
+对静态分析友好的模块系统可以让模块打包系统更容易将代码处理为较少的文件。
 
 #### 循环依赖
 
-要构建一个没有循环依赖的 JavaScript 应用程序几乎是不可能的，因此包括 CommonJS、AMD 和ES6在内的所有模块系统都支持循环依赖。
+要构建一个没有循环依赖的 JavaScript 应用程序几乎是不可能的，因此包括 CommonJS、AMD 和 ES6 在内的所有模块系统都支持循环依赖。
 
 ### 凑合的模块系统
 
-为按照模块模式提供必要的封装，ES6之前的模块有时候会使用函数作用域和立即调用函数表达式（IIFE，Immediately Invoked Function Expression）将模块定义封装在匿名闭包中。
+为按照模块模式提供必要的封装，ES6 之前的模块有时候会使用函数作用域和立即调用函数表达式（IIFE，Immediately Invoked Function Expression）将模块定义封装在匿名闭包中。
 
-### 使用ES6之前的模块加载器
+### 使用 ES6 之前的模块加载器
 
 #### CommonJS
 
-CommonJS规范概述了同步声明依赖的模块定义。  
+CommonJS 规范概述了同步声明依赖的模块定义。  
 这个规范主要用于在服务器端实现模块化代码组织，但也可用于定义在浏览器中使用的模块依赖。  
-CommonJS模块语法不能在浏览器中直接运行。  
+CommonJS 模块语法不能在浏览器中直接运行。
 
-无论一个模块在require()中被引用多少次，模块永远是单例。  
+无论一个模块在 require()中被引用多少次，模块永远是单例。
 
 #### 异步模块定义
 
-CommonJS以服务器端为目标环境，能够一次性把所有模块都加载到内存  
-而异步模块定义（AMD，Asynchronous Module Definition）的模块定义系统则以浏览器为目标执行环境  
+CommonJS 以服务器端为目标环境，能够一次性把所有模块都加载到内存  
+而异步模块定义（AMD，Asynchronous Module Definition）的模块定义系统则以浏览器为目标执行环境
 
-AMD 模块实现的核心是用函数包装模块定义。  
+AMD 模块实现的核心是用函数包装模块定义。
 
 #### 通用模块定义
 
-为了统一CommonJS和AMD生态系统，通用模块定义（UMD，Universal Module Definition）规范
+为了统一 CommonJS 和 AMD 生态系统，通用模块定义（UMD，Universal Module Definition）规范
 应运而生。  
-UMD可用于创建这两个系统都可以使用的模块代码。  
-本质上，UMD定义的模块会在启动时检测要使用哪个模块系统，然后进行适当配置，并把所有逻辑包装在一个立即调用的函数表达式（IIFE）中。  
+UMD 可用于创建这两个系统都可以使用的模块代码。  
+本质上，UMD 定义的模块会在启动时检测要使用哪个模块系统，然后进行适当配置，并把所有逻辑包装在一个立即调用的函数表达式（IIFE）中。
 
 ### 使用 ES6 模块
 
-ES6最大的一个改进就是引入了模块规范。这个规范全方位简化了之前出现的模块加载器，原生浏
-览器支持意味着加载器及其他预处理都不再必要。从很多方面看，ES6模块系统是集AMD和CommonJS
+ES6 最大的一个改进就是引入了模块规范。这个规范全方位简化了之前出现的模块加载器，原生浏
+览器支持意味着加载器及其他预处理都不再必要。从很多方面看，ES6 模块系统是集 AMD 和 CommonJS
 之大成者。
 
 #### 模块标签及定义
 
-ECMAScript 6 模块是作为一整块JavaScript代码而存在的。  
-带有type="module"属性的`<script>`标签会告诉浏览器相关代码应该作为模块执行，而不是作为传统的脚本执行。  
+ECMAScript 6 模块是作为一整块 JavaScript 代码而存在的。  
+带有 type="module"属性的`<script>`标签会告诉浏览器相关代码应该作为模块执行，而不是作为传统的脚本执行。
 
 - 所有模块都会像`<script defer>`加载的脚本一样按顺序执行。
-  解析到`<script type="module">`标签后会立即下载模块文件，但执行会延迟到文档解析完成。  
-- 嵌入的模块定义代码不能使用import加载到其他模块。只有通过外部文件加载的模块才可以使用import 加载。  
+  解析到`<script type="module">`标签后会立即下载模块文件，但执行会延迟到文档解析完成。
+- 嵌入的模块定义代码不能使用 import 加载到其他模块。只有通过外部文件加载的模块才可以使用 import 加载。  
   因此，嵌入模块只适合作为入口模块。
 
 #### 模块加载
 
 ECMAScript 6 模块的独特之处在于，既可以通过浏览器原生加载，也可以与第三方加载器和构建工具一起加载。
 
-完全支持ECMAScript 6模块的浏览器可以从顶级模块加载整个依赖图，且是异步完成的。  
+完全支持 ECMAScript 6 模块的浏览器可以从顶级模块加载整个依赖图，且是异步完成的。  
 浏览器会解析入口模块，确定依赖，并发送对依赖模块的请求。  
 这些文件通过网络返回后，浏览器就会解析它们的内容，确定它们的依赖，如果这些二级依赖还没有加载，则会发送更多请求。  
-这个异步递归加载过程会持续到整个应用程序的依赖图都解析完成。解析完依赖图，应用程序就可以正式加载模块了。 
+这个异步递归加载过程会持续到整个应用程序的依赖图都解析完成。解析完依赖图，应用程序就可以正式加载模块了。
 
 #### 模块行为
 
-ES6模块默认在严格模式下执行。  
+ES6 模块默认在严格模式下执行。
 
 #### 模块导出
 
-ES6模块支持两种导出：命名导出和默认导出。  
+ES6 模块支持两种导出：命名导出和默认导出。
 
 **命名导出**
-- export 关键字用于声明一个值为命名导出  
-- 导出语句必须在模块顶级，不能嵌套在某个块中。  
-- 导出时也可以提供别名，别名必须在export子句的大括号语法中指定。  
-- 因为ES6命名导出可以将模块作为容器，所以可以在一个模块中声明多个命名导出。  
+
+- export 关键字用于声明一个值为命名导出
+- 导出语句必须在模块顶级，不能嵌套在某个块中。
+- 导出时也可以提供别名，别名必须在 export 子句的大括号语法中指定。
+- 因为 ES6 命名导出可以将模块作为容器，所以可以在一个模块中声明多个命名导出。
 
 **默认导出**
 默认导出（default export）就好像模块与被导出的值是一回事。  
-默认导出使用default关键字将一个值声明为默认导出，每个模块只能有一个默认导出。
+默认导出使用 default 关键字将一个值声明为默认导出，每个模块只能有一个默认导出。
 
-ES6模块系统会识别作为别名提供的 default 关键字。此时，虽然对应的值是使用命名语法导出的，实际上则会成为默认导出：  
+ES6 模块系统会识别作为别名提供的 default 关键字。此时，虽然对应的值是使用命名语法导出的，实际上则会成为默认导出：
+
 ```js
-const foo = 'foo'; 
-// 等同于export default foo; 
-export { foo as default }; 
+const foo = "foo";
+// 等同于export default foo;
+export { foo as default };
 ```
 
 #### 模块导入
 
-命名导出和默认导出的区别也反映在它们的导入上。  
+命名导出和默认导出的区别也反映在它们的导入上。
 
-命名导出可以使用*批量获取并赋值给保存导出集合的别名，而无须列出每个标识符：  
+命名导出可以使用\*批量获取并赋值给保存导出集合的别名，而无须列出每个标识符：
+
 ```js
-const foo = 'foo', bar = 'bar', baz = 'baz'; 
-export { foo, bar, baz } 
+const foo = "foo",
+  bar = "bar",
+  baz = "baz";
+export { foo, bar, baz };
 
-import * as Foo from './foo.js'; 
-console.log(Foo.foo); // foo 
-console.log(Foo.bar); // bar 
-console.log(Foo.baz); // baz 
+import * as Foo from "./foo.js";
+console.log(Foo.foo); // foo
+console.log(Foo.bar); // bar
+console.log(Foo.baz); // baz
 ```
-要指名导入，需要把标识符放在import子句中。使用import子句可以为导入的值指定别名：  
+
+要指名导入，需要把标识符放在 import 子句中。使用 import 子句可以为导入的值指定别名：
+
 ```js
-import { foo, bar, baz as myBaz } from './foo.js'; 
-console.log(foo);   // foo 
-console.log(bar);   // bar 
+import { foo, bar, baz as myBaz } from "./foo.js";
+console.log(foo); // foo
+console.log(bar); // bar
 console.log(myBaz); // baz
 ```
 
-默认导出就好像整个模块就是导出的值一样。可以使用default 关键字并提供别名来导入。也可以不使用大括号，此时指定的标识符就是默认导出的别名：  
+默认导出就好像整个模块就是导出的值一样。可以使用 default 关键字并提供别名来导入。也可以不使用大括号，此时指定的标识符就是默认导出的别名：
+
 ```js
-// 等效 
-import { default as foo } from './foo.js'; 
-import foo from './foo.js'; 
+// 等效
+import { default as foo } from "./foo.js";
+import foo from "./foo.js";
 ```
 
-如果模块同时导出了命名导出和默认导出，则可以在import语句中同时取得它们。可以依次列出特定导出的标识符来取得，也可以使用*来取得：  
+如果模块同时导出了命名导出和默认导出，则可以在 import 语句中同时取得它们。可以依次列出特定导出的标识符来取得，也可以使用\*来取得：
+
 ```js
-import foo, { bar, baz } from './foo.js'; 
-import { default as foo, bar, baz } from './foo.js'; 
-import foo, * as Foo from './foo.js';
+import foo, { bar, baz } from "./foo.js";
+import { default as foo, bar, baz } from "./foo.js";
+import foo, * as Foo from "./foo.js";
 ```
 
 #### 模块转移导出
@@ -2138,90 +2156,91 @@ import foo, * as Foo from './foo.js';
 模块导入的值可以直接通过管道转移到导出。  
 此时，也可以将默认导出转换为命名导出，或者相反。
 
-## 工作者线程  
+## 工作者线程
 
 ### 工作者线程简介
 
-  JavaScript环境实际上是运行在托管操作系统中的虚拟环境。在浏览器中每打开一个页面，就会分
-  配一个它自己的环境。这样，每个页面都有自己的内存、事件循环、DOM，等等。每个页面就相当于
-  一个沙盒，不会干扰其他页面。对于浏览器来说，同时管理多个环境是非常简单的，因为所有这些环境都是并行执行的。 
-  使用工作者线程，浏览器可以在原始页面环境之外再分配一个完全独立的二级子环境。这个子环境
-  不能与依赖单线程交互的API（如DOM）互操作，但可以与父环境并行执行代码。 
+JavaScript 环境实际上是运行在托管操作系统中的虚拟环境。在浏览器中每打开一个页面，就会分
+配一个它自己的环境。这样，每个页面都有自己的内存、事件循环、DOM，等等。每个页面就相当于
+一个沙盒，不会干扰其他页面。对于浏览器来说，同时管理多个环境是非常简单的，因为所有这些环境都是并行执行的。
+使用工作者线程，浏览器可以在原始页面环境之外再分配一个完全独立的二级子环境。这个子环境
+不能与依赖单线程交互的 API（如 DOM）互操作，但可以与父环境并行执行代码。
 
 - 工作者线程是以实际线程实现的。
-- 工作者线程并行执行。  
+- 工作者线程并行执行。
 - 工作者线程可以共享某些内存。  
-  工作者线程能够使用SharedArrayBuffer 在多个环境间共享内容。  
-  虽然线程会使用锁实现并发控制，但JavaScript使用Atomics接口实现并发控制。
-  工作者线程与线程有很多类似之处，但也有重要的区别。 
-- 工作者线程不共享全部内存  
-- 工作者线程不一定在同一个进程里  
-- 创建工作者线程的开销更大  
+  工作者线程能够使用 SharedArrayBuffer 在多个环境间共享内容。  
+  虽然线程会使用锁实现并发控制，但 JavaScript 使用 Atomics 接口实现并发控制。
+  工作者线程与线程有很多类似之处，但也有重要的区别。
+- 工作者线程不共享全部内存
+- 工作者线程不一定在同一个进程里
+- 创建工作者线程的开销更大
 
 #### 工作者线程的类型
 
-1. 专用工作者线程 
-  专用工作者线程，通常简称为工作者线程、Web Worker或 Worker，是一种实用的工具，可以让脚本单独创建一个JavaScript线程，以执行委托的任务。专用工作者线程，顾名思义，只能被创建它页面使用。 
-2. 共享工作者线程 
-  共享工作者线程与专用工作者线程非常相似。主要区别是共享工作者线程可以被多个不同的上下文使用，包括不同的页面。任何与创建共享工作者线程的脚本同源的脚本，都可以向共享工作者线程发送消息或从中接收消息。 
-3. 服务工作者线程 
-  服务工作者线程与专用工作者线程和共享工作者线程截然不同。它的主要用途是拦截、重定向和修改页面发出的请求，充当网络请求的仲裁者的角色。
+1. 专用工作者线程
+   专用工作者线程，通常简称为工作者线程、Web Worker 或 Worker，是一种实用的工具，可以让脚本单独创建一个 JavaScript 线程，以执行委托的任务。专用工作者线程，顾名思义，只能被创建它页面使用。
+2. 共享工作者线程
+   共享工作者线程与专用工作者线程非常相似。主要区别是共享工作者线程可以被多个不同的上下文使用，包括不同的页面。任何与创建共享工作者线程的脚本同源的脚本，都可以向共享工作者线程发送消息或从中接收消息。
+3. 服务工作者线程
+   服务工作者线程与专用工作者线程和共享工作者线程截然不同。它的主要用途是拦截、重定向和修改页面发出的请求，充当网络请求的仲裁者的角色。
 
 #### WorkerGlobalScope
 
-在网页上，window对象可以向运行在其中的脚本暴露各种全局变量。  
-在工作者线程内部，没有window的概念。  
-这里的全局对象是WorkerGlobalScope的实例，通过self关键字暴露出来。
+在网页上，window 对象可以向运行在其中的脚本暴露各种全局变量。  
+在工作者线程内部，没有 window 的概念。  
+这里的全局对象是 WorkerGlobalScope 的实例，通过 self 关键字暴露出来。
 
 ### 专用工作者线程
 
-专用工作者线程是最简单的Web工作者线程，网页中的脚本可以创建专用工作者线程来执行在页面线程之外的其他任务。这样的线程可以与父页面交换信息、发送网络请求、执行文件输入/输出、进行密集计算、处理大量数据，以及实现其他不适合在页面执行线程里做的任务（否则会导致页面响应迟钝）
+专用工作者线程是最简单的 Web 工作者线程，网页中的脚本可以创建专用工作者线程来执行在页面线程之外的其他任务。这样的线程可以与父页面交换信息、发送网络请求、执行文件输入/输出、进行密集计算、处理大量数据，以及实现其他不适合在页面执行线程里做的任务（否则会导致页面响应迟钝）
 
 #### 专用工作者线程的基本概念
 
 可以把专用工作者线程称为后台脚本（background script）。  
-JavaScript线程的各个方面，包括生命周期管理、代码路径和输入/输出，都由初始化线程时提供的脚本来控制。  
+JavaScript 线程的各个方面，包括生命周期管理、代码路径和输入/输出，都由初始化线程时提供的脚本来控制。  
 该脚本也可以再请求其他脚本，但一个线程总是从一个脚本源开始。
 
 **创建专用工作者线程**
-创建专用工作者线程最常见的方式是加载JavaScript文件。  
-把文件路径提供给Worker 构造函数，然后构造函数再在后台异步加载脚本并实例化工作者线程。  
-传给构造函数的文件路径可以是多种形式。  
-```js
-// emptyWorker.js 
-// 空的JS工作者线程文件 
+创建专用工作者线程最常见的方式是加载 JavaScript 文件。  
+把文件路径提供给 Worker 构造函数，然后构造函数再在后台异步加载脚本并实例化工作者线程。  
+传给构造函数的文件路径可以是多种形式。
 
-// main.js 
-console.log(location.href); // "https://example.com/" 
-const worker = new Worker(location.href + 'emptyWorker.js'); 
-console.log(worker);        // Worker {} 
-// 这个例子非常简单，但涉及几个基本概念。 
-//  emptyWorker.js文件是从绝对路径加载的。根据应用程序的结构，使用绝对URL经常是多余的。 
-//  这个文件是在后台加载的，工作者线程的初始化完全独立于main.js。 
+```js
+// emptyWorker.js
+// 空的JS工作者线程文件
+
+// main.js
+console.log(location.href); // "https://example.com/"
+const worker = new Worker(location.href + "emptyWorker.js");
+console.log(worker); // Worker {}
+// 这个例子非常简单，但涉及几个基本概念。
+//  emptyWorker.js文件是从绝对路径加载的。根据应用程序的结构，使用绝对URL经常是多余的。
+//  这个文件是在后台加载的，工作者线程的初始化完全独立于main.js。
 //  工作者线程本身存在于一个独立的JavaScript环境中，因此main.js必须以Worker对象为代理实
-// 现与工作者线程通信。在上面的例子中，该对象被赋值给了worker变量。 
-//  虽然相应的工作者线程可能还不存在，但该Worker对象已在原始环境中可用了。 
-// 前面的例子可修改为使用相对路径。不过，这要求main.js必须与emptyWorker.js在同一个路径下： 
-const worker = new Worker('./emptyWorker.js'); 
-console.log(worker);   // Worker {} 
+// 现与工作者线程通信。在上面的例子中，该对象被赋值给了worker变量。
+//  虽然相应的工作者线程可能还不存在，但该Worker对象已在原始环境中可用了。
+// 前面的例子可修改为使用相对路径。不过，这要求main.js必须与emptyWorker.js在同一个路径下：
+const worker = new Worker("./emptyWorker.js");
+console.log(worker); // Worker {}
 ```
 
 **工作者线程安全限制**
 工作者线程的脚本文件只能从与父页面相同的源加载。  
-从其他源加载工作者线程的脚本文件会导致错误。  
+从其他源加载工作者线程的脚本文件会导致错误。
 
-**使用Worker对象**
+**使用 Worker 对象**
 Worker()构造函数返回的 Worker 对象是与刚创建的专用工作者线程通信的连接点。  
-它可用于在工作者线程和父上下文间传输信息，以及捕获专用工作者线程发出的事件。 
+它可用于在工作者线程和父上下文间传输信息，以及捕获专用工作者线程发出的事件。
 
 **DedicatedWorkerGlobalScope**  
 在专用工作者线程内部，全局作用域是 DedicatedWorkerGlobalScope 的实例。  
-因为这继承自WorkerGlobalScope，所以包含它的所有属性和方法。  
-工作者线程可以通过 self 关键字访问该全局作用域。 
+因为这继承自 WorkerGlobalScope，所以包含它的所有属性和方法。  
+工作者线程可以通过 self 关键字访问该全局作用域。
 
 ### 共享工作者进程
 
-共享工作者线程或共享线程与专用工作者线程类似，但可以被多个可信任的执行上下文访问。  
+共享工作者线程或共享线程与专用工作者线程类似，但可以被多个可信任的执行上下文访问。
 
 ### 服务工作者进程
 

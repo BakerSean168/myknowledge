@@ -3,5 +3,6 @@
 * [命令行的艺术](/CS/Document/the-art-of-command-line)
 * [Git 文档](/CS/Document/Git)
 * [Nginx 文档](/CS/Document/Nginx)
+* [Regex 文档](/CS/Document/Regex)
 * [Linux常用快捷键](/CS/Document/linux常用快捷键)
 * [返回上级](/CS/_sidebar)

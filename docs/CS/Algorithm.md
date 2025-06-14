@@ -146,6 +146,7 @@ class Solution {
 ```
 
 # 堆结构与堆排序
+
 **堆结构**
 完全二叉树和数组前缀范围来对应，大小，单独的变量size来控制。
 i的父节点：(i - 1)/2, i'left child: i * 2 + 1, i'right child: i* 2 + 2
@@ -241,7 +242,7 @@ public static void heapSort(int[] arr) {
 
 # 堆结构常见问题
 
-合并K个有序链表
+## 合并K个有序链表
 
 ```java
 
@@ -275,7 +276,7 @@ public static ListNode mergeKLists(ArrayList<ListNode> arr) {
 
 ```
 
-#### 线段最多重合问题
+## 线段最多重合问题
 
 ```java
 public class MaxCover {
@@ -350,7 +351,7 @@ public class MaxCover {
 // 时间复杂度O(n * log n)
 // 空间复杂度O(n)
 ```
-#### 让数组整体累加和减半的最少操作次数
+## 让数组整体累加和减半的最少操作次数
 ```
 class Solution {
     public static int MAXN = 100001;
@@ -1141,6 +1142,7 @@ const a = lines[1].split(' ').map(Number);
 
 console.log(maxAsset(n, m, a)); // 输出6
 ```
+## 从上到下返回树的节点（要自己构造树）
 
 # 回溯
 
@@ -1287,6 +1289,30 @@ var rob = function(nums) {
 ### 恰好装
 
 ### 至少装
+
+# 二维动态规划
+
+## 最长回文子串
+
+### Manacher 马拉车算法
+
+https://www.bilibili.com/video/BV1UcyYY4EnQ/?vd_source=15c229538881316b8c6a43f997de056f
+
+O(1) 判断任意字串是否回文  
+
+核心思想：  
+- 回文子串对称特征  
+
+利用一个大范围回文子串和左侧小范围回文子串 --》 得到右侧小范围回文子串  
+
+#### 细节
+
+统一奇数长度和偶数长度回文子串写法：  
+每个字符之间插入一个 #  
+
+不写越界判断：  
+前后插入一个 ^  
+
 
 # 技巧
 

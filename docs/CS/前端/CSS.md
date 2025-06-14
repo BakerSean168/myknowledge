@@ -87,7 +87,14 @@ inherit 关键字可以明确让某个属性继承其父元素的值
 initial 关键字把属性设置为其默认值  
 unset 对于可继承属性 inherit；不可继承属性 = initial  
 
-## 选择器
+
+
+## 规则集
+
+CSS规则集（Rule Set）是CSS语言的核心组成部分，它定义了如何格式化HTML文档中的特定元素。  
+规则集由选择器和声明块组成，是控制网页样式的基本单位。  
+
+### 选择器
 
 | 选择器类型         | 语法示例                   | 作用描述                                                               | 优先级权重（数值） |
 | ------------------ | -------------------------- | ---------------------------------------------------------------------- | ------------------ |
@@ -106,7 +113,7 @@ unset 对于可继承属性 inherit；不可继承属性 = initial
 | **内联样式**       | `<div style="color: red">` | 直接在 HTML 标签内写的样式。                                           | 1000               |
 | **`!important`**   | `color: red !important;`   | 强制覆盖其他样式规则（慎用）。                                         | 优先级最高         |
 
-### 伪类和伪元素的区别
+#### 伪类和伪元素的区别
 
 伪类（Pseudo-class）：  
 用于选择元素的特定状态或条件  
@@ -119,7 +126,13 @@ unset 对于可继承属性 inherit；不可继承属性 = initial
 它模拟了一个新的元素，如首字母或前后插入内容。  
 示例：::before、::first-line、::selection  
 
-## 优先级
+### 特异性和优先级
+
+当多个规则集应用于同一个元素时，CSS通过**特异性（Specificity）和优先级（Priority）**决定哪个规则生效。  
+当特异性相同时，后定义的规则会覆盖先定义的规则。  
+
+特异性为不同选择器的权重值  
+优先级为从高到底的优先顺序  
 
 - 内联样式（HTML 元素上的 style）
     每个加 1000 分  
@@ -132,6 +145,28 @@ unset 对于可继承属性 inherit；不可继承属性 = initial
 - 通配符选择器、后代选择器、子选择器等（*、div p、div > p）  
 
 优先级相同，后出现的样式生效  
+
+### 高级规则集特性
+
+#### @规则
+
+- @import
+- @meida
+- @keyframes
+
+#### 自定义属性
+
+```css
+:root {
+  --main-color: #06c;
+  --padding: 15px;
+}
+
+.element {
+  color: var(--main-color);
+  padding: var(--padding);
+}
+```
 
 ## 动画
 
@@ -152,7 +187,59 @@ animation
 
 ## transform
 
-## transiton
+CSS transform 属性允许你对元素进行变换操作，包括旋转、缩放、倾斜和平移。
+
+### 常用变换函数
+
+| 函数 | 说明 | 示例值 |
+|------|------|--------|
+| `translate()` | 平移元素（X, Y方向） | `translate(50px, 20px)` |
+| `translateX()` | 水平方向平移 | `translateX(30px)` |
+| `translateY()` | 垂直方向平移 | `translateY(-10px)` |
+| `translateZ()` | Z轴方向平移（3D） | `translateZ(100px)` |
+| `translate3d()` | 3D平移 | `translate3d(10px, 20px, 30px)` |
+| `scale()` | 缩放元素 | `scale(1.5)`, `scale(2, 0.5)` |
+| `scaleX()` | 水平方向缩放 | `scaleX(1.2)` |
+| `scaleY()` | 垂直方向缩放 | `scaleY(0.8)` |
+| `scaleZ()` | Z轴方向缩放（3D） | `scaleZ(2)` |
+| `rotate()` | 旋转元素 | `rotate(45deg)` |
+| `rotateX()` | 绕X轴旋转（3D） | `rotateX(30deg)` |
+| `rotateY()` | 绕Y轴旋转（3D） | `rotateY(60deg)` |
+| `rotateZ()` | 绕Z轴旋转（3D） | `rotateZ(90deg)` |
+| `skew()` | 倾斜元素 | `skew(30deg, 20deg)` |
+| `skewX()` | 水平方向倾斜 | `skewX(15deg)` |
+| `skewY()` | 垂直方向倾斜 | `skewY(10deg)` |
+| `matrix()` | 2D矩阵变换 | `matrix(1, 0, 0, 1, 0, 0)` |
+| `matrix3d()` | 3D矩阵变换 | `matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1)` |
+
+### 相关属性
+
+| 属性 | 说明 | 示例值 |
+|------|------|--------|
+| `transform-origin` | 变换的基点 | `center`, `top left`, `50% 50%` |
+| `transform-style` | 3D变换样式 | `flat`, `preserve-3d` |
+| `perspective` | 3D透视距离 | `1000px` |
+| `perspective-origin` | 透视点位置 | `center`, `top left` |
+
+
+## transition
+
+CSS transition 属性允许你为元素的样式变化添加过渡效果，使变化更平滑。
+
+### 常用属性
+
+| 属性 | 说明 | 示例值 |
+|------|------|--------|
+| `transition-property` | 指定要过渡的CSS属性 | `all`, `width`, `color`, `transform` |
+| `transition-duration` | 过渡动画持续时间 | `1s`, `500ms`, `0.3s` |
+| `transition-timing-function` | 过渡的速度曲线 | `ease`, `linear`, `ease-in`, `ease-out`, `cubic-bezier(0.1, 0.7, 1.0, 0.1)` |
+| `transition-delay` | 过渡开始前的延迟时间 | `0s`, `200ms`, `1s` |
+
+### 简写语法
+
+```css
+transition: property duration timing-function delay;
+```
 
 ## link 和 @import 引用 CSS 的区别
 
